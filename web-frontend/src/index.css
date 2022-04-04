@@ -6,9 +6,7 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Quicksand', sans-serif;
   line-height: 1.618;
-  color: white;
 }
 
 h1,
@@ -22,4 +20,14 @@ h6 {
 
 body {
   margin: 0;
+}
+
+.theme-switcher {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+.theme-switcher:hover {
+  cursor: pointer;
 }
