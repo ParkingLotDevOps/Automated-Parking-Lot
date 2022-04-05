@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  outline: none;
 }
 
 html {
@@ -20,14 +19,4 @@ h6 {
 
 body {
   margin: 0;
-}
-
-.theme-switcher {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-}
-
-.theme-switcher:hover {
-  cursor: pointer;
 }

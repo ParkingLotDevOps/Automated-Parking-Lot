@@ -2,19 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.css';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import { SignIn, SignUp } from 'sign-in-up';
 
-function PageSwitcher({ color, children }) {
+function PageSwitcher() {
   const [page, setPage] = React.useState('sign-in');
   return (
     <>
       <button
         className="theme-switcher"
-        style={{ backgroundColor: color }}
+        style={{ position: 'fixed', top: 10, left: 10, ':hover': { cursor: 'pointer' } }}
         onClick={() => setPage(page === 'sign-in' ? 'sign-up' : 'sign-in')}
       >
-        {children}
+        switch page
       </button>
       {page === 'sign-in' ? <SignIn /> : <SignUp />}
     </>
@@ -23,11 +22,7 @@ function PageSwitcher({ color, children }) {
 
 ReactDOM.render(
   <React.StrictMode>
-    <PageSwitcher color="red">
-      <p>a</p>
-      <p>b</p>
-      <p>c</p>
-    </PageSwitcher>
+    <PageSwitcher />
   </React.StrictMode>,
   document.getElementById('root')
 );
