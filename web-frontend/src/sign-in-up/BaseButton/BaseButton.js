@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import '@fontsource/open-sans/700.css';
 import styles from './BaseButton.module.css';
 
 import { FaGoogle } from 'react-icons/fa';
