@@ -10,7 +10,7 @@ function PageSwitcher() {
     <>
       <button
         className="theme-switcher"
-        style={{ position: 'fixed', top: 10, left: 10, ':hover': { cursor: 'pointer' } }}
+        style={{ position: 'fixed', top: 10, left: 10, cursor: 'pointer' }}
         onClick={() => setPage(page === 'sign-in' ? 'sign-up' : 'sign-in')}
       >
         switch page
