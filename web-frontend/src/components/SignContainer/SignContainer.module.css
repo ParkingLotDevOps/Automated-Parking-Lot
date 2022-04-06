@@ -9,7 +9,7 @@
 .form {
   background: #E8E4E6;
   margin: 1rem auto;
-  width: 35%;
+  width: max(30%, 300px);
   padding: 2rem;
   border-radius: 20px;
   display: flex;

@@ -8,7 +8,7 @@ import { FaPlus } from 'react-icons/fa';
 
 const BaseIcon = ({ type }) => {
   if (type === 'facebook') return <FaFacebookF />;
-  if (type === 'google') return <FaGoogle />;
+  if (type === 'google') return <FaGoogle style={{ marginRight: '.2em' }} />;
   if (type === 'plus') return <FaPlus />;
   return <></>;
 };
