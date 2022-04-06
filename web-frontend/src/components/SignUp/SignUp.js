@@ -17,36 +17,38 @@ export default function SignUp() {
       <TextField label="Password" variant="standard" fullWidth />
       <TextField label="Confirm password" variant="standard" fullWidth />
 
-      <FormControlLabel
-        control={
-          <Checkbox
-            defaultChecked
-            sx={{
-              color: '#001E1D',
-              '&.Mui-checked': {
-                color: '#001E1D'
-              }
-            }}
-          />
-        }
-        label={
-          <Typography className={styles.label}>Keep me signed in</Typography>
-        }
-      />
+      <div>
+        <FormControlLabel
+          control={
+            <Checkbox
+              defaultChecked
+              sx={{
+                color: '#001E1D',
+                '&.Mui-checked': {
+                  color: '#001E1D'
+                }
+              }}
+            />
+          }
+          label={
+            <Typography className={styles.label}>Keep me signed in</Typography>
+          }
+        />
 
-      <div style={{ textAlign: 'center', lineHeight: 1 }}>
-        By signing in, you agree to our terms and conditions 
+        <div className={styles.terms}>
+          By signing in, you agree to our{' '}
+          <span style={{ color: '#4D73FB' }}>terms and conditions</span>
+        </div>
       </div>
 
-      <BaseButton 
-        content="Let's go!"
-        color="yellow"
-      />
-
-      <div style={{ textAlign: 'center', lineHeight: 1 }}>
-        Already have an account? Sign in 
+      <div className={styles.btn}>
+        <BaseButton content="Let's go!" color="yellow" />
       </div>
 
+      <div className={styles.sign}>
+        Already have an account?{' '}
+        <span style={{ color: '#f9bc60' }}>Sign in</span>
+      </div>
     </SignContainer>
   );
 }

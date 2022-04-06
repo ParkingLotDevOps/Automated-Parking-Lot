@@ -6,5 +6,19 @@ h2 {
 }
 
 .label {
-    font-weight: bold;
+  font-weight: bold;
+}
+
+.terms {
+  font-size: 0.83rem;
+}
+
+.sign {
+  text-align: center;
+}
+
+.terms,
+.btn,
+.sign {
+  /* transform: translateY(-1rem); */
 }
