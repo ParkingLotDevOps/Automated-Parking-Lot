@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 import { SignContainer } from 'components';
+import BaseButton from 'components/BaseButton/BaseButton';
 
 export default function SignIn() {
   return (
@@ -8,12 +9,17 @@ export default function SignIn() {
       <TextField
         label="Username or email address"
         variant="standard"
-        style={{ display: 'block', width: 300 }}
+        fullWidth
       />
       <TextField
         label="Password"
         type="password"
         variant="standard"
+        fullWidth
+      />
+      <BaseButton 
+        content="Login"
+        color="yellow"
       />
     </SignContainer>
   );
