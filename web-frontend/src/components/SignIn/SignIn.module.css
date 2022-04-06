@@ -5,3 +5,11 @@
   background-size: 100%;
   z-index: -1;
 }
+
+.container {
+  background: #E8E4E6;
+  margin: 1rem auto;
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 20px;
+}
