@@ -1,0 +1,11 @@
+body {
+  background: #003634;
+}
+
+.bg {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-size: 100%;
+  z-index: -1;
+}

@@ -1,14 +1,11 @@
 import React from 'react';
-import { BaseButton } from 'components';
+import './SignIn.css';
+import Background from 'assets/background.svg';
 
 export default function SignIn() {
   return (
     <>
-      <BaseButton
-        content="LogIn with FaceBook"
-        color="blue"
-        icon="facebook"
-      />
+      <img src={Background} className="bg" draggable="false" />
     </>
   );
 };
