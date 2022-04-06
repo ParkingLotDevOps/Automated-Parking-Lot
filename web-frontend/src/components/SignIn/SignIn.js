@@ -1,11 +1,11 @@
 import React from 'react';
-import './SignIn.css';
+import styles from './SignIn.module.css';
 import Background from 'assets/background.svg';
 
 export default function SignIn() {
   return (
     <>
-      <img src={Background} className="bg" draggable="false" />
+      <img src={Background} className={styles.bg} draggable="false" />
     </>
   );
 };
