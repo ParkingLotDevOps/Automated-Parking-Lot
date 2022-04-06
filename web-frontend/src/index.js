@@ -1,28 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './index.css';
-import { SignIn, SignUp } from 'sign-in-up';
+import { App, SignIn, SignUp } from 'components';
 
-function PageSwitcher() {
-  const [page, setPage] = React.useState('sign-in');
-  return (
-    <>
-      <button
-        className="theme-switcher"
-        style={{ position: 'fixed', top: 10, left: 10, cursor: 'pointer' }}
-        onClick={() => setPage(page === 'sign-in' ? 'sign-up' : 'sign-in')}
-      >
-        switch page
-      </button>
-      {page === 'sign-in' ? <SignIn /> : <SignUp />}
-    </>
-  );
-}
-
-ReactDOM.render(
-  <React.StrictMode>
-    <PageSwitcher />
-  </React.StrictMode>,
-  document.getElementById('root')
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="sign-in" element={<SignIn />} />
+        <Route path="sign-up" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>
 );
