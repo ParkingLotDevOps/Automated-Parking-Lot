@@ -5,7 +5,10 @@ import Checkbox from '@mui/material/Checkbox';
 import { Typography } from '@mui/material';
 import { SignContainer } from 'components';
 import { BaseButton } from 'components';
+
 import styles from './SignUp.module.css';
+
+import { Link } from 'react-router-dom';
 
 export default function SignUp() {
   return (
@@ -37,7 +40,9 @@ export default function SignUp() {
 
         <div className={styles.terms}>
           By signing in, you agree to our{' '}
-          <span style={{ color: '#4D73FB' }}>terms and conditions</span>
+          <span style={{ color: '#4D73FB', cursor: 'pointer' }}>
+            terms and conditions
+          </span>
         </div>
       </div>
 
@@ -47,7 +52,9 @@ export default function SignUp() {
 
       <div className={styles.sign}>
         Already have an account?{' '}
-        <span style={{ color: '#f9bc60' }}>Sign in</span>
+        <Link to="/sign-in" className={styles.link}>
+          Sign In
+        </Link>
       </div>
     </SignContainer>
   );

@@ -7,7 +7,7 @@
 }
 
 .form {
-  background: #E8E4E6;
+  background: #e8e4e6;
   margin: 1rem auto;
   width: max(30%, 300px);
   padding: 2rem;
@@ -21,8 +21,4 @@
   width: 250px;
   display: block;
   margin: 2rem auto;
-}
-
-.container {
-  margin-top: 5rem;
 }

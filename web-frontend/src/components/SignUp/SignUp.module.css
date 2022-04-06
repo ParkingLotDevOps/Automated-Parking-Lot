@@ -17,8 +17,8 @@ h2 {
   text-align: center;
 }
 
-.terms,
-.btn,
-.sign {
-  /* transform: translateY(-1rem); */
+.link {
+  color: #f9bc60;
+  text-decoration: none;
+  cursor: pointer;
 }

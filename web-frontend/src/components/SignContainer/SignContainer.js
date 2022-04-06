@@ -5,7 +5,7 @@ import styles from './SignContainer.module.css';
 
 export default function SignContainer({ children }) {
   return (
-    <section className={styles.container}>
+    <section>
       <img 
         src={Logo}
         className={styles.logo}
