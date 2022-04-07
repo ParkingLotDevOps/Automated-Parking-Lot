@@ -15,7 +15,10 @@ const BaseIcon = ({ type }) => {
 
 export default function BaseButton({ color, content, icon }) {
   return (
-    <button className={`${styles.btn} ${styles[color == undefined ? 'red' : color]}`}>
+    <button
+      className={`${styles.btn} ${styles[color || 'red']}`}
+      style={{ marginTop: color === 'blue' ? '-.45rem' : 0 }}
+    >
       <BaseIcon type={icon} /> {content}
     </button>
   );
@@ -23,7 +26,7 @@ export default function BaseButton({ color, content, icon }) {
 
 BaseButton.propTypes = {
   content: PropTypes.string.isRequired,
-  color: PropTypes.oneOf(['blue', 'yellow', 'wheet']),
+  color: PropTypes.oneOf(['red', 'blue', 'yellow', 'wheat']).isRequired,
   icon: PropTypes.oneOf(['facebook', 'google', 'plus'])
 };
 

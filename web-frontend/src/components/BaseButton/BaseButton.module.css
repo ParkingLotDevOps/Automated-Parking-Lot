@@ -22,7 +22,7 @@
 
 .yellow {
   background: #f9bc60;
-  color: #001e1d;
+  color: inherit;
 }
 
 .blue {
@@ -30,7 +30,7 @@
   color: white;
 }
 
-.wheet {
+.wheat {
   background: #e8e4e6;
   color: #e16162;
 }

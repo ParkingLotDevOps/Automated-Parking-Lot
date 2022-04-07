@@ -1,8 +1,9 @@
 import React from 'react';
-import { TextField } from '@mui/material';
-import { SignContainer } from 'components';
-import { BaseButton } from 'components';
 import { Link } from 'react-router-dom';
+import { TextField } from '@mui/material';
+
+import styles from './SignIn.module.css';
+import { SignContainer, BaseButton } from 'components';
 
 export default function SignIn() {
   return (
@@ -12,49 +13,38 @@ export default function SignIn() {
         variant="standard"
         fullWidth
       />
-
       <TextField
-        label="Password"
         type="password"
+        label="Password"
         variant="standard"
         fullWidth
       />
-
-      <div
-        style={{
-          textAlign: 'right',
-          lineHeight: 1,
-          transform: 'translateY(-.5rem)',
-          color: '#f9bc60',
-          cursor: 'pointer'
-        }}
-      >
-        Forgot password ?
+      <div className={styles.right}>
+        Forgot password?
       </div>
 
-      <BaseButton content="Login" color="yellow" />
+      <BaseButton
+        content="Login"
+        color="yellow"
+      />
+      <div className={styles.center}>
+        or
+      </div>
 
-      <div style={{ textAlign: 'center', lineHeight: 1 }}>or</div>
-
-      <BaseButton content="Login with Google" color="red" icon="google" />
-
-      <BaseButton content="Login with Facebook" color="blue" icon="facebook" />
-
-      <div
-        style={{
-          textAlign: 'center',
-          lineHeight: 1
-        }}
-      >
-        or{' '}
-        <Link
-          to="/sign-up"
-          style={{
-            color: '#f9bc60',
-            textDecoration: 'none'
-          }}
-        >
-          create an account
+      <BaseButton
+        content="Login with Google"
+        color="red"
+        icon="google"
+      />
+      <BaseButton
+        content="Login with Facebook"
+        color="blue"
+        icon="facebook"
+      />
+      <div className={styles.center}>
+        Don't have an account?&nbsp;
+        <Link to="/sign-up">
+          Create one
         </Link>
       </div>
     </SignContainer>

@@ -1,0 +1,17 @@
+.right {
+  text-align: right;
+  line-height: 1;
+  margin-top: -.5rem;
+  color: #f9bc60;
+  cursor: pointer;
+}
+
+.center {
+  text-align: center;
+  line-height: 1;
+}
+
+.center a {
+  color: #f9bc60;
+  text-decoration: none;
+}

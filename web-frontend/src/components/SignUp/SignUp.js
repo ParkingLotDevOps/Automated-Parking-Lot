@@ -17,8 +17,8 @@ export default function SignUp() {
       <TextField label="Username" variant="standard" fullWidth />
       <TextField label="Email address" variant="standard" fullWidth />
       <TextField label="Country" variant="standard" fullWidth />
-      <TextField label="Password" variant="standard" fullWidth />
-      <TextField label="Confirm password" variant="standard" fullWidth />
+      <TextField label="Password" variant="standard" type="password" fullWidth />
+      <TextField label="Confirm password" variant="standard" type="password" fullWidth />
 
       <div>
         <FormControlLabel
@@ -39,7 +39,7 @@ export default function SignUp() {
         />
 
         <div className={styles.terms}>
-          By signing in, you agree to our{' '}
+          By signing up, you agree to our{' '}
           <span style={{ color: '#4D73FB', cursor: 'pointer' }}>
             terms and conditions
           </span>
