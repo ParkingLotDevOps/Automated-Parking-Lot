@@ -6,23 +6,19 @@ import { FaGoogle } from 'react-icons/fa';
 import { FaFacebookF } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa';
 
-const BaseIcon = ({ type }) => {
-  if (type === 'facebook') return <FaFacebookF />;
-  if (type === 'google') return <FaGoogle style={{ marginRight: '.2em' }} />;
-  if (type === 'plus') return <FaPlus />;
-  return <></>;
-};
-
 export default function BaseButton({ color, content, icon }) {
   return (
     <button
       className={`${styles.btn} ${styles[color || 'red']}`}
       style={{ marginTop: color === 'blue' ? '-.45rem' : 0 }}
     >
-      <BaseIcon type={icon} /> {content}
+      {icon === 'facebook' && <FaFacebookF />}
+      {icon === 'google' && <FaGoogle style={{ marginRight: '.2em' }} />}
+      {icon === 'plus' && <FaPlus />}
+      {content}
     </button>
   );
-};
+}
 
 BaseButton.propTypes = {
   content: PropTypes.string.isRequired,
