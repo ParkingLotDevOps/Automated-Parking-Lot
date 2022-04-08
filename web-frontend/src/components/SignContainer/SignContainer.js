@@ -6,21 +6,9 @@ import styles from './SignContainer.module.css';
 export default function SignContainer({ children }) {
   return (
     <section>
-      <img 
-        src={Logo}
-        className={styles.logo}
-        draggable="false"
-      />
-
-      <form className={styles.form}>
-        {children}
-      </form>
-      
-      <img
-        src={Background}
-        className={styles.bg}
-        draggable="false"
-      />
+      <img src={Logo} className={styles.logo} />
+      <form className={styles.form}>{children}</form>
+      <img src={Background} className={styles.bg} draggable="false" />
     </section>
   );
 };

@@ -10,14 +10,13 @@
   outline: none;
   border-radius: 6px;
   padding: 0.75rem;
-  cursor: pointer;
   text-indent: 3px;
   font-size: 1rem;
 }
 
-.red {
-  background: #de5246;
-  color: white;
+.btn svg {
+  width: fit-content;
+  margin-right: .2em;
 }
 
 .yellow {
@@ -25,12 +24,12 @@
   color: inherit;
 }
 
-.blue {
-  background: #4267b2;
+.red {
+  background: #de5246;
   color: white;
 }
 
-.wheat {
-  background: #e8e4e6;
-  color: #e16162;
+.blue {
+  background: #4267b2;
+  color: white;
 }

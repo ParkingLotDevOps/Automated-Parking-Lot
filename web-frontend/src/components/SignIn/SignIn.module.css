@@ -1,9 +1,14 @@
+.btns {
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+
 .right {
   text-align: right;
   line-height: 1;
   margin-top: -.5rem;
   color: #f9bc60;
-  cursor: pointer;
 }
 
 .center {
@@ -13,5 +18,4 @@
 
 .center a {
   color: #f9bc60;
-  text-decoration: none;
 }

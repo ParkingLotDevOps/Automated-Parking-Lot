@@ -6,46 +6,30 @@ import styles from './SignIn.module.css';
 import { SignContainer, BaseButton } from 'components';
 
 export default function SignIn() {
+  React.useEffect(() => {
+    [...document.getElementsByTagName('svg')].filter(el => (
+      el.getAttribute('width') === '1em' &&
+      el.getAttribute('height') === '1em'
+    )).forEach(el => el.removeAttribute('width'));
+  }, []);
+
   return (
     <SignContainer>
-      <TextField
-        label="Username or email address"
-        variant="standard"
-        fullWidth
-      />
-      <TextField
-        type="password"
-        label="Password"
-        variant="standard"
-        fullWidth
-      />
-      <div className={styles.right}>
-        Forgot password?
+      <TextField fullWidth variant="standard" label="Username or email address" />
+      <TextField fullWidth variant="standard" label="Password" type="password" />
+      <div className={styles.right}><Link to="#">Forgot password?</Link></div>
+
+      <BaseButton color="yellow">Login</BaseButton>
+      <div className={styles.center}>or</div>
+
+      <div className={styles.btns}>
+        <BaseButton color="red" icon="google">Login with Google</BaseButton>
+        <BaseButton color="blue" icon="facebook">Login with Facebook</BaseButton>
       </div>
 
-      <BaseButton
-        content="Login"
-        color="yellow"
-      />
-      <div className={styles.center}>
-        or
-      </div>
-
-      <BaseButton
-        content="Login with Google"
-        color="red"
-        icon="google"
-      />
-      <BaseButton
-        content="Login with Facebook"
-        color="blue"
-        icon="facebook"
-      />
       <div className={styles.center}>
         Don't have an account?&nbsp;
-        <Link to="/sign-up">
-          Create one
-        </Link>
+        <Link to="/sign-up">Create one</Link>
       </div>
     </SignContainer>
   );

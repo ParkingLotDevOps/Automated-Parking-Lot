@@ -47,7 +47,9 @@ export default function SignUp() {
       </div>
 
       <div className={styles.btn}>
-        <BaseButton content="Let's go!" color="yellow" />
+        <BaseButton color="yellow">
+          Let's go!
+        </BaseButton>
       </div>
 
       <div className={styles.sign}>
