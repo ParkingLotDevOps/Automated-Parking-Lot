@@ -1,24 +1,24 @@
-h2 {
+.title {
   margin: 0;
   font-size: 1.25rem;
   text-align: center;
-  line-height: 1rem;
+  line-height: 1;
 }
 
-.label {
-  font-weight: bold;
+.tos {
+  font-size: 0.8rem;
+  line-height: 1.2;
 }
 
-.terms {
-  font-size: 0.83rem;
+.tos a {
+  color: #4d73fb;
 }
 
-.sign {
+.signin {
   text-align: center;
+  line-height: 1;
 }
 
-.link {
+.signin a {
   color: #f9bc60;
-  text-decoration: none;
-  cursor: pointer;
 }

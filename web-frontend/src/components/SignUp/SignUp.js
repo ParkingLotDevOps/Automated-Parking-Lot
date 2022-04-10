@@ -1,24 +1,19 @@
 import React from 'react';
-import { TextField } from '@mui/material';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import { Typography } from '@mui/material';
-import { SignContainer } from 'components';
-import { BaseButton } from 'components';
+import { Link } from 'react-router-dom';
+import { TextField, FormControlLabel, Checkbox } from '@mui/material';
 
 import styles from './SignUp.module.css';
-
-import { Link } from 'react-router-dom';
+import { BaseButton, SignContainer } from 'components';
 
 export default function SignUp() {
   return (
     <SignContainer>
-      <h2 className={styles.h2}>Create an account</h2>
-      <TextField label="Username" variant="standard" fullWidth />
-      <TextField label="Email address" variant="standard" fullWidth />
-      <TextField label="Country" variant="standard" fullWidth />
-      <TextField label="Password" variant="standard" type="password" fullWidth />
-      <TextField label="Confirm password" variant="standard" type="password" fullWidth />
+      <h2 className={styles.title}>Create an account</h2>
+      <TextField fullWidth variant="standard" label="Username" />
+      <TextField fullWidth variant="standard" label="Email address" />
+      <TextField fullWidth variant="standard" label="Country" />
+      <TextField fullWidth variant="standard" label="Password" type="password" />
+      <TextField fullWidth variant="standard" label="Confirm password" type="password" />
 
       <div>
         <FormControlLabel
@@ -26,38 +21,30 @@ export default function SignUp() {
             <Checkbox
               defaultChecked
               sx={{
-                color: '#001E1D',
+                color: '#001e1d',
                 '&.Mui-checked': {
-                  color: '#001E1D'
+                  color: '#001e1d'
                 }
               }}
             />
           }
           label={
-            <Typography className={styles.label}>Keep me signed in</Typography>
+            <strong>
+              Keep me signed in
+            </strong>
           }
         />
-
-        <div className={styles.terms}>
-          By signing up, you agree to our{' '}
-          <span style={{ color: '#4D73FB', cursor: 'pointer' }}>
-            terms and conditions
-          </span>
+        <div className={styles.tos}>
+          By signing up, you agree to our&nbsp;
+          <Link to="#">terms and conditions</Link>
         </div>
       </div>
 
-      <div className={styles.btn}>
-        <BaseButton color="yellow">
-          Let's go!
-        </BaseButton>
-      </div>
-
-      <div className={styles.sign}>
-        Already have an account?{' '}
-        <Link to="/sign-in" className={styles.link}>
-          Sign In
-        </Link>
+      <BaseButton color="yellow">Let's go!</BaseButton>
+      <div className={styles.signin}>
+        Already have an account?&nbsp;
+        <Link to="/sign-in" className={styles.link}>Sign in</Link>
       </div>
     </SignContainer>
   );
-}
+};
