@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TextField } from '@mui/material';
 
 import styles from './SignIn.module.css';
+import { useInput } from 'hooks';
 import { SignContainer, BaseButton } from 'components';
 
 export default function SignIn() {
@@ -13,18 +13,21 @@ export default function SignIn() {
     )).forEach(el => el.removeAttribute('width'));
   }, []);
 
+  const [username, inputUsername] = useInput('Username or email address');
+  const [password, inputPassword] = useInput('Password', 'password');
+
   return (
-    <SignContainer>
-      <TextField fullWidth variant="standard" label="Username or email address" />
-      <TextField fullWidth variant="standard" label="Password" type="password" />
+    <SignContainer onSubmit={() => alert(username + '\n' + password)}>
+      {inputUsername}
+      {inputPassword}
       <div className={styles.right}><Link to="#">Forgot password?</Link></div>
 
-      <BaseButton color="yellow">Login</BaseButton>
+      <BaseButton type="submit" color="yellow">Login</BaseButton>
       <div className={styles.center}>or</div>
 
       <div className={styles.btns}>
-        <BaseButton color="red" icon="google">Login with Google</BaseButton>
-        <BaseButton color="blue" icon="facebook">Login with Facebook</BaseButton>
+        <BaseButton onClick={() => alert('google')} color="red" icon="google">Login with Google</BaseButton>
+        <BaseButton onClick={() => alert('facebook')} color="blue" icon="facebook">Login with Facebook</BaseButton>
       </div>
 
       <div className={styles.center}>
