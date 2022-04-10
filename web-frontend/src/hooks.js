@@ -11,6 +11,7 @@ export function useInput(label, type) {
       label={label}
       value={input}
       onChange={event => setInput(event.target.value)}
+      InputLabelProps={{ style: { color: '#abd1c6' } }}
     />
   );
   return [input, inputField];

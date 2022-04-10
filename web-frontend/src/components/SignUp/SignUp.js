@@ -15,7 +15,19 @@ export default function SignUp() {
   const [password2, inputPassword2] = useInput('Confirm password', 'password');
 
   return (
-    <SignContainer>
+    <SignContainer
+      onSubmit={() => {
+        alert(password1 == password2
+          ? 'passwords do match!'
+          : 'passwords don\'t match!');
+        alert(remember
+          + '\n' + username
+          + '\n' + email
+          + '\n' + country
+          + '\n' + password1
+          + '\n' + password2);
+      }}
+    >
       <h2 className={styles.title}>Create an account</h2>
       {inputUsername}
       {inputEmail}
@@ -51,20 +63,7 @@ export default function SignUp() {
         </div>
       </div>
 
-      <BaseButton
-        color="yellow"
-        onClick={() => {
-          alert(password1 == password2
-            ? 'passwords do match!'
-            : 'passwords don\'t match!');
-          alert(remember
-            + '\n' + username
-            + '\n' + email
-            + '\n' + country
-            + '\n' + password1
-            + '\n' + password2);
-        }}
-      >
+      <BaseButton color="yellow" type="submit">
         Let's go!
       </BaseButton>
 
