@@ -8,9 +8,9 @@ import { BaseButton, SignContainer } from 'components';
 
 export default function SignUp() {
   const [remember, setRemember] = React.useState(true);
+  const [name, inputName] = useInput('Name');
   const [username, inputUsername] = useInput('Username');
-  const [email, inputEmail] = useInput('Email address');
-  const [country, inputCountry] = useInput('Country');
+  const [email, inputEmail] = useInput('Email address', 'email');
   const [password1, inputPassword1] = useInput('Password', 'password');
   const [password2, inputPassword2] = useInput('Confirm password', 'password');
 
@@ -21,17 +21,17 @@ export default function SignUp() {
           ? 'passwords do match!'
           : 'passwords don\'t match!');
         alert(remember
+          + '\n' + name
           + '\n' + username
           + '\n' + email
-          + '\n' + country
           + '\n' + password1
           + '\n' + password2);
       }}
     >
       <h2 className={styles.title}>Create an account</h2>
+      {inputName}
       {inputUsername}
       {inputEmail}
-      {inputCountry}
       {inputPassword1}
       {inputPassword2}
 
