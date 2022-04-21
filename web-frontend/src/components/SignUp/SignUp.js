@@ -14,20 +14,29 @@ export default function SignUp() {
   const [password1, inputPassword1] = useInput('Password', 'password');
   const [password2, inputPassword2] = useInput('Confirm password', 'password');
 
+  const submit = async () => {
+    if (password1 !== password2) {
+      alert("Passwords don't match!");
+    }
+    else {
+      const res = await fetch('http://localhost:8082/api/user/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          username,
+          email,
+          password: password1
+        })
+      });
+      alert(res.ok ? 'Account successfuly created!' : `Error: ${statusText}`);
+    }
+  };
+
   return (
-    <SignContainer
-      onSubmit={() => {
-        alert(password1 == password2
-          ? 'passwords do match!'
-          : 'passwords don\'t match!');
-        alert(remember
-          + '\n' + name
-          + '\n' + username
-          + '\n' + email
-          + '\n' + password1
-          + '\n' + password2);
-      }}
-    >
+    <SignContainer onSubmit={submit}>
       <h2 className={styles.title}>Create an account</h2>
       {inputName}
       {inputUsername}

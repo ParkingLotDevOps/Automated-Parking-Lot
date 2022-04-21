@@ -16,8 +16,19 @@ export default function SignIn() {
   const [username, inputUsername] = useInput('Username or email address');
   const [password, inputPassword] = useInput('Password', 'password');
 
+  const submit = async () => {
+    const res = await fetch('http://localhost:8082/api/login', {
+      method: 'POST',
+      body: new URLSearchParams({
+        username,
+        password
+      })
+    });
+    alert(res.ok ? 'Successfuly logged in!' : 'Wrong username or password!');
+  };
+
   return (
-    <SignContainer onSubmit={() => alert(username + '\n' + password)}>
+    <SignContainer onSubmit={submit}>
       {inputUsername}
       {inputPassword}
       <div className={styles.right}><Link to="#">Forgot password?</Link></div>
