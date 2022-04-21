@@ -1,7 +1,12 @@
 {
   "expo": {
+<<<<<<< Updated upstream
     "name": "DoneWithIt",
     "slug": "DoneWithIt",
+=======
+    "name": "SmartParkLot",
+    "slug": "SmartParkLot",
+>>>>>>> Stashed changes
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
