@@ -19,7 +19,7 @@ public class ParkingLot {
     @GeneratedValue(strategy = AUTO)
     private Long id;
     private String name;
-    private String latitude;
-    private String longitude;
+    private Double latitude;
+    private Double longitude;
     private float price;
 }

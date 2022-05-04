@@ -1,12 +1,17 @@
 package b3.spl.splb.Services;
 
 import b3.spl.splb.model.AppUser;
+import b3.spl.splb.model.ParkingLot;
 import b3.spl.splb.model.Role;
 import b3.spl.splb.repository.AppUserRepo;
+import b3.spl.splb.repository.ParkingLotRepo;
 import b3.spl.splb.repository.RoleRepo;
+import b3.spl.splb.util.Point;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.jni.User;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,6 +31,8 @@ import java.util.List;
 public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     private final AppUserRepo appUserRepo;
     private final RoleRepo roleRepo;
+    private final ParkingLotRepo parkingLotRepo;
+
     private final PasswordEncoder passwordEncoder;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -74,4 +81,20 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         log.info("Fetching all users");
         return appUserRepo.findAll();
     }
+
+    @Override
+    public List<ParkingLot> getParkingLots() {
+        log.info("Fetching all parkingLots");
+        return parkingLotRepo.findAll();
+    }
+
+    @Override
+    public List<ParkingLot> getClosestParkingLots(Point userLocation) {
+        log.info("Fetching closest parkingLots");
+        return parkingLotRepo.findClosestParkingLot(userLocation.getLatitude() - 1,
+                userLocation.getLongitude() - 1,
+                userLocation.getLatitude() + 1,
+                userLocation.getLongitude() + 1);
+    }
+
 }
