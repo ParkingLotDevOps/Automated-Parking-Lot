@@ -10,7 +10,7 @@ export default function EditParkingLot() {
     <>
       <h1 className={styles.name}>{name}</h1>
       <EditParkingLotPanel />
-      <EditParkingLotGrid />
+      <EditParkingLotGrid spotsCount={17} />
     </>
   );
 };

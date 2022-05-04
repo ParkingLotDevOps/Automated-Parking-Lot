@@ -1,3 +1,14 @@
+.form {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #004643;
+}
+
+.form h2 {
+  margin-top: 0;
+  line-height: 1;
+}
+
 .edit {
   display: flex;
   gap: 1rem;
@@ -43,4 +54,43 @@
   .row {
     flex-direction: column;
   }
+}
+
+.upload {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: #003634;
+  border-radius: 50%;
+}
+
+.upload svg {
+  position: absolute;
+  top: calc(calc(100px - 2rem) / 2);
+  left: calc(calc(100px - 2rem) / 2);
+  color: #abd1c6;
+  width: 2rem;
+  height: 2rem;
+  z-index: 1;
+}
+
+.inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.inner input::file-selector-button {
+  width: 100px;
+  height: 100px;
+  color: transparent;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 }

@@ -1,0 +1,39 @@
+body {
+  padding: 1rem;
+}
+
+.parking {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(auto-fill, 100px);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.parking button {
+  position: relative;
+  width: 100px;
+  height: 140px;
+  border: none;
+  border-radius: .25rem;
+  font-size: 1.5rem;
+  color: #043938;
+}
+
+.parking button svg {
+  position: absolute;
+  top: .5rem;
+  left: .5rem;
+}
+
+.type-0 {
+  background: #abd1c6;
+}
+
+.type-1 {
+  background: rgb(63, 126, 250);
+}
+
+.type-2 {
+  background: #5cd65e;
+}
