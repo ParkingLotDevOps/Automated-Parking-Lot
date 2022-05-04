@@ -3,7 +3,9 @@ package b3.spl.splb.controller;
 
 import b3.spl.splb.Services.AppUserService;
 import b3.spl.splb.model.AppUser;
+import b3.spl.splb.model.ParkingLot;
 import b3.spl.splb.model.Role;
+import b3.spl.splb.util.Point;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.jni.User;
@@ -37,6 +39,18 @@ public class AppUserController {
         appUserService.addRoleToAppUser(form.getUsername(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/parkinglots")
+    public ResponseEntity<List<ParkingLot>> getParkingLots(){
+        return ResponseEntity.ok().body(appUserService.getParkingLots());
+    }
+
+    @PostMapping("/user/parkinglots")
+    public ResponseEntity<List<ParkingLot>> getClosestParkingLots(@RequestBody Point userLocation){
+        return ResponseEntity.ok().body(appUserService.getClosestParkingLots(userLocation));
+    }
+
+
 }
 
 @Data
