@@ -19,6 +19,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.session.SessionManagementFilter;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Collections;
+import java.util.List;
 
 import static org.springframework.http.HttpMethod.GET;
 
@@ -29,33 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Bean
-    CorsFilter corsFilter() {
-        CorsFilter filter = new CorsFilter();
-        return filter;
-    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
-
-        http
-                .addFilterBefore(corsFilter(), SessionManagementFilter.class) //adds your custom CorsFilter
-                .exceptionHandling().and()
-                .formLogin()
-                .loginProcessingUrl("/api/login")
-                .passwordParameter("password")
-                .usernameParameter("username")
-                .and()
-                .logout()
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true)
-                .logoutUrl("/api/logout")
-                .logoutSuccessUrl("/");
-
-
+        http.cors();
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/api/login").permitAll();
@@ -64,6 +51,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource () {
+
+        UrlBasedCorsConfigurationSource source;
+        source = new UrlBasedCorsConfigurationSource();
+
+        CorsConfiguration configuration = new CorsConfiguration();
+        List<String> all = Collections.singletonList("*");
+        configuration.setAllowedOrigins(all);
+        configuration.setAllowedMethods(all);
+        configuration.setAllowedHeaders(all);
+
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+
     }
 
     @Bean
