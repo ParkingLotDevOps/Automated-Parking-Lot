@@ -6,6 +6,7 @@ import EditParkingLot from './EditParkingLot/EditParkingLot';
 import EditParkingLotPanel from './EditParkingLotPanel/EditParkingLotPanel';
 import EditParkingLotGrid from './EditParkingLotGrid/EditParkingLotGrid';
 import App from './App/App';
+import Sidebar from './Sidebar/Sidebar';
 
 export {
   BaseButton,
@@ -15,5 +16,6 @@ export {
   EditParkingLot,
   EditParkingLotPanel,
   EditParkingLotGrid,
-  App
+  App,
+  Sidebar
 };

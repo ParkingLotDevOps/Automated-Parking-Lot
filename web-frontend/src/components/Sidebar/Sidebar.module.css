@@ -1,0 +1,24 @@
+.icon{
+    color:#537f7d;
+}
+
+.logo {
+    width: 95px;
+    display: block;
+    margin: 2rem auto;
+    margin-top: -20px;
+}
+
+.down{
+    margin-bottom: 0px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.profpic{
+    color: #537f7d;
+    width: 60px;
+    height: 90px;
+ 
+}
+
