@@ -5,6 +5,7 @@ import SignContainer from './SignContainer/SignContainer';
 import EditParkingLot from './EditParkingLot/EditParkingLot';
 import EditParkingLotPanel from './EditParkingLotPanel/EditParkingLotPanel';
 import EditParkingLotGrid from './EditParkingLotGrid/EditParkingLotGrid';
+import ParkingLotList from './ParkingLotsList/ListItems/ListItems';
 import App from './App/App';
 import Sidebar from './Sidebar/Sidebar';
 
@@ -16,6 +17,7 @@ export {
   EditParkingLot,
   EditParkingLotPanel,
   EditParkingLotGrid,
+  ParkingLotList,
   App,
   Sidebar
 };

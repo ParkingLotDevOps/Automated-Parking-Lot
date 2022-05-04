@@ -1,0 +1,15 @@
+.listItems {
+  width: 95%;
+  padding: 0;
+  margin: 0 auto;
+}
+.listFields {
+  display: flex;
+  border-bottom: 2px solid #bab9ba;
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+.listFields div {
+  width: calc(85% / 4);
+  color: #bab9ba;
+}
