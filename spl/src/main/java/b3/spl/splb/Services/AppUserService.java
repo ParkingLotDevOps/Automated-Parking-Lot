@@ -14,6 +14,4 @@ public interface AppUserService {
     void addRoleToAppUser(String username,  String rolName);
     AppUser getUser(String username);
     List<AppUser> getUsers();
-    List<ParkingLot> getParkingLots();
-    List<ParkingLot> getClosestParkingLots(Point userLocation);
 }

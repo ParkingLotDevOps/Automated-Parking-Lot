@@ -22,4 +22,5 @@ public class ParkingLot {
     private Double latitude;
     private Double longitude;
     private float price;
+    private boolean approved;
 }

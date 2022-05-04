@@ -82,19 +82,8 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         return appUserRepo.findAll();
     }
 
-    @Override
-    public List<ParkingLot> getParkingLots() {
-        log.info("Fetching all parkingLots");
-        return parkingLotRepo.findAll();
-    }
 
-    @Override
-    public List<ParkingLot> getClosestParkingLots(Point userLocation) {
-        log.info("Fetching closest parkingLots");
-        return parkingLotRepo.findClosestParkingLot(userLocation.getLatitude() - 0.005,
-                userLocation.getLongitude() - 0.005,
-                userLocation.getLatitude() + 0.005,
-                userLocation.getLongitude() + 0.005);
-    }
+
+
 
 }

@@ -22,8 +22,6 @@ import java.util.List;
 @RequestMapping("/api")
 public class AppUserController {
     private final AppUserService appUserService;
-
-
     @GetMapping("/users")
     public ResponseEntity<List<AppUser>> getUsers(){
         return ResponseEntity.ok().body(appUserService.getUsers());
@@ -39,18 +37,6 @@ public class AppUserController {
         appUserService.addRoleToAppUser(form.getUsername(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
-
-    @GetMapping("/parkinglots")
-    public ResponseEntity<List<ParkingLot>> getParkingLots(){
-        return ResponseEntity.ok().body(appUserService.getParkingLots());
-    }
-
-    @PostMapping("/user/parkinglots")
-    public ResponseEntity<List<ParkingLot>> getClosestParkingLots(@RequestBody Point userLocation){
-        return ResponseEntity.ok().body(appUserService.getClosestParkingLots(userLocation));
-    }
-
-
 }
 
 @Data
