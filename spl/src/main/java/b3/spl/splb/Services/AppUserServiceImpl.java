@@ -91,10 +91,10 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     @Override
     public List<ParkingLot> getClosestParkingLots(Point userLocation) {
         log.info("Fetching closest parkingLots");
-        return parkingLotRepo.findClosestParkingLot(userLocation.getLatitude() - 1,
-                userLocation.getLongitude() - 1,
-                userLocation.getLatitude() + 1,
-                userLocation.getLongitude() + 1);
+        return parkingLotRepo.findClosestParkingLot(userLocation.getLatitude() - 0.005,
+                userLocation.getLongitude() - 0.005,
+                userLocation.getLatitude() + 0.005,
+                userLocation.getLongitude() + 0.005);
     }
 
 }
