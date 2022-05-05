@@ -39,10 +39,8 @@ public class ParkingLotImpl implements ParkingLotService {
     @Override
     public List<ParkingLot> getClosestParkingLots(Point userLocation) {
         log.info("Fetching closest parkingLots");
-        return parkingLotRepo.findClosestParkingLot(userLocation.getLatitude() - 0.005,
-                userLocation.getLongitude() - 0.005,
-                userLocation.getLatitude() + 0.005,
-                userLocation.getLongitude() + 0.005);
+        return parkingLotRepo.findClosestParkingLot(userLocation.getLatitude(),
+                userLocation.getLongitude(), 0.01);
     }
 
     @Override
