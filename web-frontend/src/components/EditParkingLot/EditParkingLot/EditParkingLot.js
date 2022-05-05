@@ -9,9 +9,11 @@ export default function EditParkingLot() {
   return (
     <>
       <Sidebar />
-      <h1 className={styles.name}>{name.replace(/-/g, ' ')}</h1>
-      <EditParkingLotPanel />
-      <EditParkingLotGrid spotsCount={17} />
+      <main className={styles.main}>
+        <h1 className={styles.name}>{name.replace(/-/g, ' ')}</h1>
+        <EditParkingLotPanel />
+        <EditParkingLotGrid spotsCount={17} />
+      </main>
     </>
   );
 };

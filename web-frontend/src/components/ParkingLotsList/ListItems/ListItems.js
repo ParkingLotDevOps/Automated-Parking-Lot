@@ -37,19 +37,21 @@ export default function ListItems() {
   return (
     <>
       <Sidebar />
-      <TheHeader title="Parking Lots List" hasSearchBox hasButton />
-      <ul className={styles.listItems}>
-        <li className={styles.listFields} key="0">
-          <div style={{ width: '5%' }}></div>
-          {fields.map((field) => (
-            <div key={field.id}>{field}</div>
+      <main className={styles.main}>
+        <TheHeader title="Parking Lots List" hasSearchBox hasButton />
+        <ul className={styles.listItems}>
+          <li className={styles.listFields} key="0">
+            <div style={{ width: '5%' }}></div>
+            {fields.map((field) => (
+              <div key={field.id}>{field}</div>
+            ))}
+            <div style={{ width: '10%' }}></div>
+          </li>
+          {items.map((item) => (
+            <ListItem key={item.id} item={item} />
           ))}
-          <div style={{ width: '10%' }}></div>
-        </li>
-        {items.map((item) => (
-          <ListItem key={item.id} item={item} />
-        ))}
-      </ul>
+        </ul>
+      </main>
     </>
   );
 }

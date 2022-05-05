@@ -1,5 +1,6 @@
-body {
+.main {
   margin-left: 230px;
+  padding: 2rem;
 }
 
 .name {
