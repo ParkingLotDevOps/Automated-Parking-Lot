@@ -3,6 +3,7 @@ import styles from './ListItems.module.css';
 
 import TheHeader from 'components/TheHeader/TheHeader';
 import ListItem from 'components/ParkingLotsList/ListItem/ListItem';
+import { Sidebar } from 'components';
 
 export default function ListItems() {
   const fields = ['Name', 'Location', 'Date', 'Status'];
@@ -35,6 +36,7 @@ export default function ListItems() {
 
   return (
     <>
+      <Sidebar />
       <TheHeader title="Parking Lots List" hasSearchBox hasButton />
       <ul className={styles.listItems}>
         <li className={styles.listFields} key="0">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './SignIn.module.css';
 import { useInput } from 'hooks';
@@ -13,6 +13,7 @@ export default function SignIn() {
     )).forEach(el => el.removeAttribute('width'));
   }, []);
 
+  const navigate = useNavigate();
   const [username, inputUsername] = useInput('Username or email address');
   const [password, inputPassword] = useInput('Password', 'password');
 
@@ -25,6 +26,9 @@ export default function SignIn() {
       })
     });
     alert(res.ok ? 'Successfuly logged in!' : 'Wrong username or password!');
+    if (res.ok) {
+      navigate('/list');
+    }
   };
 
   return (

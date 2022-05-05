@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormControlLabel, Checkbox } from '@mui/material';
 
 import styles from './SignUp.module.css';
@@ -7,6 +7,7 @@ import { useInput } from 'hooks';
 import { BaseButton, SignContainer } from 'components';
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const [remember, setRemember] = React.useState(true);
   const [name, inputName] = useInput('Name');
   const [username, inputUsername] = useInput('Username');
@@ -72,7 +73,9 @@ export default function SignUp() {
         </div>
       </div>
 
-      <BaseButton color="yellow" type="submit">
+      <BaseButton color="yellow" type="submit" onClick={() => {
+        navigate('/sign-in');
+      }}>
         Let's go!
       </BaseButton>
 
