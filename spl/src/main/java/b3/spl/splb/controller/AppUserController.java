@@ -1,14 +1,9 @@
 package b3.spl.splb.controller;
-
-
 import b3.spl.splb.Services.AppUserService;
 import b3.spl.splb.model.AppUser;
-import b3.spl.splb.model.ParkingLot;
 import b3.spl.splb.model.Role;
-import b3.spl.splb.util.Point;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.jni.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

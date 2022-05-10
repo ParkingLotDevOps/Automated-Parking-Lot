@@ -29,8 +29,6 @@ public class ParkingLotController {
         return ResponseEntity.ok().body(parkingLotService.getParkingLots());
     }
 
-
-
     @PostMapping("/user/parkinglots")
     public ResponseEntity<List<ParkingLot>> getClosestParkingLots(@RequestBody Point userLocation){
         return ResponseEntity.ok().body(parkingLotService.getClosestParkingLots(userLocation));
@@ -43,5 +41,4 @@ public class ParkingLotController {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/admin/parkinglot/approve").toString());
         return ResponseEntity.created(uri).body(parkingLotService.setApproved(id, approved));
     }
-
 }

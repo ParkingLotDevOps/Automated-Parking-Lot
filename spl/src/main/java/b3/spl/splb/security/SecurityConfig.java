@@ -63,12 +63,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowedOrigins(all);
         configuration.setAllowedMethods(all);
         configuration.setAllowedHeaders(all);
-
         source.registerCorsConfiguration("/**", configuration);
         return source;
 
     }
-
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception{
