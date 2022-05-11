@@ -26,7 +26,7 @@ public class SplbApplication {
             appUserService.saveRole(new Role(null, "PARKING_LOT_PROVIDER"));
             appUserService.saveRole(new Role(null, "ADMIN"));
             appUserService.saveRole(new Role(null, "USER"));
-            appUserService.saveUser(new AppUser(null, "Marian", "map", "popovicimarian2311@gmailcom", "1234", new ArrayList<>()));
+            appUserService.saveUser(new AppUser(null, "Marian", "map", "popovicimarian2311@gmailcom", "1234", new ArrayList<>(), new ArrayList<>()));
             appUserService.addRoleToAppUser("map", "PARKING_LOT_PROVIDER");
             appUserService.addRoleToAppUser("map", "ADMIN");
 

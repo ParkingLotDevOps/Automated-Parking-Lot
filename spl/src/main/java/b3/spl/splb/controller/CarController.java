@@ -1,8 +1,6 @@
 package b3.spl.splb.controller;
 
 import b3.spl.splb.Services.CarService;
-import b3.spl.splb.Services.ParkingLotService;
-import b3.spl.splb.model.AppUser;
 import b3.spl.splb.model.Car;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

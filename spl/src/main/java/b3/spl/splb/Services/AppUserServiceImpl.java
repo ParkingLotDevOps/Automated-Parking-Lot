@@ -1,17 +1,12 @@
 package b3.spl.splb.Services;
 
 import b3.spl.splb.model.AppUser;
-import b3.spl.splb.model.ParkingLot;
 import b3.spl.splb.model.Role;
 import b3.spl.splb.repository.AppUserRepo;
 import b3.spl.splb.repository.ParkingLotRepo;
 import b3.spl.splb.repository.RoleRepo;
-import b3.spl.splb.util.Point;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.jni.User;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
