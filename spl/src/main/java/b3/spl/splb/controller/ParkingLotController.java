@@ -15,7 +15,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class ParkingLotController {
+public  class ParkingLotController {
     private final ParkingLotService parkingLotService;
 
     @PostMapping("provider/parkinglot/save")
