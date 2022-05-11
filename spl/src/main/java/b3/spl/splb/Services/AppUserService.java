@@ -11,7 +11,7 @@ import java.util.List;
 public interface AppUserService {
     AppUser saveUser(AppUser user);
     Role saveRole(Role role);
-    void addRoleToAppUser(String username,  String rolName);
-    AppUser getUser(String username);
+    void addRoleToAppUser(String email,  String rolName);
+    AppUser getUser(String email);
     List<AppUser> getUsers();
 }

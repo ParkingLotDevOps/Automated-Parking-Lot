@@ -2,6 +2,7 @@ package b3.spl.splb.controller;
 import b3.spl.splb.Services.AppUserService;
 import b3.spl.splb.model.AppUser;
 import b3.spl.splb.model.Role;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,13 +30,21 @@ public class AppUserController {
     }
     @PostMapping("/role/save")
     public ResponseEntity<Role> saveRole(@RequestBody RoleToUserForm form){
-        appUserService.addRoleToAppUser(form.getUsername(), form.getRoleName());
+        appUserService.addRoleToAppUser(form.getEmail(), form.getRoleName());
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/add/role")
+    public ResponseEntity<AppUser> addRole(@RequestBody ObjectNode objectNode){
+        String emali = objectNode.get("email").asText();
+        String role = objectNode.get("role").asText();
+        appUserService.addRoleToAppUser(emali, role);
         return ResponseEntity.ok().build();
     }
 }
 
 @Data
 class RoleToUserForm{
-    private String username;
+    private String email;
     private String roleName;
 }
