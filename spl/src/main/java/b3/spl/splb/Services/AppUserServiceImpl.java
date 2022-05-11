@@ -29,15 +29,16 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     private final ParkingLotRepo parkingLotRepo;
 
     private final PasswordEncoder passwordEncoder;
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser appUser = appUserRepo.findByUsername(username);
+
+    @Override //am rescris ca sa caute dupa emali in baza de date
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
+        AppUser appUser = appUserRepo.findByEmail(email);
         if(appUser == null){
             log.error("User not found in database");
             throw new UsernameNotFoundException("User not found in the database");
         }
         else {
-            log.info("User found in database : {}", username);
+            log.info("User found in database : {}", email);
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         appUser.getRoles().forEach(role ->{authorities.add(new SimpleGrantedAuthority(role.getName()));});
@@ -58,17 +59,17 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
-    public void addRoleToAppUser(String username, String rolName) {
-        log.info("Adding role {} to user {}", rolName, username);
-        AppUser appUser = appUserRepo.findByUsername(username);
+    public void addRoleToAppUser(String email, String rolName) {
+        log.info("Adding role {} to user {}", rolName, email);
+        AppUser appUser = appUserRepo.findByEmail(email);
         Role role = roleRepo.findByName(rolName);
         appUser.getRoles().add(role);
     }
 
     @Override
-    public AppUser getUser(String username) {
-        log.info("Fetching user {}", username);
-        return appUserRepo.findByUsername(username);
+    public AppUser getUser(String email) {
+        log.info("Fetching user {}", email);
+        return appUserRepo.findByEmail(email);
     }
 
     @Override
