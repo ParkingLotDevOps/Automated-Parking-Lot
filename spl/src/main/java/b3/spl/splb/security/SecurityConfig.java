@@ -46,9 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/api/login").permitAll();
+        http.authorizeRequests().antMatchers("/api/login", "api/token/refresh").permitAll();
         http.authorizeRequests().antMatchers("/api/user/save").permitAll();
-        http.authorizeRequests().antMatchers(GET, "/api/users").permitAll();
+        http.authorizeRequests().antMatchers(GET, "/api/users").hasAnyAuthority("ADMIN");
         http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -66,8 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowedHeaders(all);
         source.registerCorsConfiguration("/**", configuration);
         return source;
-
     }
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception{

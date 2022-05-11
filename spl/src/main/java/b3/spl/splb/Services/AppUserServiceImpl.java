@@ -50,6 +50,8 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         return new org.springframework.security.core.userdetails.User(appUser.getUsername(), appUser.getPassword(), authorities);
     }
 
+    
+
     @Override
     public AppUser saveUser(AppUser user) {
         log.info("Saving new user {} to the database", user.getName());
