@@ -1,8 +1,10 @@
 package b3.spl.splb.Services;
 
 import b3.spl.splb.model.AppUser;
+import b3.spl.splb.model.Car;
 import b3.spl.splb.model.Role;
 import b3.spl.splb.repository.AppUserRepo;
+import b3.spl.splb.repository.CarRepo;
 import b3.spl.splb.repository.ParkingLotRepo;
 import b3.spl.splb.repository.RoleRepo;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +30,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     private final AppUserRepo appUserRepo;
     private final RoleRepo roleRepo;
     private final ParkingLotRepo parkingLotRepo;
+    private final CarRepo carRepo;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -76,6 +80,19 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     public List<AppUser> getUsers() {
         log.info("Fetching all users");
         return appUserRepo.findAll();
+    }
+
+    @Override
+    public void addCarToUser(Long carId, Long userId)
+    {
+        log.info("Adding car {} to user {}", carRepo.findById(carId), appUserRepo.findById(userId));
+        Optional<Car> car = carRepo.findById(carId);
+        Optional<AppUser> appUser= appUserRepo.findById(userId);
+        if(car==null || appUser==null)
+        {
+            throw new RuntimeException("Car or User not found");
+        }
+        appUser.get().getCars().add(car.get());
     }
 
 
