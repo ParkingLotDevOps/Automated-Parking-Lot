@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ListItem.module.css';
 import { FaCalendarAlt as Calendar, FaStar as Star } from 'react-icons/fa';
@@ -22,6 +24,8 @@ const formatDate = (d) => {
 };
 
 export default function LisItem(props) {
+  const [isChecked, setIsChecked] = useState(false);
+
   const navigate = useNavigate();
 
   const options = ['Edit', 'Delete'];
@@ -38,7 +42,7 @@ export default function LisItem(props) {
   };
 
   return (
-    <li className={styles.listItem} key={props.item.id}>
+    <li className={styles.listItem}>
       <Checkbox
         sx={{
           color: '#E8E4E6',
@@ -49,7 +53,8 @@ export default function LisItem(props) {
           }
         }}
         className={styles.checkbox}
-        checked={props.item.isSelected}
+        checked={isChecked}
+        onChange={() => setIsChecked((prev) => !prev)}
       />
       <div>{props.item.name}</div>
       <div>{props.item.location}</div>
@@ -106,9 +111,13 @@ export default function LisItem(props) {
             <MenuItem
               key={option}
               selected={option === 'Pyxis'}
-              onClick={option === 'Edit' ? () => {
-                navigate(`/edit/${props.item.name.replace(/ /g, '-')}`);
-              } : handleClose}
+              onClick={
+                option === 'Edit'
+                  ? () => {
+                      navigate(`/edit/${props.item.name.replace(/ /g, '-')}`);
+                    }
+                  : handleClose
+              }
             >
               {option}
             </MenuItem>
