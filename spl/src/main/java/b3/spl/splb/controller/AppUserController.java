@@ -79,7 +79,7 @@ public class AppUserController {
                 AppUser user = appUserService.getUser(username);
 
                 String access_token = JWT.create()
-                        .withSubject(user.getUsername())
+                        .withSubject(user.getEmail())
                         .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
                         .withIssuer(request.getRequestURL().toString())
                         .withClaim("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
@@ -100,7 +100,6 @@ public class AppUserController {
                 response.setContentType("application/json");
                 new ObjectMapper().writeValue(response.getOutputStream(), error);
             }
-        }else {
         }
     }
 }
