@@ -34,7 +34,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 
     private final PasswordEncoder passwordEncoder;
 
-    @Override //am rescris ca sa caute dupa emali in baza de date
+    @Override //am rescris ca sa caute dupa email in baza de date
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
         AppUser appUser = appUserRepo.findByEmail(email);
         if(appUser == null){

@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.http.HttpMethod.GET;
-
+import static org.springframework.http.HttpMethod.POST;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -49,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/api/login", "api/token/refresh").permitAll();
         http.authorizeRequests().antMatchers("/api/user/save").permitAll();
         http.authorizeRequests().antMatchers(GET, "/api/users").hasAnyAuthority("ADMIN");
+        //TO BE REVIEWED http.authorizeRequests().antMatchers(POST, "/api/add/role").hasAnyAuthority("ADMIN");
         http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
