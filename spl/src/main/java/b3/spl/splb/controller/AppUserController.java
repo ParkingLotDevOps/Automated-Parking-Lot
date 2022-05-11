@@ -52,9 +52,17 @@ public class AppUserController {
 
     @PostMapping("/add/role")
     public ResponseEntity<AppUser> addRole(@RequestBody ObjectNode objectNode){
-        String emali = objectNode.get("email").asText();
+        String email = objectNode.get("email").asText();
         String role = objectNode.get("role").asText();
-        appUserService.addRoleToAppUser(emali, role);
+        appUserService.addRoleToAppUser(email, role);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/add/car")
+    public ResponseEntity<AppUser> addCar(@RequestBody ObjectNode objectNode){
+        Long carId = objectNode.get("carId").asLong();
+        Long userId = objectNode.get("userId").asLong();
+        appUserService.addCarToUser(carId, userId);
         return ResponseEntity.ok().build();
     }
 
