@@ -1,5 +1,5 @@
 import React from 'react';
-
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { StyleSheet, Button, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import MainButton from './mainButton';
