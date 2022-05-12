@@ -131,7 +131,7 @@ export const Map = () => {
           console.log(lat1, lng1);
           }}
           query={{
-              key: 'AIzaSyCrm5UQ-u92dMHxd8MwJnzH4Yc1Hr1OALk',
+              key: '',
               language: 'ro',
               components: 'country:ro'
           }}
