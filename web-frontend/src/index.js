@@ -11,7 +11,8 @@ import {
   EditParkingLot,
   Sidebar,
   ParkingLotList,
-  NotificationsList
+  NotificationsList,
+  AddParkingLot,
 } from 'components';
 
 createRoot(document.getElementById('root')).render(
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="sidebar" element={<Sidebar />} />
         <Route path="list" element={<ParkingLotList />} />
         <Route path="notifications" element={<NotificationsList />} />
+        <Route path="addParkingLot" element={<AddParkingLot />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
