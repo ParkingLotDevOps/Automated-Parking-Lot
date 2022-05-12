@@ -22,4 +22,15 @@ public class ParkingSpotController {
     public ResponseEntity<ParkingSpot> saveParkingSpot(@RequestBody ParkingSpot parkingSpot) {
         return ResponseEntity.ok().body(parkingSpotService.saveParkingSpot(parkingSpot));
     }
+    
+    @PutMapping("/parkingspots/{id}")
+    public ResponseEntity<ParkingSpot> updateParkingSpot(@RequestBody ParkingSpot parkingSpot, @PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(parkingSpotService.updateParkingSpot(parkingSpot, id));
+    }
+
+    @DeleteMapping("/parkingspots/{id}")
+    public ResponseEntity<String> deleteParkingSpot(@PathVariable Long id) {
+        parkingSpotService.deleteParkingSpot(id);
+        return ResponseEntity.ok().body("Successful delete");
+    }
 }
