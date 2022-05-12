@@ -37,12 +37,20 @@ public class CarController {
 //
 //    }
     @PostMapping("/car/update")
-    public ResponseEntity<Car> updateCar(@RequestBody ObjectNode objectNode)
+    public ResponseEntity<?> updateCar(@RequestBody ObjectNode objectNode)
     {
         Long carId = objectNode.get("carId").asLong();
         String newLicensePlate = objectNode.get("newLicensePlate").asText();
-        return ResponseEntity.ok().body(carService.updateCarLicensePlate(carId, newLicensePlate));
+
+        Pattern pattern = Pattern.compile("[A-Z]+[0-9]+[A-Z]+");
+        boolean isValid= Pattern.matches(String.valueOf(pattern), newLicensePlate);
+
+        if(!isValid)
+            return ResponseEntity.badRequest().body("Invalid license plate format: " + newLicensePlate);
+        else
+            return ResponseEntity.ok().body(carService.updateCarLicensePlate(carId, newLicensePlate));
     }
+
     @DeleteMapping("/car/delete")
     public void deleteCar(@RequestBody Car car)
     {
