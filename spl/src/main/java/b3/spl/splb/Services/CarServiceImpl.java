@@ -38,8 +38,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car updateCar(Car car) {
-        carRepo.delete(car);
-        return carRepo.save(car);
+    public Car updateCarLicensePlate(Long carId, String newLicensePlate) {
+        Car car = carRepo.findById(carId).get();
+        car.setLicensePlate(newLicensePlate);
+        return car;
     }
 }

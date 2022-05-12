@@ -2,6 +2,7 @@ package b3.spl.splb.controller;
 
 import b3.spl.splb.Services.CarService;
 import b3.spl.splb.model.Car;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,10 +36,12 @@ public class CarController {
 //    {
 //
 //    }
-    @PutMapping("/car/update")
-    public ResponseEntity<Car> updateCar(@RequestBody Car car)
+    @PostMapping("/car/update")
+    public ResponseEntity<Car> updateCar(@RequestBody ObjectNode objectNode)
     {
-        return ResponseEntity.ok().body(carService.updateCar(car));
+        Long carId = objectNode.get("carId").asLong();
+        String newLicensePlate = objectNode.get("newLicensePlate").asText();
+        return ResponseEntity.ok().body(carService.updateCarLicensePlate(carId, newLicensePlate));
     }
     @DeleteMapping("/car/delete")
     public void deleteCar(@RequestBody Car car)

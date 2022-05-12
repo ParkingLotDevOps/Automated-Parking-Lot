@@ -9,5 +9,5 @@ public interface CarService {
     Car saveCar (Car car);
     List<Car> getCars (AppUser user);
     void deleteCar (Car car);
-    Car updateCar (Car car);
+    Car updateCarLicensePlate (Long carId, String newLicensePlate);
 }
