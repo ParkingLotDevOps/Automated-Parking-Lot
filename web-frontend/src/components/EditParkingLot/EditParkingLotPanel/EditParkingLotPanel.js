@@ -24,6 +24,7 @@ export default function EditParkingLotPanel() {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                sx={{ input: { color: 'dodgerblue' } }}
                 variant="filled"
               />
               <TextField
@@ -32,6 +33,7 @@ export default function EditParkingLotPanel() {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                sx={{ input: { color: 'dodgerblue' } }}
                 variant="filled"
               />
             </div>
@@ -41,6 +43,7 @@ export default function EditParkingLotPanel() {
               InputLabelProps={{
                 shrink: true,
               }}
+              sx={{ input: { color: 'dodgerblue' } }}
               variant="filled"
             />
           </div>
@@ -51,9 +54,12 @@ export default function EditParkingLotPanel() {
               InputLabelProps={{
                 shrink: true,
               }}
+              sx={{ input: { color: 'dodgerblue' } }}
               variant="filled"
             />
-            <Button variant="contained">Save Changes</Button>
+            <Button variant="contained" sx={{ height: 55 }}>
+              Save Changes
+            </Button>
           </div>
         </div>
       </div>

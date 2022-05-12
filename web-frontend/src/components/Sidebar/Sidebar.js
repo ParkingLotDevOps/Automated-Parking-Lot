@@ -20,11 +20,12 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 
+
 const drawerWidth = 230;
 
 export default function Sidebar(){
     return(
-
+        
     <Box sx={{ display: 'flex'}} >
 
       <Drawer
@@ -39,48 +40,51 @@ export default function Sidebar(){
             boxSizing: 'border-box',
           },
         }}
-        variant="permanent"
+        variant="permanent" 
         anchor="left"
       >
         <Toolbar />
-
+        
         <img src={Logo} className={styles.logo} alt="logo" />
         <List>
           {['Dashboard', 'Analytics', 'Parkings', 'Schedule', 'Notification', 'Settings'].map((text, index) => (
             <ListItem button key={text}>
               { <ListItemIcon>
-                    {index == 0 ? <DashboardIcon className={styles.icon} /> :
-                     index == 1 ? <AnalyticsIcon className={styles.icon}/> :
+                    {index == 0 ? <DashboardIcon className={styles.icon} /> : 
+                     index == 1 ? <AnalyticsIcon className={styles.icon}/> : 
                      index == 2 ? <ConfirmationNumberIcon className={styles.icon} /> :
                      index == 3 ? <ArticleIcon className={styles.icon}/> :
                      index == 4 ? <NotificationsIcon className={styles.icon}/> : <SettingsIcon className={styles.icon}/>
                      }
-
+                     
               </ListItemIcon> }
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
 
+        
+        <h3  className={styles.position}>Contact Us</h3>
+        <div className={styles.position2}>
+            <div className="icon2">
+              <AccountBoxRoundedIcon className={styles.position2}/>
+            </div>
+              
+            <div className="text2">
+              <p className={styles.position2}>Username</p>
+            </div>
 
-        {/* <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-
-        <h4 className={styles.down}>Contact us</h4>
-        <div>
-            <AccountBoxRoundedIcon className={styles.profpic}/>
-            <p>Easin Arafat</p>
-
-        </div> */}
-
-
+            
+            
+            
+            
+        </div>
+        
+        
+                
       </Drawer>
-
-    </Box>
-
+      
+    </Box>       
+        
     );
 }
-

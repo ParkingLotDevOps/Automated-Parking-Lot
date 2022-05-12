@@ -10,7 +10,8 @@ import {
   SignUp,
   EditParkingLot,
   Sidebar,
-  ParkingLotList
+  ParkingLotList,
+  NotificationsList
 } from 'components';
 
 createRoot(document.getElementById('root')).render(
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="edit/:name" element={<EditParkingLot />} />
         <Route path="sidebar" element={<Sidebar />} />
         <Route path="list" element={<ParkingLotList />} />
+        <Route path="notifications" element={<NotificationsList />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
