@@ -41,6 +41,19 @@ public class AppUserController {
 
     @PostMapping("/user/save")
     public ResponseEntity<AppUser> savaUser(@RequestBody AppUser user){
+        if(user == null){
+            return ResponseEntity.badRequest().body(user);
+        }
+
+        if(!user.getEmail().matches("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.com")){
+            return ResponseEntity.badRequest().body(user);
+        }
+
+        if(user.getPassword().length()<8 || !user.getPassword().matches(".*[A-Z].*") ||
+                !user.getPassword().matches(".*[a-z].*") || !user.getPassword().matches(".*[0-9].*")){
+            return ResponseEntity.badRequest().body(user);
+        }
+
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toString());
         return ResponseEntity.created(uri).body(appUserService.saveUser(user));
     }
