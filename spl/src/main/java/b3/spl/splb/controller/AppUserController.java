@@ -53,15 +53,7 @@ public class AppUserController {
                 !user.getPassword().matches(".*[a-z].*") || !user.getPassword().matches(".*[0-9].*")){
             return ResponseEntity.badRequest().body(user);
         }
-        AppUserRepo appUserRepo = null;
 
-        if(appUserRepo.findByEmail(user.getEmail()) != null){
-            return ResponseEntity.badRequest().body(user);
-        }
-
-        if(appUserRepo.findByUsername(user.getUsername()) != null){
-            return ResponseEntity.badRequest().body(user);
-        }
 
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toString());
         return ResponseEntity.created(uri).body(appUserService.saveUser(user));
