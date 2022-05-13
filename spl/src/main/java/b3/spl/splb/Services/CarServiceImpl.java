@@ -43,4 +43,8 @@ public class CarServiceImpl implements CarService {
         car.setLicensePlate(newLicensePlate);
         return car;
     }
+    @Override
+    public Car getCarById(Long id){
+        return  carRepo.getById(id);
+    }
 }

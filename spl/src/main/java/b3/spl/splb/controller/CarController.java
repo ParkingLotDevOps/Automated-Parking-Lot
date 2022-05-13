@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.regex.Pattern;
 
 @RestController
@@ -31,11 +32,10 @@ public class CarController {
             return ResponseEntity.created(uri).body(carService.saveCar(car));
         }
     }
-//    @GetMapping("/cars")
-//    public ResponseEntity<List<Car>> getAllCars(@RequestBody AppUser appUser)
-//    {
-//
-//    }
+    @GetMapping("/car")
+    public ResponseEntity<Car> getCarById(@RequestBody Long id) {
+        return ResponseEntity.ok().body(carService.getCarById(id));
+    }
     @PostMapping("/car/update")
     public ResponseEntity<?> updateCar(@RequestBody ObjectNode objectNode)
     {
