@@ -92,7 +92,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         log.info("Adding car {} to user {}", carRepo.findById(carId), appUserRepo.findById(userId));
         Optional<Car> car = carRepo.findById(carId);
         Optional<AppUser> appUser= appUserRepo.findById(userId);
-        if(car==null || appUser==null)
+        if(!car.isPresent() || !appUser.isPresent())
         {
             throw new RuntimeException("Car or User not found");
         }

@@ -32,8 +32,8 @@ public class CarController {
             return ResponseEntity.created(uri).body(carService.saveCar(car));
         }
     }
-    @GetMapping("/car")
-    public ResponseEntity<Car> getCarById(@RequestBody Long id) {
+    @GetMapping("/car/{id}")
+    public ResponseEntity<Car> getCarById(@PathVariable Long id) {
         return ResponseEntity.ok().body(carService.getCarById(id));
     }
     @PostMapping("/car/update")
@@ -51,9 +51,9 @@ public class CarController {
             return ResponseEntity.ok().body(carService.updateCarLicensePlate(carId, newLicensePlate));
     }
 
-    @DeleteMapping("/car/delete")
-    public void deleteCar(@RequestBody Car car)
+    @DeleteMapping("/car/delete/{id}")
+    public void deleteCar(@PathVariable Long id)
     {
-        carService.deleteCar(car);
+        carService.deleteCar(carService.getCarById(id));
     }
 }

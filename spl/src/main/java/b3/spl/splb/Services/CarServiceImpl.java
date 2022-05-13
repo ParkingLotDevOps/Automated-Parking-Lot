@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -45,6 +46,7 @@ public class CarServiceImpl implements CarService {
     }
     @Override
     public Car getCarById(Long id){
-        return  carRepo.getById(id);
+        Optional<Car> car =  carRepo.findById(id);
+        return car.orElse(null);
     }
 }
