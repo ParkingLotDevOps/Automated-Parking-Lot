@@ -19,7 +19,7 @@ public  class ParkingLotController {
     private final ParkingLotService parkingLotService;
 
     @PostMapping("provider/parkinglot/save")
-    public ResponseEntity<ParkingLot> savaUser(@RequestBody ParkingLot parkingLot){
+    public ResponseEntity<ParkingLot> saveUser(@RequestBody ParkingLot parkingLot){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/provider/parkinglot/save").toString());
         return ResponseEntity.created(uri).body(parkingLotService.saveParkingLot(parkingLot));
     }

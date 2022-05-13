@@ -40,12 +40,14 @@ public class AppUserController {
     }
 
     @PostMapping("/user/save")
-    public ResponseEntity<AppUser> savaUser(@RequestBody AppUser user){
+    public ResponseEntity<AppUser> saveUser(@RequestBody AppUser user){
         if(user == null){
             return ResponseEntity.badRequest().body(user);
         }
 
-        if(!user.getEmail().matches("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.com")){
+        user.setEmail(user.getEmail().trim().toLowerCase());
+
+        if(!user.getEmail().matches("[a-zA-Z0-9_\\.-]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9_-]{2,4})+")){
             return ResponseEntity.badRequest().body(user);
         }
 

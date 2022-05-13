@@ -36,6 +36,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 
     @Override //am rescris ca sa caute dupa email in baza de date
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
+        email = email.trim().toLowerCase();
         AppUser appUser = appUserRepo.findByEmail(email);
         if(appUser == null){
             log.error("User not found in database");
@@ -75,6 +76,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     @Override
     public AppUser getUser(String email) {
         log.info("Fetching user {}", email);
+        email = email.trim().toLowerCase();
         return appUserRepo.findByEmail(email);
     }
 
