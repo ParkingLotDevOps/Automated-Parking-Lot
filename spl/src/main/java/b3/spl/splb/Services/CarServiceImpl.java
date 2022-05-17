@@ -34,8 +34,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void deleteCar(Car car) {
-        carRepo.delete(car);
+    public void deleteCar(Long id) {
+        Optional<Car> car = carRepo.findById(id);
+        if(car.isPresent()){
+            carRepo.deleteById(id);
+        }
     }
 
     @Override

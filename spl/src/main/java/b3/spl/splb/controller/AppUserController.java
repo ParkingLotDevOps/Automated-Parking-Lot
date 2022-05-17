@@ -74,7 +74,7 @@ public class AppUserController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/add/car")
+    @PostMapping("/user/add/car")
     public ResponseEntity<AppUser> addCar(@RequestBody ObjectNode objectNode){
         Long carId = objectNode.get("carId").asLong();
         Long userId = objectNode.get("userId").asLong();

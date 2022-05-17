@@ -23,6 +23,5 @@ public class Car {
 
     private String licensePlate;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cars")
-    List<AppUser> users;
+
 }
