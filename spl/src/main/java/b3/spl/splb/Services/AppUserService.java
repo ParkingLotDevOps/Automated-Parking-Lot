@@ -8,8 +8,8 @@ import java.util.List;
 public interface AppUserService {
     AppUser saveUser(AppUser user);
     Role saveRole(Role role);
-    void addRoleToAppUser(String email,  String rolName);
+    boolean addRoleToAppUser(String email,  String rolName);
     AppUser getUser(String email);
-    void addCarToUser(Long carId, Long userId);
+    boolean addCarToUser(Long carId, Long userId);
     List<AppUser> getUsers();
 }

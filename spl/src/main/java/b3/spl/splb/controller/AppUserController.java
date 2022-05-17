@@ -20,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.Console;
 import java.io.IOException;
 import java.net.URI;
 import java.util.*;
@@ -40,46 +41,54 @@ public class AppUserController {
     }
 
     @PostMapping("/user/save")
-    public ResponseEntity<AppUser> saveUser(@RequestBody AppUser user){
-        if(user == null){
-            return ResponseEntity.badRequest().body(user);
+    public ResponseEntity saveUser(@RequestBody AppUser user){
+        if(user == null || user.getUsername() == null || user.getPassword() == null || user.getName() == null || user.getEmail() == null){
+            return ResponseEntity.badRequest().body("Invalid input.");
         }
-
         user.setEmail(user.getEmail().trim().toLowerCase());
 
         if(!user.getEmail().matches("[a-zA-Z0-9_\\.-]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9_-]{2,4})+")){
-            return ResponseEntity.badRequest().body(user);
+            return ResponseEntity.badRequest().body("Invalid email.");
         }
 
         if(user.getPassword().length()<8 || !user.getPassword().matches(".*[A-Z].*") ||
                 !user.getPassword().matches(".*[a-z].*") || !user.getPassword().matches(".*[0-9].*")){
-            return ResponseEntity.badRequest().body(user);
+            return ResponseEntity.badRequest().body("Invalid password.");
         }
 
 
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toString());
-        return ResponseEntity.created(uri).body(appUserService.saveUser(user));
-    }
-    @PostMapping("/role/save")
-    public ResponseEntity<Role> saveRole(@RequestBody RoleToUserForm form){
-        appUserService.addRoleToAppUser(form.getEmail(), form.getRoleName());
-        return ResponseEntity.ok().build();
+        AppUser resp = appUserService.saveUser(user);
+        if(resp == null){
+            return ResponseEntity.badRequest().body("This email address is already being used.");
+        }
+        return ResponseEntity.created(uri).body(resp);
     }
 
+
     @PostMapping("/add/role")
-    public ResponseEntity<AppUser> addRole(@RequestBody ObjectNode objectNode){
-        String email = objectNode.get("email").asText();
-        String role = objectNode.get("role").asText();
-        appUserService.addRoleToAppUser(email, role);
-        return ResponseEntity.ok().build();
+    public ResponseEntity addRole(@RequestBody ObjectNode objectNode){
+        if(objectNode.has("email") && objectNode.has("role")){
+            String email = objectNode.get("email").textValue();
+            String role = objectNode.get("role").textValue();
+            System.out.println(role);
+            if(appUserService.addRoleToAppUser(email, role) == false)
+                return ResponseEntity.badRequest().body("User or role not found.");
+            String s = "Role added.";
+            return ResponseEntity.ok().body("Role added.");}
+        return ResponseEntity.badRequest().body("Email and role must be provided.");
     }
 
     @PostMapping("/user/add/car")
-    public ResponseEntity<AppUser> addCar(@RequestBody ObjectNode objectNode){
-        Long carId = objectNode.get("carId").asLong();
-        Long userId = objectNode.get("userId").asLong();
-        appUserService.addCarToUser(carId, userId);
-        return ResponseEntity.ok().build();
+    public ResponseEntity addCar(@RequestBody ObjectNode objectNode){
+        if(objectNode.has("carId") && objectNode.has("userId")){
+            Long carId = objectNode.get("carId").asLong();
+            Long userId = objectNode.get("userId").asLong();
+            if(appUserService.addCarToUser(carId, userId) == false)
+                return ResponseEntity.badRequest().body("User or car not found.");
+            return ResponseEntity.ok().body("Car added.");
+        }
+        return ResponseEntity.badRequest().body("carId and userId must be provided.");
     }
 
     @GetMapping("/token/refresh")
