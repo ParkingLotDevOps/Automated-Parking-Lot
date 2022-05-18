@@ -2,6 +2,7 @@ package b3.spl.splb.controller;
 
 import b3.spl.splb.Services.CarService;
 import b3.spl.splb.model.Car;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -45,11 +46,20 @@ public class CarController {
     public ResponseEntity<?> updateCar(@RequestBody ObjectNode objectNode)
     {
         if(objectNode==null)
-            return ResponseEntity.badRequest().body("Invalid input");
-        Long carId = objectNode.get("carId").asLong();
-        String newLicensePlate = objectNode.get("newLicensePlate").asText();
-        if (newLicensePlate == null)
-            return ResponseEntity.badRequest().body("Invalid input");
+            return ResponseEntity.badRequest().body("Invalid input format");
+        JsonNode carIdNode = objectNode.get("carId");
+        JsonNode newLicensePlateNode = objectNode.get("newLicensePlate");
+        String newLicensePlate;
+        Long carId;
+
+        if (carIdNode == null)
+            return ResponseEntity.badRequest().body("Invalid input format");
+        else carId = carIdNode.asLong();
+
+        if (newLicensePlateNode == null)
+            return ResponseEntity.badRequest().body("Invalid input format");
+        else newLicensePlate = newLicensePlateNode.asText();
+
         Pattern pattern = Pattern.compile("[A-Z]+[0-9]+[A-Z]+");
         boolean isValid= Pattern.matches(String.valueOf(pattern), newLicensePlate);
 
