@@ -62,7 +62,7 @@ curl  -H 'Content-Type: application/json' -d '{"licensePlate" : "VS06PST"}' http
 ####  Response
 Status: 201 OK
 Content-Type: application/json
-user - info
+Car - info
 
 ####  Request
 `GET /api/user/car/{id}`
@@ -72,7 +72,7 @@ curl  -H http://localhost:8082/api/user/car/{id}
 ####  Response
 Status: 200 OK
 Content-Type: application/json
-[Car] - array of cars of user with the id: {id}
+Car - the car with the id: {id}
 
 ###   Update car
 ####  Request
@@ -83,7 +83,7 @@ curl  -H 'Content-Type: application/json' -d '{ "carId" : 5, "newLicensePlate" :
 ####  Response
 Status: 200 OK
 Content-Type: application/json
-car - updates the car with the id "carId" with the new license plate "newLicensePlate"
+Car - updates the car with the id "carId" with the new license plate "newLicensePlate"
 
 
 ###   Delete car
@@ -94,5 +94,4 @@ curl  -H http://localhost:8082/api/user/car/{id}
 ```
 ####  Response
 Status: 200 OK
-Content-Type: application/json
-car - delete the car with the id {id}
+Content-Type: string "Car with id 5 deleted successfully."
