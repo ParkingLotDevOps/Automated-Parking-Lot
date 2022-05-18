@@ -16,11 +16,11 @@ import java.util.regex.Pattern;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/user")
+@RequestMapping("/api/user/car")
 public class CarController {
     private final CarService carService;
 
-    @PostMapping("/car/save")
+    @PostMapping()
     public ResponseEntity<?> saveCar(@RequestBody ObjectNode objectNode){
         JsonNode licensePlateNode = objectNode.get("licensePlate");
         String licensePlate;
@@ -42,14 +42,14 @@ public class CarController {
             return ResponseEntity.created(uri).body(carService.saveCar(car));
         }
     }
-    @GetMapping("/car/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getCarById(@PathVariable Long id) {
         Car car = carService.getCarById(id);
         if (car == null)
-            return ResponseEntity.badRequest().body("Car with id " + id + "couldn't be found");
+            return new ResponseEntity<>("Car with id " + id + " couldn't be found.",HttpStatus.NOT_FOUND);
         return ResponseEntity.ok().body(car);
     }
-    @PostMapping("/car/update")
+    @PutMapping()
     public ResponseEntity<?> updateCar(@RequestBody ObjectNode objectNode)
     {
         if(objectNode==null)
@@ -76,8 +76,10 @@ public class CarController {
             return ResponseEntity.ok().body(carService.updateCarLicensePlate(carId, newLicensePlate));
     }
 
-    @DeleteMapping("/car/delete/{id}")
-    public void deleteCar(@PathVariable Long id) {
-        carService.deleteCar(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCar(@PathVariable Long id) {
+        if (!carService.deleteCar(id))
+            return new ResponseEntity<>("Car with id " + id + " couldn't be found.",HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Car with id " + id + " deleted successfully.",HttpStatus.OK);
     }
 }

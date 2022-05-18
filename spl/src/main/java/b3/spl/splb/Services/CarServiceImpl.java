@@ -34,11 +34,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void deleteCar(Long id) {
+    public boolean deleteCar(Long id) {
         Optional<Car> car = carRepo.findById(id);
         if(car.isPresent()){
             carRepo.deleteById(id);
+            return true;
         }
+        return false;
     }
 
     @Override
