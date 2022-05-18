@@ -38,7 +38,7 @@ export default function ListItems() {
     <>
       <Sidebar />
       <main className={styles.main}>
-        <TheHeader title="Parking Lots List" hasSearchBox hasButton />
+        <TheHeader title="Recent Orders" hasSearchBox hasButton />
         <ul className={styles.listItems}>
           <li className={styles.listFields} key="0">
             <div style={{ width: '5%' }}></div>

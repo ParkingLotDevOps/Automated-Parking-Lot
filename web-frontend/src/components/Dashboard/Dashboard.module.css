@@ -1,12 +1,45 @@
 .main {
     margin-left: 230px;
     padding: 2rem;
-  }
+}
   
-  .name {
+.name {
     font-size: 2.5rem;
     margin: 2rem 1rem;
-  }
+}
 
-
+.listItems {
+    width: 95%;
+    padding: 0;
+    padding-top: 10;
+    margin: 0 auto;
+}
   
+.listFields {
+    display: flex;
+    border-bottom: 2px solid #bab9ba;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+  
+.listFields div {
+    /* width: calc(85% ); */
+    width: 80%;
+    color: #bab9ba;
+}
+  
+.itemGrid{
+    color: #bab9ba;
+    padding-left: 2rem;
+}
+
+.more{
+    position: relative;
+    float: right;
+    display: flex;
+    right: 20px;
+}
+
+.pageName{
+  padding-top: -30%;
+}
