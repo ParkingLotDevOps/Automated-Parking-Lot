@@ -20,13 +20,15 @@ public class CarController {
     private final CarService carService;
 
     @PostMapping("/car/save")
-    public ResponseEntity<Car> saveCar(@RequestBody Car car){
+    public ResponseEntity<?> saveCar(@RequestBody Car car){
+        if(car==null || car.getLicensePlate()==null)
+            return ResponseEntity.badRequest().body("Invalid input");
 
         Pattern pattern = Pattern.compile("[A-Z]+[0-9]+[A-Z]+");
         boolean isValid= Pattern.matches(String.valueOf(pattern), car.getLicensePlate());
 
         if(!isValid)
-            return ResponseEntity.badRequest().body(car);
+            return ResponseEntity.badRequest().body("Invalid input");
         else {
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/car/save").toString());
             return ResponseEntity.created(uri).body(carService.saveCar(car));
