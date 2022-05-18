@@ -49,3 +49,49 @@ Status: 200 OK
 	"access_token" : <NEW_ACCESS_TOKEN>,
 	"refresh_token" :<REFRESH_TOKEN>
 }
+
+
+## Car endpoint.
+####  Request
+###   Save car
+####  Request
+`POST /api/user/car`
+```
+curl  -H 'Content-Type: application/json' -d '{"licensePlate" : "VS06PST"}' http://localhost:8082/api/user/car
+```
+####  Response
+Status: 201 OK
+Content-Type: application/json
+Car - info
+
+####  Request
+`GET /api/user/car/{id}`
+```
+curl  -H http://localhost:8082/api/user/car/{id}
+```
+####  Response
+Status: 200 OK
+Content-Type: application/json
+Car - the car with the id: {id}
+
+###   Update car
+####  Request
+`Put /api/user/car`
+```
+curl  -H 'Content-Type: application/json' -d '{ "carId" : 5, "newLicensePlate" : "VS07PST"} http://localhost:8082/api/user/car
+```
+####  Response
+Status: 200 OK
+Content-Type: application/json
+Car - updates the car with the id "carId" with the new license plate "newLicensePlate"
+
+
+###   Delete car
+####  Request
+`Delete /api/user/car/{id}`
+```
+curl  -H http://localhost:8082/api/user/car/{id}
+```
+####  Response
+Status: 200 OK
+Content-Type: string "Car with id 5 deleted successfully."
