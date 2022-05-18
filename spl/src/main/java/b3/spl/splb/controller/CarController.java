@@ -21,7 +21,7 @@ public class CarController {
 
     @PostMapping("/car/save")
     public ResponseEntity<?> saveCar(@RequestBody Car car){
-        if(car==null || car.getLicensePlate()==null)
+        if(car == null || car.getLicensePlate()==null)
             return ResponseEntity.badRequest().body("Invalid input");
 
         Pattern pattern = Pattern.compile("[A-Z]+[0-9]+[A-Z]+");
@@ -37,8 +37,8 @@ public class CarController {
     @GetMapping("/car/{id}")
     public ResponseEntity<?> getCarById(@PathVariable Long id) {
         Car car = carService.getCarById(id);
-        if (car==null)
-            return ResponseEntity.badRequest().body("Invalid input");
+        if (car == null)
+            return ResponseEntity.badRequest().body("Car with id " + id + "couldn't be found");
         return ResponseEntity.ok().body(car);
     }
     @PostMapping("/car/update")
@@ -48,7 +48,6 @@ public class CarController {
             return ResponseEntity.badRequest().body("Invalid input");
         Long carId = objectNode.get("carId").asLong();
         String newLicensePlate = objectNode.get("newLicensePlate").asText();
-
         if (newLicensePlate == null)
             return ResponseEntity.badRequest().body("Invalid input");
         Pattern pattern = Pattern.compile("[A-Z]+[0-9]+[A-Z]+");

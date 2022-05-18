@@ -20,7 +20,6 @@ import static javax.persistence.GenerationType.AUTO;
 public class AppUser {
     @Id
     @GeneratedValue(strategy = AUTO)
-    private boolean bannedUser;
     private Long id;
     private String name;
     private String username;
@@ -35,4 +34,6 @@ public class AppUser {
             joinColumns = @JoinColumn(name = "appuser_id"),
             inverseJoinColumns = @JoinColumn(name = "car_id"))
     List<Car> cars;
+    private boolean bannedUser;
+
 }
