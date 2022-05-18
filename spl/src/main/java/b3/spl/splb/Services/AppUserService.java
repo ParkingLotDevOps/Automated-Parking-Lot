@@ -9,6 +9,7 @@ public interface AppUserService {
     AppUser saveUser(AppUser user);
     Role saveRole(Role role);
     boolean addRoleToAppUser(String email,  String rolName);
+    boolean setBannedUser(String email, Boolean banned);
     AppUser getUser(String email);
     boolean addCarToUser(Long carId, Long userId);
     List<AppUser> getUsers();

@@ -20,6 +20,7 @@ import static javax.persistence.GenerationType.AUTO;
 public class AppUser {
     @Id
     @GeneratedValue(strategy = AUTO)
+    private boolean bannedUser;
     private Long id;
     private String name;
     private String username;
