@@ -72,8 +72,13 @@ public class CarController {
 
         if(!isValid)
             return ResponseEntity.badRequest().body("Invalid license plate format: " + newLicensePlate);
-        else
-            return ResponseEntity.ok().body(carService.updateCarLicensePlate(carId, newLicensePlate));
+        else {
+            if(carService.getCarById(carId) == null)
+                return new ResponseEntity<>("Car with id " + carId + " couldn't be found.",HttpStatus.NOT_FOUND);
+            else
+                return ResponseEntity.ok().body(carService.updateCarLicensePlate(carId, newLicensePlate));
+        }
+
     }
 
     @DeleteMapping("/{id}")
