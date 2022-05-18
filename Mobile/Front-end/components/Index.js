@@ -2,8 +2,8 @@ import React from 'react';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { StyleSheet, Button, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import MainButton from './mainButton';
-import Car from './Car'
+import MainButton from '../src/components/MainButton';
+import Car from './Car';
 import {
 	DefaultTheme,
 	Headline,
@@ -29,12 +29,15 @@ const theme = {
 export default function Index({ navigation }) {
 	return (
 		<PaperProvider theme={theme} onPress={() => navigation.navigate(Index)}>
-            <View style={styles.container}>
-                <Headline style={styles.logo}>LOGO</Headline>
-                <Text style={styles.text}>Description</Text>
-                <MainButton text="Find out more" onPress={() => navigation.navigate(Car)}></MainButton>
-            </View>
-	    </PaperProvider>
+			<View style={styles.container}>
+				<Headline style={styles.logo}>LOGO</Headline>
+				<Text style={styles.text}>Description</Text>
+				<MainButton
+					text='Find out more'
+					onPress={() => navigation.navigate(Car)}
+				></MainButton>
+			</View>
+		</PaperProvider>
 	);
 }
 
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
 	},
 	logo: {
 		color: '#E16162',
-		paddingBottom: 100
+		paddingBottom: 100,
 	},
 	text: {
 		paddingBottom: 100,
@@ -64,5 +67,5 @@ const styles = StyleSheet.create({
 		textAlign: 'right',
 		marginBottom: 50,
 		fontWeight: '700',
-	}
+	},
 });

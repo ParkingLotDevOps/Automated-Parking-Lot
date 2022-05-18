@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Button, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import MainButton from './mainButton';
+import MainButton from '../src/components/MainButton';
 import {
 	DefaultTheme,
 	Headline,
@@ -27,17 +27,20 @@ const theme = {
 export default function SignUpPhone({ navigation }) {
 	return (
 		<PaperProvider theme={theme}>
-		<View style={styles.container}>
-			<Headline style={styles.logo}>LOGO</Headline>
+			<View style={styles.container}>
+				<Headline style={styles.logo}>LOGO</Headline>
 				<Text>Enter your phone number</Text>
 				<TextInput
 					style={styles.input}
 					placeholder='phone number'
 				></TextInput>
-			<MainButton text='Next' onPress={() => navigation.navigate('SignUpVerification')}/>
-			<StatusBar style='auto' />
-		</View>
-	</PaperProvider>
+				<MainButton
+					text='Next'
+					onPress={() => navigation.navigate('SignUpVerification')}
+				/>
+				<StatusBar style='auto' />
+			</View>
+		</PaperProvider>
 	);
 }
 
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
 	},
 	logo: {
 		color: '#E16162',
-		paddingBottom: 80
+		paddingBottom: 80,
 	},
 	input: {
 		width: '90%',
@@ -59,12 +62,12 @@ const styles = StyleSheet.create({
 		borderBottomColor: '#A6AAB4',
 		margin: 10,
 		marginBottom: 80,
-		marginTop: 20
+		marginTop: 20,
 	},
 	linkedText: {
 		color: '#F9BC60',
 		textAlign: 'right',
 		marginBottom: 50,
 		fontWeight: '700',
-	}
+	},
 });

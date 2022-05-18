@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import MainButton from './mainButton';
+import MainButton from '../src/components/MainButton';
 import {
 	DefaultTheme,
 	Headline,
@@ -27,26 +27,26 @@ const theme = {
 export default function SignUpAddCar({ navigation }) {
 	return (
 		<PaperProvider theme={theme}>
-		<View style={styles.container}>
-			<Headline style={styles.logo}>LOGO</Headline>
-            <Text>Add a car</Text>
-            <TextInput
-                style={styles.input}
-                placeholder='Registration number'
-            ></TextInput>
-            <TextInput
-                style={[styles.input, styles.input1]}
-                placeholder='Category'
-            ></TextInput>
-			<MainButton text='Add'/>
-            <View>
-                <Text>
-                    or <Text style={styles.linkedText} >Skip</Text>
-                </Text>
+			<View style={styles.container}>
+				<Headline style={styles.logo}>LOGO</Headline>
+				<Text>Add a car</Text>
+				<TextInput
+					style={styles.input}
+					placeholder='Registration number'
+				></TextInput>
+				<TextInput
+					style={[styles.input, styles.input1]}
+					placeholder='Category'
+				></TextInput>
+				<MainButton text='Add' />
+				<View>
+					<Text>
+						or <Text style={styles.linkedText}>Skip</Text>
+					</Text>
+				</View>
+				<StatusBar style='auto' />
 			</View>
-			<StatusBar style='auto' />
-		</View>
-	</PaperProvider>
+		</PaperProvider>
 	);
 }
 
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 	},
 	logo: {
 		color: '#E16162',
-		paddingBottom: 80
+		paddingBottom: 80,
 	},
 	input: {
 		width: '90%',
@@ -69,12 +69,12 @@ const styles = StyleSheet.create({
 		margin: 10,
 	},
 	input1: {
-		marginBottom: 80
+		marginBottom: 80,
 	},
 	linkedText: {
 		color: '#F9BC60',
 		textAlign: 'right',
 		marginBottom: 50,
 		fontWeight: '700',
-	}
+	},
 });

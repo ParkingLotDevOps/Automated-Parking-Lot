@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -9,13 +8,13 @@ import {
 	TextInput,
 	Text,
 } from 'react-native-paper';
-import MainButton from './mainButton';
+import MainButton from '../src/components/MainButton';
 import FbButton from './FbButton';
 import GoogleButton from './GoogleButton';
 import SignUp from './SignUp';
-import Location2  from './map/Location2';
+import Location2 from './map/Location2';
 
-var XMLHttpRequest = require('xhr2');
+// var XMLHttpRequest = require('xhr2');
 const theme = {
 	...DefaultTheme,
 	roundness: 2,
@@ -37,18 +36,18 @@ export default function Login({ navigation }) {
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>
 				<Headline style={styles.logo}>LOGO</Headline>
-					<TextInput
-						style={styles.input}
-						placeholder='Username'
-						value={username}
-						onChangeText={inputUsername}
-					></TextInput>
-					<TextInput
-						style={styles.input}
-						placeholder='Password'
-						value={password}
-						onChangeText={inputPassword}
-					></TextInput>
+				<TextInput
+					style={styles.input}
+					placeholder='Username'
+					value={username}
+					onChangeText={inputUsername}
+				></TextInput>
+				<TextInput
+					style={styles.input}
+					placeholder='Password'
+					value={password}
+					onChangeText={inputPassword}
+				></TextInput>
 				<View
 					style={{
 						width: '90%',
@@ -59,22 +58,27 @@ export default function Login({ navigation }) {
 				</View>
 				<MainButton
 					text='Login'
-					
-					onPress = { () => {
-							const http = new XMLHttpRequest()
-							var params = 'username=map&password=1234';
-							http.open("POST", "https://fierce-oasis-90524.herokuapp.com/api/login", true)
-							http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-							http.send(params)
-							http.onload = () => {
-								console.log(http.responseText);
-								navigation.navigate(Location2);
-							}
-						}
-					}
+					onPress={() => {
+						const http = new XMLHttpRequest();
+						var params = 'username=map&password=1234';
+						http.open(
+							'POST',
+							'https://fierce-oasis-90524.herokuapp.com/api/login',
+							true
+						);
+						http.setRequestHeader(
+							'Content-Type',
+							'application/x-www-form-urlencoded'
+						);
+						http.send(params);
+						http.onload = () => {
+							console.log(http.responseText);
+							navigation.navigate(Location2);
+						};
+					}}
 					// onPress={async () => {
 					// 	let response = await fetch('https://fierce-oasis-90524.herokuapp.com/api/users');
-  					// 	let data = await response.json();
+					// 	let data = await response.json();
 					// 	  console.log(data);
 					// }
 					// onPress = {() => fetch('https://fierce-oasis-90524.herokuapp.com/api/users', {mode: "no-cors"})
@@ -84,31 +88,36 @@ export default function Login({ navigation }) {
 					// .then((res) => {
 					// 	console.log(res);
 					// })}
-						
-						// async () => {
-						// 	console.log(username);
-						// 	const res = await fetch('https://fierce-oasis-90524.herokuapp.com/api/users', {
-						// 	  mode: "no-cors",
-						// 	  method: 'GET'
-						// 	//   body: new URLSearchParams({
-						// 	// 	username,
-						// 	// 	password
-						// 	//   })
-						// 	}).then((res => {
-						// 		console.log(res);
-						// 		// alert(res.ok ? 'Successfuly logged in!' : 'Wrong username or password!');
-						// 	})).catch(err => {
-						// 		console.log("eroare");
-						// 		console.log(err);
-						// 	});
+
+					// async () => {
+					// 	console.log(username);
+					// 	const res = await fetch('https://fierce-oasis-90524.herokuapp.com/api/users', {
+					// 	  mode: "no-cors",
+					// 	  method: 'GET'
+					// 	//   body: new URLSearchParams({
+					// 	// 	username,
+					// 	// 	password
+					// 	//   })
+					// 	}).then((res => {
+					// 		console.log(res);
+					// 		// alert(res.ok ? 'Successfuly logged in!' : 'Wrong username or password!');
+					// 	})).catch(err => {
+					// 		console.log("eroare");
+					// 		console.log(err);
+					// 	});
 					//}
-				
 				/>
-				<FbButton/>
-				<GoogleButton/>
+				<FbButton />
+				<GoogleButton />
 				<View>
 					<Text>
-						or <Text style={styles.linkedText} onPress={() => navigation.navigate(SignUp)}>SignUp</Text>
+						or{' '}
+						<Text
+							style={styles.linkedText}
+							onPress={() => navigation.navigate(SignUp)}
+						>
+							SignUp
+						</Text>
 					</Text>
 				</View>
 				<StatusBar style='auto' />

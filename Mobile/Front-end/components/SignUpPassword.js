@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import MainButton from './mainButton';
+import MainButton from '../src/components/MainButton';
 import {
 	DefaultTheme,
 	Headline,
@@ -27,21 +27,24 @@ const theme = {
 export default function SignUpPhone({ navigation }) {
 	return (
 		<PaperProvider theme={theme}>
-		<View style={styles.container}>
-			<Headline style={styles.logo}>LOGO</Headline>
-            <Text>Enter your password</Text>
-            <TextInput
-                style={styles.input}
-                placeholder='Password'
-            ></TextInput>
-            <TextInput
-                style={[styles.input, styles.input1]}
-                placeholder='Confirm password'
-            ></TextInput>
-			<MainButton text='Create Account' onPress={() => navigation.navigate('SignUpAddCar')}/>
-			<StatusBar style='auto' />
-		</View>
-	</PaperProvider>
+			<View style={styles.container}>
+				<Headline style={styles.logo}>LOGO</Headline>
+				<Text>Enter your password</Text>
+				<TextInput
+					style={styles.input}
+					placeholder='Password'
+				></TextInput>
+				<TextInput
+					style={[styles.input, styles.input1]}
+					placeholder='Confirm password'
+				></TextInput>
+				<MainButton
+					text='Create Account'
+					onPress={() => navigation.navigate('SignUpAddCar')}
+				/>
+				<StatusBar style='auto' />
+			</View>
+		</PaperProvider>
 	);
 }
 
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
 	},
 	logo: {
 		color: '#E16162',
-		paddingBottom: 80
+		paddingBottom: 80,
 	},
 	input: {
 		width: '90%',
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
 		margin: 10,
 	},
 	input1: {
-		marginBottom: 80
+		marginBottom: 80,
 	},
 	linkedText: {
 		color: '#F9BC60',

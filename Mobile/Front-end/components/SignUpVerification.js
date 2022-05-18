@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import MainButton from './mainButton';
+import MainButton from '../src/components/MainButton';
 import {
 	DefaultTheme,
 	Headline,
@@ -27,22 +27,23 @@ const theme = {
 export default function SignUpPhone({ navigation }) {
 	return (
 		<PaperProvider theme={theme}>
-		<View style={styles.container}>
-			<Headline style={styles.logo}>LOGO</Headline>
-            <Text>Enter verification code</Text>
-            <TextInput
-                style={styles.input}
-                placeholder='code'
-            ></TextInput>
-            <View>
-                <Text style={styles.text}>
-                    Didn't receive code? <Text style={styles.linkedText}>Resend</Text>
-                </Text>
+			<View style={styles.container}>
+				<Headline style={styles.logo}>LOGO</Headline>
+				<Text>Enter verification code</Text>
+				<TextInput style={styles.input} placeholder='code'></TextInput>
+				<View>
+					<Text style={styles.text}>
+						Didn't receive code?{' '}
+						<Text style={styles.linkedText}>Resend</Text>
+					</Text>
+				</View>
+				<MainButton
+					text='Next'
+					onPress={() => navigation.navigate('SignUpPassword')}
+				/>
+				<StatusBar style='auto' />
 			</View>
-			<MainButton text='Next' onPress={() => navigation.navigate('SignUpPassword')}/>
-			<StatusBar style='auto' />
-		</View>
-	</PaperProvider>
+		</PaperProvider>
 	);
 }
 
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
 	},
 	logo: {
 		color: '#E16162',
-		paddingBottom: 80
+		paddingBottom: 80,
 	},
 	input: {
 		width: '90%',
@@ -64,15 +65,15 @@ const styles = StyleSheet.create({
 		borderBottomColor: '#A6AAB4',
 		margin: 10,
 		marginBottom: 20,
-		marginTop: 20
+		marginTop: 20,
 	},
 	text: {
-		marginBottom: 70
+		marginBottom: 70,
 	},
 	linkedText: {
 		color: '#F9BC60',
 		textAlign: 'right',
 		marginBottom: 50,
 		fontWeight: '700',
-	}
+	},
 });
