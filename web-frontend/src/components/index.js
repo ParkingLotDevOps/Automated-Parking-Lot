@@ -10,6 +10,7 @@ import NotificationsList from './Notifications/NotificationsList/NotificationsLi
 import App from './App/App';
 import Sidebar from './Sidebar/Sidebar';
 import AddParkingLot from './ParkingLotsList/AddParkingLot/AddParkingLot'
+import Dashboard from './Dashboard/Dashboard'
 
 export {
   BaseButton,
@@ -23,5 +24,6 @@ export {
   NotificationsList,
   App,
   Sidebar,
-  AddParkingLot
+  AddParkingLot,
+  Dashboard
 };

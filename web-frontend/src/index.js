@@ -13,6 +13,7 @@ import {
   ParkingLotList,
   NotificationsList,
   AddParkingLot,
+  Dashboard,
 } from 'components';
 
 createRoot(document.getElementById('root')).render(
@@ -27,6 +28,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="list" element={<ParkingLotList />} />
         <Route path="notifications" element={<NotificationsList />} />
         <Route path="addParkingLot" element={<AddParkingLot />} />
+        <Route path="dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
