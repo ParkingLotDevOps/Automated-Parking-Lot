@@ -5,6 +5,7 @@ import * as Location from 'expo-location';
 import img from '../../assets/fii.png';
 import img2 from '../../assets/iconPark.png'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { Text } from 'react-native';
 
 const height = Dimensions.get('window').height * 0.95;
 const edgePadding = { bottom: 40, right: 0, left: 0, top: 25};
@@ -19,6 +20,7 @@ const [location, setLocation] = useState(null);
 const [errorMsg, setErrorMsg] = useState(null);
 
 var XMLHttpRequest = require('xhr2');
+
 
 const [region, setRegion] = useState({
   latitude: lat,
@@ -37,7 +39,18 @@ let mapMarkers = () => {
     title={marker.name}
     description={marker.description}
     image={{uri:ImageUri2, scale:1}}
-  >
+    >
+    <MapView.Callout tooltip={false}
+    style={{
+        backgroundColor: "#fffffe",
+        borderRadius: 10,
+        zIndex: 10
+     }}
+    >
+        <View>
+           <Text style={{color:"#E16162", padding: 6}}>{marker.title}{"\n"}{marker.description}</Text>
+        </View>
+    </MapView.Callout>
   </Marker >)
 }
 useEffect(() => {
@@ -132,28 +145,17 @@ return (
               id: myLots[lot].id,
               lat:myLots[lot].latitude,
               lng: myLots[lot].longitude,
-              description: `price: ${myLots[lot].price}`,
-              title: myLots[lot].name
+              description: `Price: ${myLots[lot].price}`,
+              title: `Name: ${myLots[lot].name}`
             });
           }
           setState(previousState => {
             return { ...previousState, markers: newMarkers}
           });
-          mapMarkers = () => {
-            return state.markers.map((marker) => <Marker
-              key = {marker.id}
-              coordinate={{ latitude: marker.lat,
-                            longitude: marker.lng }}
-              title={marker.title}
-              description={marker.description}
-              image={{uri:ImageUri2, scale:1}}
-            />
-            )
-          }
         }
       }}
       query={{
-          key: '',
+          key: 'AIzaSyD4QNalLAtJskSa8Hf2DPHzxU4i6R3MEf4',
           language: 'ro',
           components: 'country:ro'
       }}
@@ -166,5 +168,9 @@ return (
 const styles = StyleSheet.create({
   map: {
     height
+  },
+  callout: {
+    backgroundColor: '#E16162',
+    borderRadius: 10
   }
 })
