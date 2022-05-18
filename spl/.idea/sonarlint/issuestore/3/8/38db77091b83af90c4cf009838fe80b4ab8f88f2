@@ -1,0 +1,13 @@
+
+b
+java:S1128"@Remove this unused import 'b3.spl.splb.Services.AppUserService'.(Òğªşıÿÿÿÿ8¢İÂ—‹0
+
+java:S1128
+"lRemove this unused import 'org.springframework.security.authentication.UsernamePasswordAuthenticationToken'.(ÖÆ„Ùüÿÿÿÿ8£İÂ—‹0
+s
+java:S1128"VRemove this unused import 'org.springframework.security.core.userdetails.UserDetails'.(ÊÁ¥8£İÂ—‹0
+z
+java:S1128"]Remove this unused import 'org.springframework.security.web.session.SessionManagementFilter'.(Ê›‰ä8£İÂ—‹0
+u
+java:S1128"SRemove this unused import 'org.springframework.web.bind.annotation.RestController'.(±íş¡şÿÿÿÿ8£İÂ—‹0
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ğ­€Ø8¤İÂ—‹0
