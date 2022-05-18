@@ -1,6 +1,7 @@
 package b3.spl.splb.controller;
 import b3.spl.splb.Services.AppUserService;
 import b3.spl.splb.model.AppUser;
+import b3.spl.splb.model.ParkingLot;
 import b3.spl.splb.model.Role;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -79,6 +80,21 @@ public class AppUserController {
         return ResponseEntity.badRequest().body("Email and role must be provided.");
     }
 
+    @GetMapping("/admin/banstatus")
+    public ResponseEntity banUser(@RequestBody ObjectNode objectNode){
+        if(objectNode.has("email") && objectNode.has("banned")) {
+            String email = objectNode.get("email").asText();
+            Boolean banned = objectNode.get("banned").asBoolean();
+
+            if(appUserService.setBannedUser(email, banned)){
+                ResponseEntity.ok().body("Banned provider.");
+            }else return ResponseEntity.badRequest().body("User not found.");
+
+        }
+        return ResponseEntity.badRequest().body("email and banned must be provided.");
+
+    }
+
     @PostMapping("/user/add/car")
     public ResponseEntity addCar(@RequestBody ObjectNode objectNode){
         if(objectNode.has("carId") && objectNode.has("userId")){
@@ -90,6 +106,7 @@ public class AppUserController {
         }
         return ResponseEntity.badRequest().body("carId and userId must be provided.");
     }
+
 
     @GetMapping("/token/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {

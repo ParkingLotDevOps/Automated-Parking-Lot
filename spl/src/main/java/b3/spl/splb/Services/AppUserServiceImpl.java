@@ -80,6 +80,16 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
+    public boolean setBannedUser(String email, Boolean banned) {
+        Optional<AppUser> appUser= Optional.ofNullable(appUserRepo.findByEmail(email));
+        if(!appUser.isPresent()) return false;
+
+        log.info("Updating ban status {} to user {}", banned, email);
+        appUserRepo.findByEmail(email).setBannedUser(banned);
+        return true;
+    }
+
+    @Override
     public AppUser getUser(String email) {
         log.info("Fetching user {}", email);
         email = email.trim().toLowerCase();
