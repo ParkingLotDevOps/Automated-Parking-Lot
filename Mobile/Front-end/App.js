@@ -11,37 +11,24 @@ import Car from './components/Car';
 import Index from './components/Index';
 import LogoMap from './components/LogoMap';
 import LogoPayment from './components/LogoPayment';
-
-import SelectPakingScreen from './src/screens/SelectParkingScreen';
-import BookSpace from './src/screens/BookSpace';
-import MakePayment from './src/screens/MakePayment';
-import OTP from './src/screens/OTP';
-import Succes from './src/screens/Succes';
+import Location2 from './components/map/Location2';
 const Stack = createStackNavigator();
 
 export default function App() {
 	return (
 		<NavigationContainer>
-			<Stack.Navigator
-				initialRouteName='Index'
-				screenOptions={{ headerShown: false }}
-			>
-				<Stack.Screen name='Index' component={Index} />
+			<Stack.Navigator initialRouteName='Index'  screenOptions={{headerShown: false}}>
+				<Stack.Screen name='Index' component={Index}/>
 				<Stack.Screen name='Login' component={Login} />
 				<Stack.Screen name='SignUp' component={SignUp} />
 				<Stack.Screen name='SignUpPhone' component={SignUpPhone} />
-				<Stack.Screen
-					name='SignUpVerification'
-					component={SignUpVerification}
-				/>
-				<Stack.Screen
-					name='SignUpPassword'
-					component={SignUpPassword}
-				/>
+				<Stack.Screen name='SignUpVerification' component={SignUpVerification} />
+				<Stack.Screen name='SignUpPassword' component={SignUpPassword} />
 				<Stack.Screen name='SignUpAddCar' component={SignUpAddCar} />
-				<Stack.Screen name='Car' component={Car} />
-				<Stack.Screen name='LogoMap' component={LogoMap} />
-				<Stack.Screen name='LogoPayment' component={LogoPayment} />
+				<Stack.Screen name='Car' component={Car}/>
+				<Stack.Screen name='LogoMap' component={LogoMap}/>
+				<Stack.Screen name='LogoPayment' component={LogoPayment}/>
+				<Stack.Screen name='Location2' component={Location2}/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
