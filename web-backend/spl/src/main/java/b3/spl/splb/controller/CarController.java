@@ -21,17 +21,24 @@ public class CarController {
     private final CarService carService;
 
     @PostMapping("/car/save")
-    public ResponseEntity<?> saveCar(@RequestBody Car car){
-        if(car == null || car.getLicensePlate()==null)
+    public ResponseEntity<?> saveCar(@RequestBody ObjectNode objectNode){
+        JsonNode licensePlateNode = objectNode.get("licensePlate");
+        String licensePlate;
+        if(objectNode == null)
             return ResponseEntity.badRequest().body("Invalid input");
+        if (licensePlateNode == null)
+            return ResponseEntity.badRequest().body("Invalid input format");
+        else licensePlate = licensePlateNode.asText();
 
         Pattern pattern = Pattern.compile("[A-Z]+[0-9]+[A-Z]+");
-        boolean isValid= Pattern.matches(String.valueOf(pattern), car.getLicensePlate());
+        boolean isValid= Pattern.matches(String.valueOf(pattern), licensePlate);
 
         if(!isValid)
             return ResponseEntity.badRequest().body("Invalid input");
         else {
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/car/save").toString());
+            Car car=new Car();
+            car.setLicensePlate(licensePlate);
             return ResponseEntity.created(uri).body(carService.saveCar(car));
         }
     }
