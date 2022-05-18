@@ -153,7 +153,7 @@ return (
         }
       }}
       query={{
-          key: 'AIzaSyBVpPG_guk0IAdxMkDbKX4fk8dG1c3Qm6U',
+          key: '',
           language: 'ro',
           components: 'country:ro'
       }}
