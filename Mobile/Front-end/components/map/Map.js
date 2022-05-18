@@ -155,7 +155,7 @@ return (
         }
       }}
       query={{
-          key: 'AIzaSyD4QNalLAtJskSa8Hf2DPHzxU4i6R3MEf4',
+          key: '',
           language: 'ro',
           components: 'country:ro'
       }}
