@@ -4,7 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from 'react-native-elements';
 import MapScreen from './MapScreen';
-import { GooglePlacesInput } from './GooglePlacesInput';
+import MyAccountScreen from '../MyAccountScreen';
+// import { GooglePlacesInput } from './GooglePlacesInput';
 function Home() {
 	return <MapScreen />;
 }
@@ -20,16 +21,23 @@ function Wallet() {
 }
 
 function Cars() {
-	return <GooglePlacesInput />;
-}
-
-function MyAccount() {
 	return (
 		<View
 			style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
 		>
-			<Text>My Account!</Text>
+			<Text>My Cars!</Text>
 		</View>
+	);
+}
+
+function MyAccount() {
+	return (
+		// <View
+		// 	style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+		// >
+		// 	<Text>My Account!</Text>
+		// </View>
+		<MyAccountScreen/>
 	);
 }
 
