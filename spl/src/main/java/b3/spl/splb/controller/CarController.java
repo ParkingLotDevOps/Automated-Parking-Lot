@@ -35,15 +35,22 @@ public class CarController {
         }
     }
     @GetMapping("/car/{id}")
-    public ResponseEntity<Car> getCarById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(carService.getCarById(id));
+    public ResponseEntity<?> getCarById(@PathVariable Long id) {
+        Car car = carService.getCarById(id);
+        if (car==null)
+            return ResponseEntity.badRequest().body("Invalid input");
+        return ResponseEntity.ok().body(car);
     }
     @PostMapping("/car/update")
     public ResponseEntity<?> updateCar(@RequestBody ObjectNode objectNode)
     {
+        if(objectNode==null)
+            return ResponseEntity.badRequest().body("Invalid input");
         Long carId = objectNode.get("carId").asLong();
         String newLicensePlate = objectNode.get("newLicensePlate").asText();
 
+        if (newLicensePlate == null)
+            return ResponseEntity.badRequest().body("Invalid input");
         Pattern pattern = Pattern.compile("[A-Z]+[0-9]+[A-Z]+");
         boolean isValid= Pattern.matches(String.valueOf(pattern), newLicensePlate);
 
