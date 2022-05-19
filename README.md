@@ -95,3 +95,14 @@ curl  -H http://localhost:8082/api/user/car/{id}
 ####  Response
 Status: 200 OK
 Content-Type: string "Car with id 5 deleted successfully."
+
+###   Banning user
+####  Request
+`POST /api/admin/banstatus`
+```
+ curl  -H 'Content-Type: application/json' -d '{ "email":"user@eu.ro", "banUser":"boolean"}'  http://localhost:8082/api/admin/banstatus
+```
+
+####  Response
+Status: 200 OK
+Banned user.
