@@ -43,3 +43,33 @@
 .pageName{
   padding-top: -30%;
 }
+
+.img{
+  width: 80px;
+  height: 80px;
+}
+
+.list{
+  margin-top: 10px;
+  margin-left: 10px;
+  color: black;
+  list-style-type: none; 
+  
+}
+
+.list li{
+  color: aliceblue;
+  list-style-type: none; 
+}
+
+.box{
+  display: flex;
+  width: 200;
+  height: 70;
+}
+
+.divider{
+  margin: 8px !important;
+  background: #447e77;
+  
+}

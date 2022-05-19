@@ -33,3 +33,12 @@
   color: #e8e4e6;
   padding-left: 10px;
 }
+
+
+.data{
+  margin-right: 1.5rem;
+  display: flex;
+  width: 150px;
+  background-color: #004643;
+  border-radius: 5px;
+}
