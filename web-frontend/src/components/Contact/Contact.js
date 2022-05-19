@@ -26,6 +26,28 @@ export default function Contact() {
         </div>
         <div className={styles.faq}>
           <h1>FAQ</h1>
+          <div>
+            <details>
+              <summary>Random question about something?</summary>
+              <p>Always.</p>
+            </details>
+            <details>
+              <summary>Another random question about something equally random that no one cares about?</summary>
+              <p>FAQ.</p>
+            </details>
+            <details>
+              <summary>Oh yeah?</summary>
+              <p>Yeah.</p>
+            </details>
+            <details>
+              <summary>Will someone answer to this question?</summary>
+              <p>Yes, someone will. Here is the answer, I hope you’ll have a great day.</p>
+            </details>
+            <details>
+              <summary>Is this the last question?</summary>
+              <p>Hopefully.</p>
+            </details>
+          </div>
         </div>
       </main>
     </>
