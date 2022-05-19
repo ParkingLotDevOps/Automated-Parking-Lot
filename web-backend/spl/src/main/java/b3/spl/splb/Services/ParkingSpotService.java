@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ParkingSpotService {
     List<ParkingSpot> getParkingSpots();
+    ParkingSpot getParkingSpot(Long id);
     ParkingSpot saveParkingSpot(ParkingSpot parkingSpot);
     ParkingSpot updateParkingSpot(ParkingSpot parkingSpot, Long id);
     void deleteParkingSpot(Long id);

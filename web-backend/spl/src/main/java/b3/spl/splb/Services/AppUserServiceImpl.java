@@ -55,6 +55,9 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     @Override
     public AppUser saveUser(AppUser user) {
         log.info("Saving new user {} to the database", user.getName());
+        if(appUserRepo.findByEmail(user.getEmail())!= null){
+            return null;
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return appUserRepo.save(user);
     }
@@ -66,11 +69,34 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
-    public void addRoleToAppUser(String email, String rolName) {
+    public boolean addRoleToAppUser(String email, String rolName) {
         log.info("Adding role {} to user {}", rolName, email);
         AppUser appUser = appUserRepo.findByEmail(email);
         Role role = roleRepo.findByName(rolName);
+        if(appUser == null || role == null)
+           return false;
         appUser.getRoles().add(role);
+        return true;
+    }
+
+    @Override
+    public boolean setBannedUser(String email, Boolean banned) {
+        Optional<AppUser> appUser= Optional.ofNullable(appUserRepo.findByEmail(email));
+        if(!appUser.isPresent()) return false;
+
+        log.info("Updating ban status {} to user {}", banned, email);
+        appUserRepo.findByEmail(email).setBannedUser(banned);
+        return true;
+    }
+
+    @Override
+    public boolean setBannedProvider(String email, Boolean banned) {
+        Optional<AppUser> appUser= Optional.ofNullable(appUserRepo.findByEmail(email));
+        if(!appUser.isPresent()) return false;
+
+        log.info("Updating ban status {} to provider {}", banned, email);
+        appUserRepo.findByEmail(email).setBannedProvider(banned);
+        return true;
     }
 
     @Override
@@ -87,16 +113,17 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
-    public void addCarToUser(Long carId, Long userId)
+    public boolean addCarToUser(Long carId, Long userId)
     {
         log.info("Adding car {} to user {}", carRepo.findById(carId), appUserRepo.findById(userId));
         Optional<Car> car = carRepo.findById(carId);
         Optional<AppUser> appUser= appUserRepo.findById(userId);
-        if(car==null || appUser==null)
+        if(!car.isPresent() || !appUser.isPresent())
         {
-            throw new RuntimeException("Car or User not found");
+            return false;
         }
         appUser.get().getCars().add(car.get());
+        return true;
     }
 
 

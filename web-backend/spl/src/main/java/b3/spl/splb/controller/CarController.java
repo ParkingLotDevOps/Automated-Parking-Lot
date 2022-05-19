@@ -2,6 +2,7 @@ package b3.spl.splb.controller;
 
 import b3.spl.splb.Services.CarService;
 import b3.spl.splb.model.Car;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,50 +11,80 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.regex.Pattern;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/user")
+@RequestMapping("/api/user/car")
 public class CarController {
     private final CarService carService;
 
-    @PostMapping("/car/save")
-    public ResponseEntity<Car> saveCar(@RequestBody Car car){
+    @PostMapping()
+    public ResponseEntity<?> saveCar(@RequestBody ObjectNode objectNode){
+        JsonNode licensePlateNode = objectNode.get("licensePlate");
+        String licensePlate;
+        if(objectNode == null)
+            return ResponseEntity.badRequest().body("Invalid input");
+        if (licensePlateNode == null)
+            return ResponseEntity.badRequest().body("Invalid input format");
+        else licensePlate = licensePlateNode.asText();
 
         Pattern pattern = Pattern.compile("[A-Z]+[0-9]+[A-Z]+");
-        boolean isValid= Pattern.matches(String.valueOf(pattern), car.getLicensePlate());
+        boolean isValid= Pattern.matches(String.valueOf(pattern), licensePlate);
 
         if(!isValid)
-            return ResponseEntity.badRequest().body(car);
+            return ResponseEntity.badRequest().body("Invalid input");
         else {
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/car/save").toString());
+            Car car=new Car();
+            car.setLicensePlate(licensePlate);
             return ResponseEntity.created(uri).body(carService.saveCar(car));
         }
     }
-//    @GetMapping("/cars")
-//    public ResponseEntity<List<Car>> getAllCars(@RequestBody AppUser appUser)
-//    {
-//
-//    }
-    @PostMapping("/car/update")
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCarById(@PathVariable Long id) {
+        Car car = carService.getCarById(id);
+        if (car == null)
+            return new ResponseEntity<>("Car with id " + id + " couldn't be found.",HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok().body(car);
+    }
+    @PutMapping()
     public ResponseEntity<?> updateCar(@RequestBody ObjectNode objectNode)
     {
-        Long carId = objectNode.get("carId").asLong();
-        String newLicensePlate = objectNode.get("newLicensePlate").asText();
+        if(objectNode==null)
+            return ResponseEntity.badRequest().body("Invalid input format");
+        JsonNode carIdNode = objectNode.get("carId");
+        JsonNode newLicensePlateNode = objectNode.get("newLicensePlate");
+        String newLicensePlate;
+        Long carId;
+
+        if (carIdNode == null)
+            return ResponseEntity.badRequest().body("Invalid input format");
+        else carId = carIdNode.asLong();
+
+        if (newLicensePlateNode == null)
+            return ResponseEntity.badRequest().body("Invalid input format");
+        else newLicensePlate = newLicensePlateNode.asText();
 
         Pattern pattern = Pattern.compile("[A-Z]+[0-9]+[A-Z]+");
         boolean isValid= Pattern.matches(String.valueOf(pattern), newLicensePlate);
 
         if(!isValid)
             return ResponseEntity.badRequest().body("Invalid license plate format: " + newLicensePlate);
-        else
-            return ResponseEntity.ok().body(carService.updateCarLicensePlate(carId, newLicensePlate));
+        else {
+            if(carService.getCarById(carId) == null)
+                return new ResponseEntity<>("Car with id " + carId + " couldn't be found.",HttpStatus.NOT_FOUND);
+            else
+                return ResponseEntity.ok().body(carService.updateCarLicensePlate(carId, newLicensePlate));
+        }
+
     }
 
-    @DeleteMapping("/car/delete")
-    public void deleteCar(@RequestBody Car car)
-    {
-        carService.deleteCar(car);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCar(@PathVariable Long id) {
+        if (!carService.deleteCar(id))
+            return new ResponseEntity<>("Car with id " + id + " couldn't be found.",HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Car with id " + id + " deleted successfully.",HttpStatus.OK);
     }
 }

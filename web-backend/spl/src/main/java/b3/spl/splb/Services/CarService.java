@@ -8,6 +8,7 @@ import java.util.List;
 public interface CarService {
     Car saveCar (Car car);
     List<Car> getCars (AppUser user);
-    void deleteCar (Car car);
+    boolean deleteCar(Long id);
     Car updateCarLicensePlate (Long carId, String newLicensePlate);
+    Car getCarById(Long id);
 }
