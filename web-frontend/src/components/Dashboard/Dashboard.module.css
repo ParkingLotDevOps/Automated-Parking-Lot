@@ -49,6 +49,18 @@
   height: 80px;
 }
 
+.reports{
+  width: 480px;
+  height: 180px;
+  margin-left: 80px;
+}
+
+.analytics{
+  width: 230px;
+  height: 180px;
+  margin-left: 80px;
+}
+
 .list{
   margin-top: 10px;
   margin-left: 10px;

@@ -5,6 +5,8 @@ import { Sidebar } from 'components';
 import TheHeader from 'components/TheHeader/TheHeader';
 import img1 from 'components/Dashboard/palas.png';
 import img2 from 'components/Dashboard/kaufland.png';
+import img3 from 'components/Dashboard/reports.png';
+import img4 from 'components/Dashboard/analytics.png';
 
 import OrderList from 'components/Dashboard/OrderList';
 import { styled } from '@mui/material/styles';
@@ -67,15 +69,26 @@ export default function EditParkingLot() {
     <>
       <Sidebar />
       <main className={styles.main}>
-        <TheHeader title="Dashboard" hasFirstDate hasLastDate className={styles.pageName} />
-        {/* <h1>Dashboard</h1> */}
+        <TheHeader title="Dashboard" hasFirstDate hasLastDate  />
         <Box sx={{ flexGrow: 1}}>
             <Grid container spacing={4}>
                 <Grid item xs={7}>
-                    <Item></Item>
+                    <Item>
+                      <div className={styles.itemGrid}>
+                        <p>Reports</p>
+                        <img src={img3} className={styles.reports} alt="photo" />
+                      </div>
+                      
+                    </Item>
                 </Grid>
                 <Grid item xs={5}>
-                    <Item></Item>
+                    <Item>
+                    <div className={styles.itemGrid}>
+                        <p>Analytics</p>
+                        <img src={img4} className={styles.analytics} alt="photo" />
+                      </div>
+                      
+                    </Item>
                 </Grid>
                 <Grid item xs={7}>
                     <Item>
@@ -101,7 +114,7 @@ export default function EditParkingLot() {
                         <p>Top Parking Lots <MoreHorizIcon className={styles.more}/></p>
 
                         <div className={styles.box}>
-                          <img src={img1} className={styles.img} alt="logo" />
+                          <img src={img1} className={styles.img} alt="photo" />
                           <li className={styles.list}>
                             <li>Palas</li>
                             <li><Rating name="size-small" defaultValue={2} size="small" 
@@ -122,7 +135,7 @@ export default function EditParkingLot() {
                         </div>
                         <Divider variant="inset" className={styles.divider}/>
                         <div className={styles.box}>
-                          <img src={img2} className={styles.img} alt="logo" />
+                          <img src={img2} className={styles.img} alt="photo" />
                           <li className={styles.list}>
                             <li>Kaufland</li>
                             <li><Rating name="size-small" defaultValue={2} size="small" 
