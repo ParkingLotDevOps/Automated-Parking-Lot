@@ -106,3 +106,14 @@ Content-Type: string "Car with id 5 deleted successfully."
 ####  Response
 Status: 200 OK
 Banned user.
+
+###   Banning provider
+####  Request
+`POST /api/admin/banstatus`
+```
+ curl  -H 'Content-Type: application/json' -d '{ "email":"user@eu.ro", "banProvider":"boolean"}'  http://localhost:8082/api/admin/banstatus
+```
+
+####  Response
+Status: 200 OK
+Banned provider.

@@ -94,6 +94,20 @@ public class AppUserController {
         return ResponseEntity.badRequest().body("email and banUser must be provided.");
 
     }
+    @PostMapping("/admin/banprovider")
+    public ResponseEntity banProvider(@RequestBody ObjectNode objectNode){
+        if(objectNode.has("email") && objectNode.has("banned")) {
+            String email = objectNode.get("email").asText();
+            Boolean banned = objectNode.get("banProvider").asBoolean();
+
+            if(appUserService.setBannedProvider(email, banned)){
+                ResponseEntity.ok().body("Banned provider.");
+            }else return ResponseEntity.badRequest().body("Provider not found.");
+
+        }
+        return ResponseEntity.badRequest().body("email and banProvider must be provided.");
+
+    }
 
     @PostMapping("/user/add/car")
     public ResponseEntity addCar(@RequestBody ObjectNode objectNode){
