@@ -35,5 +35,6 @@ public class AppUser {
             inverseJoinColumns = @JoinColumn(name = "car_id"))
     List<Car> cars;
     private boolean bannedUser;
+    private boolean bannedProvider;
 
 }

@@ -10,6 +10,7 @@ public interface AppUserService {
     Role saveRole(Role role);
     boolean addRoleToAppUser(String email,  String rolName);
     boolean setBannedUser(String email, Boolean banned);
+    boolean setBannedProvider(String email, Boolean banned);
     AppUser getUser(String email);
     boolean addCarToUser(Long carId, Long userId);
     List<AppUser> getUsers();
