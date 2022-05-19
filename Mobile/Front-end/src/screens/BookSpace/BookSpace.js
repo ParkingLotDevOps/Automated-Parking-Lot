@@ -6,55 +6,64 @@ import BookSpaceOptions from '../../components/BookSpaceOptions';
 import MainButton from '../../components/MainButton';
 import SideMenuBar from '../../components/SideMenuBar';
 import ParkDetails from '../../components/ParkDetails';
+import ActiveBooking from '../ActiveBooking';
+import { useNavigation } from '@react-navigation/native';
 
-import { Octicons } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons"; 
 
 const BookSpace = () => {
 	const [visible, setVisible] = useState(false);
 
+	const navigation = useNavigation();
+
+	const wait = () => {
+		setVisible(true);
+		navigation.navigate('QR');
+	}
+
 	const showModal = () => setVisible(true);
 	const hideModal = () => setVisible(false);
 	return (
-		<View style={styles.container}>
-			<SideMenuBar />
-			<ParkDetails
-				title='Faculty of Computer Science Park A'
-				details='100 LEI'
-				timeUnit='/ Hr'
-			/>
-			<Text style={styles.descriptiveText}> Space 4c </Text>
-			<BookSpaceOptions />
-			<MainButton text='Book Space' onPress={showModal} />
-			<Modal
-				style={styles.modal}
-				visible={visible}
-				onDismiss={hideModal}
-				contentContainerStyle={styles.modalContainer}
-			>
-				<Octicons name='check-circle-fill' size={90} color='#4BD37B' />
-				<Text
-					style={{
-						color: '#3B414B',
-						fontSize: 18,
-						fontWeight: '600',
-						textAlign: 'center',
-					}}
-				>
-					Space Successfully Booked
-				</Text>
-				<Text
-					style={{
-						color: '#A6AAB4',
-						textAlign: 'center',
-						marginTop: 30,
-					}}
-				>
-					Notifying Security Guards
-				</Text>
-				<ActivityIndicator size='large' color='#E16162' />
-			</Modal>
-		</View>
-	);
+    <View style={styles.container}>
+      <SideMenuBar />
+      <ParkDetails
+        title="Faculty of Computer Science Park A"
+        details="100 LEI"
+        timeUnit="/ Hr"
+      />
+      <Text style={styles.descriptiveText}> Space 4c </Text>
+      <BookSpaceOptions />
+      <MainButton text="Book Space" onPress={wait} />
+      <Modal
+        style={styles.modal}
+        visible={visible}
+        onDismiss={hideModal}
+        contentContainerStyle={styles.modalContainer}
+      >
+        <AntDesign name="checkcircle" size={90} color="#4BD37B" />
+        <Text
+          style={{
+            color: "#3B414B",
+            fontSize: 18,
+            fontWeight: "600",
+            textAlign: "center",
+          }}
+        >
+          Space Successfully Booked
+        </Text>
+        <Text
+          style={{
+            color: "#A6AAB4",
+            textAlign: "center",
+            marginTop: 30,
+          }}
+        >
+          Notifying Security Guards
+        </Text>
+        <ActivityIndicator size="large" color="#E16162" />
+      </Modal>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

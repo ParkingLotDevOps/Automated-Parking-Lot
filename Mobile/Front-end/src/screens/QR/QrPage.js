@@ -5,7 +5,10 @@ import QRCode from 'react-native-qrcode-svg'
 import ParkDetails from '../../components/ParkDetails'
 import MainButton from '../../components/MainButton'
 import BookingDetailsQR from '../../components/BookingDetailsQR/BookingDetailsQR'
+import { useNavigation } from "@react-navigation/native";
+import Location2 from '../../components/map/Location2'
 const QrPage = () => {
+  const navigation = useNavigation();
   const [time, setTime] = useState("11:00 AM")
   const [timeOut, setTimeOut] = useState("05:00 PM")
   const [specs, setSpecs] = useState('No specs')
@@ -39,7 +42,7 @@ const QrPage = () => {
          <Text style={styles.directions}>  Get Directions</Text>
        </View>
        <View style={styles.button}>
-       <MainButton  text="Go Back To Home Screen"></MainButton>
+       <MainButton  text="Go Back To Home Screen" onPress={() => {navigation.navigate(Location2)}}></MainButton>
        </View>
         </View>
        </View>

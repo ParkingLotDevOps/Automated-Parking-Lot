@@ -1,1 +1,1 @@
-export { default } from './SelectPakingScreen';
+export { default } from './SelectParkingScreen';
