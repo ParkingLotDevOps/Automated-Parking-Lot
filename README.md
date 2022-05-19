@@ -90,7 +90,7 @@ Car - updates the car with the id "carId" with the new license plate "newLicense
 ####  Request
 `Delete /api/user/car/{id}`
 ```
-curl  -H http://localhost:8082/api/user/car/{id}
+curl -X DELETE http://localhost:8082/api/user/car/{id}
 ```
 ####  Response
 Status: 200 OK
