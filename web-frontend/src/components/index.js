@@ -11,6 +11,7 @@ import App from './App/App';
 import Sidebar from './Sidebar/Sidebar';
 import AddParkingLot from './ParkingLotsList/AddParkingLot/AddParkingLot'
 import Dashboard from './Dashboard/Dashboard'
+import Contact from './Contact/Contact'
 
 export {
   BaseButton,
@@ -25,5 +26,6 @@ export {
   App,
   Sidebar,
   AddParkingLot,
-  Dashboard
+  Dashboard,
+  Contact
 };
