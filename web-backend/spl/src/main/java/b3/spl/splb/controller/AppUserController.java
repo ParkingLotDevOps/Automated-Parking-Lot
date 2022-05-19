@@ -80,18 +80,18 @@ public class AppUserController {
         return ResponseEntity.badRequest().body("Email and role must be provided.");
     }
 
-    @GetMapping("/admin/banstatus")
+    @PostMapping("/admin/banstatus")
     public ResponseEntity banUser(@RequestBody ObjectNode objectNode){
-        if(objectNode.has("email") && objectNode.has("banned")) {
+        if(objectNode.has("email") && objectNode.has("banUser")) {
             String email = objectNode.get("email").asText();
-            Boolean banned = objectNode.get("banned").asBoolean();
+            Boolean banned = objectNode.get("banUser").asBoolean();
 
             if(appUserService.setBannedUser(email, banned)){
-                ResponseEntity.ok().body("Banned provider.");
+                ResponseEntity.ok().body("Banned user.");
             }else return ResponseEntity.badRequest().body("User not found.");
 
         }
-        return ResponseEntity.badRequest().body("email and banned must be provided.");
+        return ResponseEntity.badRequest().body("email and banUser must be provided.");
 
     }
 
