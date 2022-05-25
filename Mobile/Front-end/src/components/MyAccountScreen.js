@@ -18,17 +18,17 @@ const MyAccountScreen = () => {
       <Text style={{ marginVertical: 20, fontSize: 16, color: "#abd1c6" }}>
         UserName
       </Text>
-      <View>
-        <Icon.Button
-          name="edit"
-          backgroundColor="#004643"
-          onPress={() => console.log("setting preshtgrfdsed")}
-        >
-          <Text style={{ color: "#abd1c6" }}>Edit profile</Text>
-        </Icon.Button>
-      </View>
 
       <View style={styles.options}>
+        <View>
+          <Icon.Button
+            name="edit"
+            backgroundColor="#004643"
+            onPress={() => navigation.navigate("UserProfile")}
+          >
+            <Text style={{ color: "#abd1c6" }}>Edit profile</Text>
+          </Icon.Button>
+        </View>
         <View style={styles.appButtonContainer}>
           <Icon.Button
             name="car"
