@@ -21,6 +21,7 @@ import QR from "./src/screens/QR";
 import "react-native-gesture-handler";
 import UserProfile from "./src/components/UserProfile";
 import AddCar from "./src/components/AddCar";
+import MyAccountScreen from "./src/components/MyAccountScreen";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -48,6 +49,7 @@ export default function App() {
         <Stack.Screen name="Location2" component={Location2} />
         <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="MapScreen" component={MapScreen} />
+        <Stack.Screen name="MyAccountScreen" component={MyAccountScreen}/>
         <Stack.Screen
           name="SelectParkingScreen"
           component={SelectParkingScreen}
