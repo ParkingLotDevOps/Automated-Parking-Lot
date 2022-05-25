@@ -32,6 +32,7 @@ export default function SignUp({ navigation }) {
   // };
 
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
   return (
     <PaperProvider theme={theme}>
@@ -39,16 +40,25 @@ export default function SignUp({ navigation }) {
         <Headline style={styles.logo}>LOGO</Headline>
         <TextInput
           style={styles.input}
-          autoCapitalize={false}
+          autoCapitalize="none"
           keyboardType="email-address"
-          placeholder="email adress"
+          placeholder="Email adress"
           value={email}
           onChangeText={(text) => setEmail(text)}
+        ></TextInput>
+        <TextInput
+          style={[styles.input, { marginBottom: 200 }]}
+          autoCapitalize="none"
+          placeholder="Full Name"
+          value={name}
+          onChangeText={(text) => setName(text)}
         ></TextInput>
         <MainButton
           text="Next"
           title="Sign Up"
-          onPress={() => navigation.navigate("SignUpPhone", { email: email })}
+          onPress={() =>
+            navigation.navigate("SignUpPhone", { email: email, name: name })
+          }
         />
         <StatusBar style="auto" />
       </View>
@@ -73,7 +83,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#A6AAB4",
     margin: 10,
-    marginBottom: 80,
+    // marginBottom: 80,
     marginTop: 20,
   },
   linkedText: {

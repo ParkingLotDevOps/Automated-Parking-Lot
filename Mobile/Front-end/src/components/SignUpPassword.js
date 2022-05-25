@@ -38,6 +38,7 @@ export default function SignUpPhone({ navigation }) {
       //TO DO: Make register request
 
       // email = route.params.email
+      // name = route.params.name
       //phoneNumber = route.params.phoneNumber
       //password = firstPassword
 
