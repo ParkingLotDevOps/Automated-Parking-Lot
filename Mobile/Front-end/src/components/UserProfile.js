@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/FontAwesome";
 import {
 	DefaultTheme,
 	Headline,
@@ -26,6 +27,7 @@ const theme = {
 };
 
 export default function UserProfile() {
+    const navigation = useNavigation();
 	const [fullName, inputFullName] = React.useState('');
     const [email, inputEmail] = React.useState('');
     const [phone, inputPhone] = React.useState('');
@@ -42,22 +44,29 @@ export default function UserProfile() {
                 </View>
                 <View style = {styles.inputsContainer}>
                     <View style = {styles.singleInput}>
-                            <Text style = {{left: 15}}>Full Name</Text>
+                        <Text style = {{left: 15}}>Full Name</Text>
+                        <View style = {styles.inputField}>
                             <TextInput
                                     style={styles.input}
                                     placeholder=''
                                     value={fullName}
                                     onChangeText={inputFullName}
                             />
+                            <Icon.Button
+                                name="edit"
+                                backgroundColor="#004643"
+                                style={{flex: 1}}
+                            ></Icon.Button>
+                        </View>
                     </View>
                     <View style = {styles.singleInput}>
                         <Text style = {{left: 15}}>Email address</Text>
                         <TextInput
-                                style={styles.input}
-                                placeholder=''
-                                value={email}
-                                onChangeText={inputEmail}
-                        />
+                            style={styles.input}
+                            placeholder=''
+                            value={email}
+                            onChangeText={inputEmail}>
+                        </TextInput>                        
                     </View>
                     <View style = {styles.singleInput}>
                         <Text style = {{left: 15}}>Phone Number</Text>
@@ -84,21 +93,22 @@ export default function UserProfile() {
                 <View style = {styles.buttonContainer}>
                     <MainButton
                         text='Save'
+                        onPress = {() => navigation.navigate("MyAccountScreen")}
                     />
                 </View>
 
-				{/* <StatusBar style='auto' /> */}
 			</View>
 		</PaperProvider>
 	);
 }
 
 const styles = StyleSheet.create({
+
 	container: {
         flex: 1,
 		backgroundColor: '#004643',
 		alignItems: 'center',
-		justifyContent: 'space-evenly',
+		justifyContent: 'center',
 	},
 	input: {
 		width: '90%',
@@ -106,6 +116,7 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		borderBottomColor: '#A6AAB4',
 		margin: 10,
+        position: 'relative'
 	},
     buttonContainer: {
         width : '100%',
@@ -113,9 +124,15 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     inputsContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%'
+        width: '100%',
+        marginBottom: 100,
+        marginTop: 100
+    },
+    inputField: {
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        paddingBottom: 10,
+        width: '90%'
     },
     singleInput: {
         left: 10,

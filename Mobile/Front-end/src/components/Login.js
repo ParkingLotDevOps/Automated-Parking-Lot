@@ -64,7 +64,7 @@ export default function Login({ navigation }) {
 							const http = new XMLHttpRequest()
 							let params = `username=${username}&password=${password}`;
 							// merge map si 1234
-							http.open("POST", "https://fierce-oasis-90524.herokuapp.com/api/login", true)
+							http.open("POST", "https://automated-parking-lot.herokuapp.com/api/login", true)
 							http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 							http.send(params)
 							http.onload = () => {
