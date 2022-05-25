@@ -46,6 +46,7 @@ export default function SignUpPhone({ navigation }) {
           onPress={() =>
             navigation.navigate("SignUpPassword", {
               email: route.params.email,
+              name: route.params.name,
               phoneNumber: route.params.phoneNumber,
             })
           }
