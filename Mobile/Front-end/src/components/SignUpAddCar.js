@@ -26,20 +26,32 @@ const theme = {
 };
 
 export default function SignUpAddCar({ navigation }) {
+	const [number, inputNumber] = React.useState('');
 	return (
 		<PaperProvider theme={theme}>
 		<View style={styles.container}>
 			<Headline style={styles.logo}>LOGO</Headline>
             <Text>Add a car</Text>
-            <TextInput
-                style={styles.input}
-                placeholder='Registration number'
-            ></TextInput>
-            <TextInput
-                style={[styles.input, styles.input1]}
-                placeholder='Category'
-            ></TextInput>
-			<MainButton text='Add' onPress={() => navigation.navigate(Location2)}/>
+			<View style = {styles.singleInput}>
+                            <TextInput
+                                    style={styles.input}
+                                    placeholder='Registration number'
+                                    value={number}
+                                    onChangeText={inputNumber}
+                            />
+                    </View>
+			<MainButton text='Add'    onPress={ () => {
+							const http = new XMLHttpRequest()
+							// let params = `licensePlate=${number}`;
+							http.open("POST", "https://automated-parking-lot.herokuapp.com/api/user/car", true)
+							http.setRequestHeader("Content-Type", "application/json");
+							http.send(JSON.stringify({licensePlate:number}));
+							http.onload = () => {
+								console.log(http.responseText);
+								navigation.navigate(Location2);
+							}
+						}}
+						/>
             <View>
                 <Text>
                     or <Text style={styles.linkedText} onPress={() => navigation.navigate(Location2)}>Skip</Text>
@@ -78,5 +90,9 @@ const styles = StyleSheet.create({
 		textAlign: 'right',
 		marginBottom: 50,
 		fontWeight: '700',
-	}
+	},
+	singleInput: {
+        left: 10,
+        width: '100%',
+    }
 });

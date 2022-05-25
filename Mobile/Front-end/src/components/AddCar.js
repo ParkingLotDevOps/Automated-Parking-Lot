@@ -44,21 +44,23 @@ export default function AddCar() {
                                     onChangeText={inputNumber}
                             />
                     </View>
-                    <View style = {styles.singleInput}>
-                        <Text style = {{left: 15}}>Category</Text>
-                        <TextInput
-                                style={styles.input}
-                                placeholder=''
-                                value={category}
-                                onChangeText={inputCategory}
-                        />
-                    </View>
                 </View>
                    
                 <View style = {styles.buttonContainer}>
                     <MainButton
                         text='Save'
-                        onPress={() => navigation.navigate(Location2)}
+                        onPress={ () => {
+							const http = new XMLHttpRequest()
+							// let params = `licensePlate=${number}`;
+							http.open("POST", "https://automated-parking-lot.herokuapp.com/api/user/car", true)
+							http.setRequestHeader("Content-Type", "application/json");
+							http.send(JSON.stringify({licensePlate:number}));
+							http.onload = () => {
+								console.log(http.responseText);
+								navigation.navigate(Location2);
+							}
+						}
+					}
                     />
                 </View>
 				{/* <StatusBar style='auto' /> */}
