@@ -46,6 +46,11 @@ public class AppUserController {
         return ResponseEntity.ok().body(appUserService.getUsers());
     }
 
+    @GetMapping("/user/profile")
+    public ResponseEntity<AppUser> getUserProfile(@RequestHeader HttpHeaders headers){
+        return ResponseEntity.ok().body(appUserService.getUser(tokenDecoder.getEmailFromToken(headers)));
+    }
+
     @PostMapping("/user/save")
     public ResponseEntity saveUser(@RequestBody AppUser user){
         if(user == null || user.getUsername() == null || user.getPassword() == null || user.getName() == null || user.getEmail() == null){
