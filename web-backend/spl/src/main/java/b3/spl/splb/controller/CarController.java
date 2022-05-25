@@ -2,6 +2,7 @@ package b3.spl.splb.controller;
 
 import b3.spl.splb.Services.CarService;
 import b3.spl.splb.model.Car;
+import b3.spl.splb.util.TokenDecoder;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -29,19 +30,11 @@ import java.util.regex.Pattern;
 @RequestMapping("/api/user/car")
 public class CarController {
     private final CarService carService;
-
-    private String getEmailFromToken(HttpHeaders headers){
-        String token = headers.getFirst(HttpHeaders.AUTHORIZATION).substring("Bearer ".length());
-        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());//TODO : de mutat in fisier de configurare
-        JWTVerifier verifier = JWT.require(algorithm).build();
-        DecodedJWT decodedJWT = verifier.verify(token);
-        return decodedJWT.getSubject();
-    }
+    private final TokenDecoder tokenDecoder = new TokenDecoder();
 
     @PostMapping()
     public ResponseEntity<?> saveCar(@RequestHeader HttpHeaders headers, @RequestBody ObjectNode objectNode){
-        String email = getEmailFromToken(headers);
-        System.out.println(email);
+        String email = tokenDecoder.getEmailFromToken(headers);
         JsonNode licensePlateNode = objectNode.get("licensePlate");
         String licensePlate;
         if(objectNode == null)
@@ -57,9 +50,10 @@ public class CarController {
             return ResponseEntity.badRequest().body("Invalid input");
         else {
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/car/save").toString());
-            Car car=new Car();
+            Car car = new Car();
             car.setLicensePlate(licensePlate);
-            return ResponseEntity.created(uri).body(carService.saveCar(car));
+
+            return ResponseEntity.created(uri).body(carService.saveCar(email, car));
         }
     }
     @GetMapping("/{id}")
@@ -107,4 +101,5 @@ public class CarController {
             return new ResponseEntity<>("Car with id " + id + " couldn't be found.",HttpStatus.NOT_FOUND);
         return new ResponseEntity<>("Car with id " + id + " deleted successfully.",HttpStatus.OK);
     }
+
 }

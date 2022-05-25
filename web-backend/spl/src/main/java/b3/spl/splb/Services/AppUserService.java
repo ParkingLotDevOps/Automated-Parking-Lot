@@ -1,6 +1,7 @@
 package b3.spl.splb.Services;
 
 import b3.spl.splb.model.AppUser;
+import b3.spl.splb.model.Car;
 import b3.spl.splb.model.Role;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface AppUserService {
     AppUser getUser(String email);
     boolean addCarToUser(Long carId, Long userId);
     List<AppUser> getUsers();
+    List<Car> getUserCars(String email);
 }

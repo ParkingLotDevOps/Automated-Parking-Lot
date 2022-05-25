@@ -126,6 +126,11 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         return true;
     }
 
+    @Override
+    public List<Car> getUserCars(String email) {
+        return appUserRepo.findByEmail(email).getCars();
+    }
+
 
 
 

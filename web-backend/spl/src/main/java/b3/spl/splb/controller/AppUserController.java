@@ -1,8 +1,10 @@
 package b3.spl.splb.controller;
 import b3.spl.splb.Services.AppUserService;
 import b3.spl.splb.model.AppUser;
+import b3.spl.splb.model.Car;
 import b3.spl.splb.model.ParkingLot;
 import b3.spl.splb.model.Role;
+import b3.spl.splb.util.TokenDecoder;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -11,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,6 +39,8 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 @RequestMapping("/api")
 public class AppUserController {
     private final AppUserService appUserService;
+    private final TokenDecoder tokenDecoder = new TokenDecoder();
+
     @GetMapping("/users")
     public ResponseEntity<List<AppUser>> getUsers(){
         return ResponseEntity.ok().body(appUserService.getUsers());
@@ -157,6 +162,13 @@ public class AppUserController {
                 new ObjectMapper().writeValue(response.getOutputStream(), error);
             }
         }
+    }
+
+    @GetMapping("/user/cars")
+    public ResponseEntity<?> getUserCars(@RequestHeader HttpHeaders headers) {
+        String email = tokenDecoder.getEmailFromToken(headers);
+        List<Car> cars = appUserService.getUserCars(email);
+        return ResponseEntity.ok().body(cars);
     }
 }
 
