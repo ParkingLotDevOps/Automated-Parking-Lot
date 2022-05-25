@@ -156,7 +156,7 @@ export const Map = () => {
             console.log(params);
             http.open(
               "POST",
-              "https://fierce-oasis-90524.herokuapp.com/api/user/parkinglots",
+              "https://automated-parking-lot.herokuapp.com/api/user/parkinglots",
               true
             );
             http.setRequestHeader("Content-Type", "application/json");
