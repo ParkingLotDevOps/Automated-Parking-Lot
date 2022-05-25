@@ -57,7 +57,7 @@ Status: 200 OK
 ####  Request
 `POST /api/user/car`
 ```
-curl  -H 'Content-Type: application/json' -d '{"licensePlate" : "VS06PST"}' http://localhost:8082/api/user/car
+curl -X POST -H 'Content-Type: application/json' -H "Authorization: Bearer <ACCESS_TOKEN>" -H 'Content-Type: application/json' -d '{"licensePlate" : "VS06PST"}' http://localhost:8082/api/user/car
 ```
 ####  Response
 Status: 201 OK
@@ -67,7 +67,7 @@ Car - info
 ####  Request
 `GET /api/user/car/{id}`
 ```
-curl  -H http://localhost:8082/api/user/car/{id}
+curl -X GET http://localhost:8082/api/user/car/{id}
 ```
 ####  Response
 Status: 200 OK
@@ -78,7 +78,7 @@ Car - the car with the id: {id}
 ####  Request
 `Put /api/user/car`
 ```
-curl  -H 'Content-Type: application/json' -d '{ "carId" : 5, "newLicensePlate" : "VS07PST"} http://localhost:8082/api/user/car
+curl -X PUT -H 'Content-Type: application/json' -d '{ "carId" : 5, "newLicensePlate" : "VS07PST"}' http://localhost:8082/api/user/car
 ```
 ####  Response
 Status: 200 OK
