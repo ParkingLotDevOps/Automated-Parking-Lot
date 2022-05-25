@@ -29,15 +29,7 @@ const MyAccountScreen = () => {
             <Text style={{ color: "#abd1c6" }}>Edit profile</Text>
           </Icon.Button>
         </View>
-        <View style={styles.appButtonContainer}>
-          <Icon.Button
-            name="car"
-            backgroundColor="#004643"
-              onPress={()=>console.log("setting pretressed")}
-          >
-            <Text style={{ color: "#abd1c6" }}>See cars</Text>
-          </Icon.Button>
-        </View>
+
         <View style={styles.appButtonContainer}>
           <Icon.Button
             name="money"

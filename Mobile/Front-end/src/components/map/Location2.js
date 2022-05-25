@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements'
 import  MapScreen from './MapScreen';
 import SelectParkingScreen from '../../screens/SelectParkingScreen'
 import MyAccountScreen from '../MyAccountScreen';
+import CarScreen from '../CarScreen';
 function Home() {
   return (
       <MapScreen />
@@ -22,9 +23,8 @@ function Wallet() {
 
 function Cars() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Cars!</Text>
-    </View>);
+    <CarScreen/>
+    );
 }
 
 function MyAccount() {
