@@ -62,7 +62,8 @@ export default function Login({ navigation }) {
 					
 					onPress = { () => {
 							const http = new XMLHttpRequest()
-							var params = 'username=map&password=1234';
+							let params = `username=${username}&password=${password}`;
+							// merge map si 1234
 							http.open("POST", "https://fierce-oasis-90524.herokuapp.com/api/login", true)
 							http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 							http.send(params)

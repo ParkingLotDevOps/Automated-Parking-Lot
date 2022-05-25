@@ -28,7 +28,7 @@ export default function Index({ navigation }) {
 	return (
 		<PaperProvider theme={theme} onPress={() => navigation.navigate(Index)}>
             <View style={styles.container}>
-                <Headline style={styles.logo}>LOGO</Headline>
+                <Headline style={styles.logo}>SMART PARKING LOT</Headline>
                 <Text style={styles.text}>Description</Text>
                 <MainButton text="Find out more" onPress={() => navigation.navigate(Car)}></MainButton>
             </View>
