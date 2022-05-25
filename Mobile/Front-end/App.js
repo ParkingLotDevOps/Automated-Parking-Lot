@@ -20,6 +20,7 @@ import ActiveBooking from "./src/screens/ActiveBooking/ActiveBooking";
 import QR from "./src/screens/QR";
 import "react-native-gesture-handler";
 import UserProfile from "./src/components/UserProfile";
+import AddCar from "./src/components/AddCar";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
         <Stack.Screen name="SignUpPassword" component={SignUpPassword} />
         <Stack.Screen name="SignUpAddCar" component={SignUpAddCar} />
         <Stack.Screen name="UserProfile" component={UserProfile} />
+        <Stack.Screen name="AddCar" component={AddCar} />
         <Stack.Screen name="Car" component={Car} />
         <Stack.Screen name="LogoMap" component={LogoMap} />
         <Stack.Screen name="LogoPayment" component={LogoPayment} />
