@@ -24,6 +24,17 @@ Status: 201 OK
 Content-Type: application/json
 user - info
 
+###   Get user profile
+####  Request
+`GET /api/profile/`
+```
+curl -X GET -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:8082/api/user/profile
+```
+####  Response
+Status: 200 OK
+Content-Type: application/json
+[User] - array of users
+
 
 ###   Add role to user
 ####  Request
