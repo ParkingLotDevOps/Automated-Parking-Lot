@@ -17,6 +17,9 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Rating from '@mui/material/Rating';
 import Divider from '@mui/material/Divider';
 
+import Featured from 'components/Dashboard/analytics/analytics';
+import Chart from 'components/Dashboard/chart/chart';
+
 
 export default function EditParkingLot() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -76,7 +79,7 @@ export default function EditParkingLot() {
                     <Item>
                       <div className={styles.itemGrid}>
                         <p>Reports</p>
-                        <img src={img3} className={styles.reports} alt="photo" />
+                        <Chart /> 
                       </div>
                       
                     </Item>
@@ -85,7 +88,7 @@ export default function EditParkingLot() {
                     <Item>
                     <div className={styles.itemGrid}>
                         <p>Analytics</p>
-                        <img src={img4} className={styles.analytics} alt="photo" />
+                        <Featured />
                       </div>
                       
                     </Item>

@@ -26,8 +26,35 @@
     display: flex;
     align-items: left;
     justify-content: left;
-    
 };
+
+.iconContact{
+    width: 100px !important;
+}
+
+  .test{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+  }
+
+  .list{
+    list-style-type: none; 
+  }
+
+  .contact{
+      text-align: center;
+      padding-left: 60px;
+      font-size: 18px;
+  }
+
+  .box{
+    display: flex;
+    width: 200;
+    height: 70;
+    color: #5d8584;
+  }
 
 .icon2{
     flex-basis: 10%;
@@ -36,5 +63,3 @@
 .text2{
     padding-left: 20px;
 }
-
-

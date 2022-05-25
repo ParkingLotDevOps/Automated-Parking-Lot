@@ -12,14 +12,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ArticleIcon from '@mui/icons-material/Article';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
-import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
-
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const drawerWidth = 230;
 
@@ -70,20 +68,15 @@ export default function Sidebar(){
         </List>
 
         
-        <h3  className={styles.position}>Contact Us</h3>
-        <div className={styles.position2}>
-            <div className="icon2">
-              <AccountBoxRoundedIcon className={styles.position2}/>
-            </div>
-              
-            <div className="text2">
-              <p className={styles.position2}>Username</p>
-            </div>
+        <div className={styles.test}>
+          
+          <Link to="/contact" className={styles.contact}>Contact us</Link>
+          <div className={styles.box}>
+              <AccountBoxRoundedIcon sx={{width: 55, height: 55 }}/>
+              <p>Username</p>
+              <LogoutIcon sx={{marginTop: 2, marginLeft: 4}}/>
 
-            
-            
-            
-            
+          </div>
         </div>
         
         
