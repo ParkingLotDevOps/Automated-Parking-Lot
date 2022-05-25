@@ -7,6 +7,7 @@ import EditParkingLotPanel from './EditParkingLot/EditParkingLotPanel/EditParkin
 import EditParkingLotGrid from './EditParkingLot/EditParkingLotGrid/EditParkingLotGrid';
 import ParkingLotList from './ParkingLotsList/ListItems/ListItems';
 import NotificationsList from './Notifications/NotificationsList/NotificationsList';
+import ScheduleParkings from './Schedule/ScheduleParkings/ScheduleParkings';
 import App from './App/App';
 import Sidebar from './Sidebar/Sidebar';
 import AddParkingLot from './ParkingLotsList/AddParkingLot/AddParkingLot'
@@ -23,6 +24,7 @@ export {
   EditParkingLotGrid,
   ParkingLotList,
   NotificationsList,
+  ScheduleParkings,
   App,
   Sidebar,
   AddParkingLot,
