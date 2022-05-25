@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {
 	DefaultTheme,
-	Headline,
 	Provider as PaperProvider,
 	TextInput,
     Text
@@ -126,7 +125,7 @@ export default function UserProfile() {
                 <View style = {styles.buttonContainer}>
                     <MainButton
                         text='Save'
-                        onPress = {() => navigation.navigate("MyAccountScreen")}
+                        onPress = {() => navigation.navigate("Location2")}
                     />
                 </View>
 
