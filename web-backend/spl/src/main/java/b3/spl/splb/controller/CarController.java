@@ -2,13 +2,23 @@ package b3.spl.splb.controller;
 
 import b3.spl.splb.Services.CarService;
 import b3.spl.splb.model.Car;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 import java.net.URI;
 import java.util.List;
@@ -20,8 +30,18 @@ import java.util.regex.Pattern;
 public class CarController {
     private final CarService carService;
 
+    private String getEmailFromToken(HttpHeaders headers){
+        String token = headers.getFirst(HttpHeaders.AUTHORIZATION).substring("Bearer ".length());
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());//TODO : de mutat in fisier de configurare
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        DecodedJWT decodedJWT = verifier.verify(token);
+        return decodedJWT.getSubject();
+    }
+
     @PostMapping()
-    public ResponseEntity<?> saveCar(@RequestBody ObjectNode objectNode){
+    public ResponseEntity<?> saveCar(@RequestHeader HttpHeaders headers, @RequestBody ObjectNode objectNode){
+        String email = getEmailFromToken(headers);
+        System.out.println(email);
         JsonNode licensePlateNode = objectNode.get("licensePlate");
         String licensePlate;
         if(objectNode == null)
@@ -52,7 +72,7 @@ public class CarController {
     @PutMapping()
     public ResponseEntity<?> updateCar(@RequestBody ObjectNode objectNode)
     {
-        if(objectNode==null)
+        if(!objectNode.has("carId") || ! objectNode.has("newLicensePlate"))
             return ResponseEntity.badRequest().body("Invalid input format");
         JsonNode carIdNode = objectNode.get("carId");
         JsonNode newLicensePlateNode = objectNode.get("newLicensePlate");
