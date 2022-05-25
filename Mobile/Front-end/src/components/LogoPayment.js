@@ -32,7 +32,8 @@ export default function LogoPayment({ navigation }) {
       <View style={styles.container}>
         <Image style={styles.image} source={require('../../assets/payment.png')} />
         <Text style={styles.titleText}>Easy Payment</Text>
-        <Text style={styles.innerText}>Lorem ipsum dolor sit amet, consectetur adipiscing elitt</Text>
+        <Text style={styles.innerText}>Pay in advance for as much as you want to stay. We'll notify
+          you when the time is up!</Text>
         <MainButton text='Get started' onPress={() => navigation.navigate(Login)}> </MainButton>
         <StatusBar style="auto" />
       </View>
@@ -57,7 +58,9 @@ const styles = StyleSheet.create({
   },
   innerText: {
     width: '80%',
-    fontSize: 15,
+    fontSize: 18,
+    paddingLeft: 20,
+		paddingRight: 20,
     textAlign: 'center',
     color: "#ABD1C6",
     marginBottom:25

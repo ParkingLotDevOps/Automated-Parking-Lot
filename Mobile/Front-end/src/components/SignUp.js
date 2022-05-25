@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-import { StyleSheet, Button, View } from "react-native";
+import { StyleSheet, Image, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import MainButton from "./MainButton";
 
@@ -26,18 +25,38 @@ const theme = {
   },
 };
 
-export default function SignUp({ navigation }) {
-  // state = {
-  //     email: 'demo',
-  // };
+function validateEmail(emailAdress)
+{
+  let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (regexEmail.test(emailAdress)) {
+    return true; 
+  } else {
+    return false; 
+  }
+}
 
+
+function validateFullName(fullName)
+{
+  let regexName = /^[a-zA-Z]([-']?[a-zA-Z]+)*( [a-zA-Z]([-']?[a-zA-Z]+)*)+$/;
+  if (regexName.test(fullName)) {
+    return true; 
+  } else {
+    return false; 
+  }
+}
+
+export default function SignUp({ navigation }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+
+  const [badAttempt, setBadAttempt] = useState(false);
 
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <Headline style={styles.logo}>LOGO</Headline>
+        <Image style={styles.image} source={require('../../assets/smartparking1.png')} />
+				<Headline style={styles.logo}>SMART PARKING LOT</Headline>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
@@ -53,11 +72,20 @@ export default function SignUp({ navigation }) {
           value={name}
           onChangeText={(text) => setName(text)}
         ></TextInput>
+        {badAttempt && (
+          <Text style={{ color: "white" }}>Email address or name are not valid!</Text>
+        )}
         <MainButton
           text="Next"
           title="Sign Up"
-          onPress={() =>
-            navigation.navigate("SignUpPhone", { email: email, name: name })
+          onPress={() => {
+              if (validateEmail(email) && validateFullName(name)) {
+                setBadAttempt(false);
+                navigation.navigate("SignUpPhone", { email: email, name: name });
+              } else {
+                setBadAttempt(true);
+              }
+            }
           }
         />
         <StatusBar style="auto" />

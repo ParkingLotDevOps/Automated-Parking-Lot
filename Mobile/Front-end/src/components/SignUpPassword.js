@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Image, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import MainButton from "./MainButton";
 import {
@@ -10,6 +10,7 @@ import {
   Text,
 } from "react-native-paper";
 import { useRoute } from "@react-navigation/native";
+
 
 const theme = {
   ...DefaultTheme,
@@ -25,34 +26,63 @@ const theme = {
   },
 };
 
-export default function SignUpPhone({ navigation }) {
+function validatePassword(firstPassword, secondPassword)
+{
+  if ((firstPassword === secondPassword) && firstPassword.length>5) {
+    return true; 
+  } else {
+    return false; 
+  }
+}
+
+export default function SignUpPassword({ navigation }) {
   const [firstPassword, setFirstPassword] = useState("");
   const [secondPassword, setSecondPassword] = useState("");
 
-  const [isDiffrent, setIsDiffrent] = useState(false);
+  const [isAccount, setIsAccount] = useState(false);
+  const [badAttempt, setBadAttempt] = useState(false);
 
   const route = useRoute();
 
   const checkPassword = () => {
-    if (firstPassword === secondPassword) {
-      //TO DO: Make register request
-
-      // email = route.params.email
-      // name = route.params.name
-      //phoneNumber = route.params.phoneNumber
-      //password = firstPassword
-
-      navigation.navigate("SignUpAddCar");
-      setIsDiffrent(false);
+    if (validatePassword(firstPassword, secondPassword)) {   
+      const http = new XMLHttpRequest()
+      console.log(route.params);
+      http.open("POST", "https://automated-parking-lot.herokuapp.com/api/user/save", true)
+      http.setRequestHeader("Content-Type", "application/json");
+      const message = {
+        "username": route.params.name,
+        "password": firstPassword,
+        "name": route.params.name,
+        "email": route.params.email
+      }
+      http.send(message)
+      http.onload = () => {
+        console.log(http.responseText);
+        if (http.status == 201) {
+          navigation.navigate("SignUpAddCar");
+          // navigation.navigate(Location2);          
+        } else {
+          setIsAccount(true);
+          setBadAttempt(false);
+        }
+      }      
+      setIsAccount(false);
+      setBadAttempt(false);
     } else {
-      setIsDiffrent(true);
+      setIsAccount(false);
+      setBadAttempt(true);
     }
   };
 
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <Headline style={styles.logo}>LOGO</Headline>
+        <Image style={styles.image} source={require('../../assets/smartparking1.png')} />
+				<Headline style={styles.logo}>SMART PARKING LOT</Headline>
+        {badAttempt && (
+          <Text style={{ color: "white" }}>Passwords do not match or have less than 6 chars!</Text>
+        )}
         <TextInput
           secureTextEntry={true}
           style={styles.input}
@@ -67,8 +97,8 @@ export default function SignUpPhone({ navigation }) {
           value={secondPassword}
           onChangeText={(text) => setSecondPassword(text)}
         ></TextInput>
-        {isDiffrent && (
-          <Text style={{ color: "red" }}>Passwords don't match</Text>
+        {isAccount && (
+          <Text style={{ color: "red" }}>User allready exists!</Text>
         )}
         <MainButton text="Create Account" onPress={() => checkPassword()} />
         <StatusBar style="auto" />

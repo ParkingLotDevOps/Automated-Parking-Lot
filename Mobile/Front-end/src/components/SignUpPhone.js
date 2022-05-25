@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Button, View } from "react-native";
+import { StyleSheet, Image, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import MainButton from "./MainButton";
 import {
@@ -25,14 +25,25 @@ const theme = {
   },
 };
 
+function validatePhone(phone)
+{
+  if (/^\d{10}$/.test(phone)) {
+    return true; 
+  } else {
+    return false; 
+  }
+}
+
 export default function SignUpPhone({ navigation }) {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [badAttempt, setBadAttempt] = useState(false);
   const route = useRoute();
 
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <Headline style={styles.logo}>LOGO</Headline>
+        <Image style={styles.image} source={require('../../assets/smartparking1.png')} />
+				<Headline style={styles.logo}>SMART PARKING LOT</Headline>
         <TextInput
           style={styles.input}
           keyboardType="phone-pad"
@@ -40,14 +51,23 @@ export default function SignUpPhone({ navigation }) {
           value={phoneNumber}
           onChangeText={(text) => setPhoneNumber(text)}
         ></TextInput>
+        {badAttempt && (
+          <Text style={{ color: "white" }}>Phone must contain 10 digits!</Text>
+        )}
         <MainButton
           text="Next"
-          onPress={() =>
-            navigation.navigate("SignUpVerification", {
-              email: route.params.email,
-              name: route.params.name,
-              phoneNumber: phoneNumber,
-            })
+          onPress={() => {
+              if (validatePhone(phoneNumber)) {
+                setBadAttempt(false);
+                  navigation.navigate("SignUpVerification", {
+                    email: route.params.email,
+                    name: route.params.name,
+                    phoneNumber: phoneNumber,
+                  })
+              } else {
+                setBadAttempt(true);
+              }
+            }
           }
         />
         <StatusBar style="auto" />

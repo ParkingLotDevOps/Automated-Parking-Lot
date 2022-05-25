@@ -30,7 +30,8 @@ export default function Car({ navigation }) {
       <View style={styles.container}>
         <Image style={styles.image} source={require('../../assets/masinuta.png')} />
         <Text style={styles.titleText}>Best Parking Spots</Text>
-        <Text style={styles.innerText}>Lorem ipsum dolor sit amet, consectetur adipiscing elitt</Text>
+        <Text style={styles.innerText}>Fasten your seat belt, choose your destination, and we will
+          take care of the perfect parking spot for you!</Text>
         <View style={styles.buttonsContainer}> 
                  
           <Button style={styles.Buttons} color="#ABD1C6" onPress={() => navigation.navigate(Login)} >
@@ -70,8 +71,10 @@ const styles = StyleSheet.create({
   },
   innerText: {
     width: '80%',
-    fontSize: 15,
-    textAlign: 'center',
+    fontSize: 18,
+    paddingLeft: 20,
+		paddingRight: 20,
+		textAlign: 'center',
     color: "#ABD1C6"
   },
   image: {

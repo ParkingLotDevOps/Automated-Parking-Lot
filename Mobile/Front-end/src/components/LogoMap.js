@@ -30,7 +30,8 @@ export default function LogoMap({ navigation }) {
       <View style={styles.container}>
         <Image style={styles.image} source={require('../../assets/harta.png')} />
         <Text style={styles.titleText}>Quick Navigation</Text>
-        <Text style={styles.innerText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
+        <Text style={styles.innerText}>Choose a suitable parking place around your destination
+        click on it and Google Maps will guide your way!</Text>
         <View style={styles.buttonsContainer}> 
                  
           <Button style={styles.Buttons} color="#ABD1C6" onPress={() => navigation.navigate(Login)}>
@@ -69,7 +70,9 @@ const styles = StyleSheet.create({
   },
   innerText: {
     width: '80%',
-    fontSize: 15,
+    fontSize: 18,
+    paddingLeft: 20,
+		paddingRight: 20,
     textAlign: 'center',
     color: "#ABD1C6"
   },

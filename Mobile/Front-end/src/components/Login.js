@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import {
 	DefaultTheme,
@@ -35,7 +35,8 @@ export default function Login({ navigation }) {
 	return (
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>
-				<Headline style={styles.logo}>LOGO</Headline>
+				<Image style={styles.image} source={require('../../assets/smartparking1.png')} />
+				<Headline style={styles.logo}>SMART PARKING LOT</Headline>
 					<TextInput
 						style={styles.input}
 						placeholder='Username'
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
 	linkedText: {
 		color: '#F9BC60',
 		textAlign: 'right',
+		fontSize: 16,
 		marginBottom: 50,
 		fontWeight: '700',
 	},

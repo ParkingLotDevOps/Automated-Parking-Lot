@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Image, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import MainButton from "./MainButton";
 import {
@@ -25,13 +25,15 @@ const theme = {
   },
 };
 
-export default function SignUpPhone({ navigation }) {
+export default function SignUpVerification({ navigation }) {
   const route = useRoute();
+  console.log(route.params);
 
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <Headline style={styles.logo}>LOGO</Headline>
+        <Image style={styles.image} source={require('../../assets/smartparking1.png')} />
+				<Headline style={styles.logo}>SMART PARKING LOT</Headline>
         <TextInput
           style={styles.input}
           placeholder="verification code"
