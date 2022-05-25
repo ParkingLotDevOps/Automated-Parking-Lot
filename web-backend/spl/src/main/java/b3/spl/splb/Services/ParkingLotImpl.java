@@ -23,10 +23,12 @@ public class ParkingLotImpl implements ParkingLotService {
     private final ParkingLotRepo parkingLotRepo;
 
     @Override
-    public ParkingLot saveParkingLot(ParkingLot parkingLot) {
+    public ParkingLot saveParkingLot(ParkingLot parkingLot, String email) {
         log.info("Saving new parking lot {} to the database", parkingLot.getName());
         parkingLot.setApproved(false);
-        return parkingLotRepo.save(parkingLot);
+        ParkingLot parkingLot1= parkingLotRepo.save(parkingLot);
+        appUserRepo.findByEmail(email).getParkingLots().add(parkingLot);
+        return parkingLot1;
     }
 
     @Override
