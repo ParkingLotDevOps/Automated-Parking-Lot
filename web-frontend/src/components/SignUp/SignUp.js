@@ -20,7 +20,7 @@ export default function SignUp() {
       alert("Passwords don't match!");
     }
     else {
-      const res = await fetch('http://localhost:8082/api/user/save', {
+      const res = await fetch('https://automated-parking-lot.herokuapp.com/api/user/save', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -32,7 +32,23 @@ export default function SignUp() {
           password: password1
         })
       });
-      alert(res.ok ? 'Account successfuly created!' : `Error: ${statusText}`);
+      if (res.ok) {
+        await fetch('https://automated-parking-lot.herokuapp.com/api/add/role', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email,
+            role: 'PARKING_LOT_PROVIDER'
+          })
+        });
+        alert('Account successfully created!');
+        navigate('/sign-in');
+      }
+      else {
+        alert('Error: ' + (await res.text()));
+      }
     }
   };
 
@@ -73,9 +89,7 @@ export default function SignUp() {
         </div>
       </div>
 
-      <BaseButton color="yellow" type="submit" onClick={() => {
-        navigate('/sign-in');
-      }}>
+      <BaseButton color="yellow" type="submit">
         Let's go!
       </BaseButton>
 

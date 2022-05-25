@@ -1,7 +1,7 @@
 import React from 'react';
 import Background from 'assets/background.svg';
 import styles from './Sidebar.module.css';
-
+import { Link } from 'react-router-dom';
 import Logo from 'assets/logo.svg';
 
 import Box from '@mui/material/Box';
@@ -47,18 +47,24 @@ export default function Sidebar(){
         
         <img src={Logo} className={styles.logo} alt="logo" />
         <List>
-          {['Dashboard', 'Analytics', 'Parkings', 'Schedule', 'Notification', 'Settings'].map((text, index) => (
+          {['Dashboard', 'Parkings', 'Schedule', 'Notification', 'Settings'].map((text, index) => (
             <ListItem button key={text}>
               { <ListItemIcon>
                     {index == 0 ? <DashboardIcon className={styles.icon} /> : 
-                     index == 1 ? <AnalyticsIcon className={styles.icon}/> : 
-                     index == 2 ? <ConfirmationNumberIcon className={styles.icon} /> :
-                     index == 3 ? <ArticleIcon className={styles.icon}/> :
-                     index == 4 ? <NotificationsIcon className={styles.icon}/> : <SettingsIcon className={styles.icon}/>
+                     index == 1 ? <ConfirmationNumberIcon className={styles.icon} /> :
+                     index == 2 ? <ArticleIcon className={styles.icon}/> :
+                     index == 3 ? <NotificationsIcon className={styles.icon}/> : <SettingsIcon className={styles.icon}/>
                      }
                      
               </ListItemIcon> }
-              <ListItemText primary={text} />
+              <Link to={`/${
+                index == 0 ? 'dashboard' : 
+                index == 1 ? 'list' :
+                index == 2 ? <ArticleIcon className={styles.icon}/> :
+                index == 3 ? <NotificationsIcon className={styles.icon}/> : <SettingsIcon className={styles.icon}/>
+              }`}>
+                <ListItemText primary={text} />
+              </Link>
             </ListItem>
           ))}
         </List>

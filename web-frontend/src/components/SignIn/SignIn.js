@@ -14,26 +14,29 @@ export default function SignIn() {
   }, []);
 
   const navigate = useNavigate();
-  const [username, inputUsername] = useInput('Username or email address');
+  const [email, inputEmail] = useInput('Email address', 'email');
   const [password, inputPassword] = useInput('Password', 'password');
 
   const submit = async () => {
-    const res = await fetch('http://localhost:8082/api/login', {
+    const res = await fetch('https://automated-parking-lot.herokuapp.com/api/login', {
       method: 'POST',
       body: new URLSearchParams({
-        username,
+        email,
         password
       })
     });
-    alert(res.ok ? 'Successfuly logged in!' : 'Wrong username or password!');
     if (res.ok) {
+      alert('Successfully logged in!');
       navigate('/list');
+    }
+    else {
+      alert('Wrong email or password!');
     }
   };
 
   return (
     <SignContainer onSubmit={submit}>
-      {inputUsername}
+      {inputEmail}
       {inputPassword}
       <div className={styles.right}><Link to="#">Forgot password?</Link></div>
 
