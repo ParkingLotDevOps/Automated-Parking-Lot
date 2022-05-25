@@ -53,6 +53,7 @@ public class AppUserController {
 
     @PostMapping("/user/save")
     public ResponseEntity saveUser(@RequestBody AppUser user){
+        System.out.println(user);
         if(user == null || user.getUsername() == null || user.getPassword() == null || user.getName() == null || user.getEmail() == null){
             return ResponseEntity.badRequest().body("Invalid input.");
         }
