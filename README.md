@@ -50,6 +50,18 @@ Status: 200 OK
 	"refresh_token" :<REFRESH_TOKEN>
 }
 
+###   Get list of user cars
+####  Request
+`GET /api/user/cars`
+```
+curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:8082/api/user/cars
+```
+####  Response
+Status: 200 OK
+Content-Type: application/json
+[Car] - array of user cars
+
+
 
 ## Car endpoint.
 ####  Request
