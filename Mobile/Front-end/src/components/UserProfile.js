@@ -10,7 +10,8 @@ import {
 } from 'react-native-paper';
 import MainButton from './MainButton';
 import ProfilePicture from "react-native-profile-picture";
-
+import { AuthContext } from './auth';
+import { useContext } from 'react';
 const theme = {
 	...DefaultTheme,
 	roundness: 2,
@@ -35,16 +36,19 @@ export default function UserProfile() {
     let [emailDisabled, setEmailDisabled] = useState(true);
     let [phoneDisabled, setPhoneDisabled] = useState(true);
     let [passwordDisabled, setPasswordDisabled] = useState(true);
-    const http = new XMLHttpRequest();
-    http.open(
-        "GET",
-        "https://automated-parking-lot.herokuapp.com/api/user/profile",
-        true
-    );
-    http.setRequestHeader("Authorization", `Bearer ${token}`);
-    http.onload = () => {
-        console.log(http.responseText);
-    }
+
+    const [token, setToken] = useContext(AuthContext);
+    console.log("AVEM TOOOOKEN", token);
+    // const http = new XMLHttpRequest();
+    // http.open(
+    //     "GET",
+    //     "https://automated-parking-lot.herokuapp.com/api/user/profile",
+    //     true
+    // );
+    // http.setRequestHeader("Authorization", `Bearer ${token}`);
+    // http.onload = () => {
+    //     console.log(http.responseText);
+    // }
 	return (
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>

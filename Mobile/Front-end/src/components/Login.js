@@ -13,6 +13,8 @@ import FbButton from './FbButton';
 import GoogleButton from './GoogleButton';
 import SignUp from './SignUp';
 import Location2  from './map/Location2';
+import { AuthContext } from './auth';
+import { useContext } from 'react';
 
 var XMLHttpRequest = require('xhr2');
 const theme = {
@@ -28,10 +30,12 @@ const theme = {
 		placeholder: '#ABD1C6',
 	},
 };
-
+let data = {}
 export default function Login({ navigation }) {
 	const [username, inputUsername] = React.useState('');
 	const [password, inputPassword] = React.useState('');
+
+	const [token, setToken] = useContext(AuthContext);
 	return (
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>
@@ -68,8 +72,13 @@ export default function Login({ navigation }) {
 							http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 							http.send(params)
 							http.onload = () => {
-								console.log(http.responseText);
-								navigation.navigate(Location2);
+								// console.log(http.responseText);
+								if(http.status == 200){
+									data = JSON.parse(http.responseText);
+									setToken(data.access_token);
+									navigation.navigate(Location2);
+								}
+								// console.log(data.access_token);
 							}
 						}
 					}

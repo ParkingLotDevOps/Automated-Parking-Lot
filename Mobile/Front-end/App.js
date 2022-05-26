@@ -23,44 +23,49 @@ import UserProfile from "./src/components/UserProfile";
 import AddCar from "./src/components/AddCar";
 import MyAccountScreen from "./src/components/MyAccountScreen";
 import Settings from "./src/screens/Settings";
+import { AuthContext } from "./src/components/auth";
+import { useState } from "react";
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  const [token, setToken] = useState(null);
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Index"
-        screenOptions={{ headerShown: false }}
-      >
-        <Stack.Screen name="Index" component={Index} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="SignUpPhone" component={SignUpPhone} />
-        <Stack.Screen
-          name="SignUpVerification"
-          component={SignUpVerification}
-        />
-        <Stack.Screen name="SignUpPassword" component={SignUpPassword} />
-        <Stack.Screen name="SignUpAddCar" component={SignUpAddCar} />
-        <Stack.Screen name="UserProfile" component={UserProfile} />
-        <Stack.Screen name="AddCar" component={AddCar} />
-        <Stack.Screen name="Car" component={Car} />
-        <Stack.Screen name="LogoMap" component={LogoMap} />
-        <Stack.Screen name="LogoPayment" component={LogoPayment} />
-        <Stack.Screen name="Location2" component={Location2} />
-        <Stack.Screen name="Map" component={Map} />
-        <Stack.Screen name="MapScreen" component={MapScreen} />
-        <Stack.Screen name="MyAccountScreen" component={MyAccountScreen} />
-        <Stack.Screen
-          name="SelectParkingScreen"
-          component={SelectParkingScreen}
-        />
-        <Stack.Screen name="BookSpace" component={BookSpace} />
-        <Stack.Screen name="QR" component={QR} />
-        <Stack.Screen name="ActiveBooking" component={ActiveBooking} />
-        <Stack.Screen name="Settings" component={Settings} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AuthContext.Provider value={[token, setToken]}>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Index"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="Index" component={Index} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="SignUpPhone" component={SignUpPhone} />
+          <Stack.Screen
+            name="SignUpVerification"
+            component={SignUpVerification}
+          />
+          <Stack.Screen name="SignUpPassword" component={SignUpPassword} />
+          <Stack.Screen name="SignUpAddCar" component={SignUpAddCar} />
+          <Stack.Screen name="UserProfile" component={UserProfile} />
+          <Stack.Screen name="AddCar" component={AddCar} />
+          <Stack.Screen name="Car" component={Car} />
+          <Stack.Screen name="LogoMap" component={LogoMap} />
+          <Stack.Screen name="LogoPayment" component={LogoPayment} />
+          <Stack.Screen name="Location2" component={Location2} />
+          <Stack.Screen name="Map" component={Map} />
+          <Stack.Screen name="MapScreen" component={MapScreen} />
+          <Stack.Screen name="MyAccountScreen" component={MyAccountScreen} />
+          <Stack.Screen
+            name="SelectParkingScreen"
+            component={SelectParkingScreen}
+          />
+          <Stack.Screen name="BookSpace" component={BookSpace} />
+          <Stack.Screen name="QR" component={QR} />
+          <Stack.Screen name="ActiveBooking" component={ActiveBooking} />
+          <Stack.Screen name="Settings" component={Settings} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 }
