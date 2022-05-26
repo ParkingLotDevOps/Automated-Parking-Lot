@@ -4,200 +4,136 @@ import React from 'react';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Sidebar } from 'components';
+import { FaCamera } from 'react-icons/fa';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import styles from './Settings.module.css';
-import Checkbox from '@mui/material/Checkbox';//
 
-import TextField from '@mui/material/TextField';//
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';//
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';//
-import { DatePicker } from '@mui/x-date-pickers';//
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';//
+export default function Settings(props) {
 
-export default function ScheduleParking(props) {
-  const [isChecked1, setIsChecked1] = useState(false);
-  const [isChecked2, setIsChecked2] = useState(false);
-  const [isChecked3, setIsChecked3] = useState(false);
-  const [isChecked4, setIsChecked4] = useState(false);
-  const [isChecked5, setIsChecked5] = useState(false);
-  const [isChecked6, setIsChecked6] = useState(false);
-  const [isChecked7, setIsChecked7] = useState(false);
-
-  const [time1, setTime1] = React.useState(null);
-  const [time2, setTime2] = React.useState(null);
-
-  const [date1, setDate1] = React.useState(null);
-  const [date2, setDate2] = React.useState(null);
-  
   const navigate = useNavigate();
 
-  const ITEM_HEIGHT = 48;
+//   const ITEM_HEIGHT = 48;
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+//   const [anchorEl, setAnchorEl] = React.useState(null);
+//   const open = Boolean(anchorEl);
+//   const handleClick = (event) => {
+//     setAnchorEl(event.currentTarget);
+//   };
+//   const handleClose = () => {
+//     setAnchorEl(null);
+//   };
   
   return (
-    <li className={styles.listItem}>
-      <div className={styles.name}>{props.item.name}</div>
-      <div className={styles.time}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <TimePicker
-            label=""
-            value={time1}
-            onChange={(newValue) => {
-              setTime1(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} sx={{
-              svg: { color: '#5b8483' },
-              input: { color: '#5b8483' },
-              label: { color: '#5b8483' } 
-            }} />}
-          />
-        </LocalizationProvider>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <TimePicker
-            label=""
-            value={time2}
-            onChange={(newValue) => {
-              setTime2(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} sx={{
-              svg: { color: '#5b8483' },
-              input: { color: '#5b8483' },
-              label: { color: '#5b8483' } 
-            }} />}
-          />
-        </LocalizationProvider>
-      </div>
-      <div className={styles.checkboxes}>
-        <Checkbox
-          sx={{
-            color: '#E8E4E6',
-            opacity: '0.4',
-            '&.Mui-checked': {
-              color: '#E16162',
-              opacity: 1
-            }
-          }}
-          className={styles.checkbox}
-          checked={isChecked1}
-          onChange={() => setIsChecked1((prev) => !prev)}
-        />
-        <Checkbox
-          sx={{
-            color: '#E8E4E6',
-            opacity: '0.4',
-            '&.Mui-checked': {
-              color: '#E16162',
-              opacity: 1
-            }
-          }}
-          className={styles.checkbox}
-          checked={isChecked2}
-          onChange={() => setIsChecked2((prev) => !prev)}
-        />
-        <Checkbox
-          sx={{
-            color: '#E8E4E6',
-            opacity: '0.4',
-            '&.Mui-checked': {
-              color: '#E16162',
-              opacity: 1
-            }
-          }}
-          className={styles.checkbox}
-          checked={isChecked3}
-          onChange={() => setIsChecked3((prev) => !prev)}
-        />
-        <Checkbox
-          sx={{
-            color: '#E8E4E6',
-            opacity: '0.4',
-            '&.Mui-checked': {
-              color: '#E16162',
-              opacity: 1
-            }
-          }}
-          className={styles.checkbox}
-          checked={isChecked4}
-          onChange={() => setIsChecked4((prev) => !prev)}
-        />
-        <Checkbox
-          sx={{
-            color: '#E8E4E6',
-            opacity: '0.4',
-            '&.Mui-checked': {
-              color: '#E16162',
-              opacity: 1
-            }
-          }}
-          className={styles.checkbox}
-          checked={isChecked5}
-          onChange={() => setIsChecked5((prev) => !prev)}
-        />
-        <Checkbox
-          sx={{
-            color: '#E8E4E6',
-            opacity: '0.4',
-            '&.Mui-checked': {
-              color: '#E16162',
-              opacity: 1
-            }
-          }}
-          className={styles.checkbox}
-          checked={isChecked6}
-          onChange={() => setIsChecked6((prev) => !prev)}
-        />
-        <Checkbox
-          sx={{
-            color: '#E8E4E6',
-            opacity: '0.4',
-            '&.Mui-checked': {
-              color: '#E16162',
-              opacity: 1
-            }
-          }}
-          className={styles.checkbox}
-          checked={isChecked7}
-          onChange={() => setIsChecked7((prev) => !prev)}
-        />
-      </div>
-
-      <div className={styles.date}>
-        <LocalizationProvider dateAdapter={AdapterDateFns} >
-          <DatePicker
-            label=""
-            value={date1}
-            onChange={(newValue) => {
-              setDate1(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} sx={{
-              svg: { color: '#5b8483' },
-              input: { color: '#5b8483' },
-              label: { color: '#5b8483' } 
-            }} />}
-          />
-        </LocalizationProvider>
-        <LocalizationProvider dateAdapter={AdapterDateFns} >
-          <DatePicker
-            label=""
-            value={date2}
-            onChange={(newValue) => {
-              setDate2(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} sx={{
-              svg: { color: '#5b8483' },
-              input: { color: '#5b8483' },
-              label: { color: '#5b8483' } 
-            }} />}
-          />
-        </LocalizationProvider>
-      </div>
-    </li>
+    <>
+      <Sidebar />
+      <main className={styles.main}>
+        <h1 className={styles.name}>{name.replace(/-/g, ' ')}</h1>
+        <form className={styles.form}>
+          <h2>Settings</h2>
+          <div className={styles['personal-data']}>
+            <div className={styles.upload}>
+              <FaCamera />
+              <div className={styles.inner}>
+                <input type="file" accept="image/png, image/jpeg" />
+              </div>
+            </div>
+            <div className={styles.right}>
+              <h2>Personal Data</h2>
+              <div className={styles.top}>
+                <TextField
+                  label="First Name"
+                  type="text"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  sx={{ input: { color: '#E8E4E6' } }}
+                  variant="filled"
+                />
+                <TextField
+                  label="Last Name"
+                  type="text"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  sx={{ input: { color: 'dodgerblue' } }}
+                  variant="filled"
+                />
+              </div>
+              <div className={styles.bottom}>
+                <TextField
+                  label="Phone Number"
+                  type="text"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  sx={{ input: { color: 'dodgerblue' } }}
+                  variant="filled"
+                /> 
+                <Button variant="contained" sx={{ height: 55 }}>
+                  Save Changes
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className={styles.change}>
+            <div className={styles['change-email']}>
+              <h2>Change E-mail</h2>
+              <TextField
+                label="New E-mail"
+                type="text"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                sx={{ input: { color: '#E8E4E6' } }}
+                variant="filled"
+              />
+              <Button variant="contained" sx={{ height: 55 }}>
+                Save Changes
+              </Button>
+            </div>
+            <div className={styles['change-password']}>
+              <h2>Change Password</h2>
+              <TextField
+                label="Old Password"
+                type="password"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                sx={{ input: { color: '#E8E4E6' } }}
+                variant="filled"
+              />
+              <TextField
+                label="New Password"
+                type="password"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                sx={{ input: { color: '#E8E4E6' } }}
+                variant="filled"
+              />
+              <TextField
+                label="Confirm New Password"
+                type="password"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                sx={{ input: { color: '#E8E4E6' } }}
+                variant="filled"
+              />
+              <Button variant="contained" sx={{ height: 55 }}>
+                Save Changes
+              </Button>
+            </div>
+          </div>
+          <div className={styles.delete}>
+            <Button variant="contained" sx={{ height: 55 }}>
+              Delete Account
+            </Button>
+          </div>
+        </form>
+      </main>
+    </>
   );
 }

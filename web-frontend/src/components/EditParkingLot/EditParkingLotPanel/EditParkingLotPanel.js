@@ -66,5 +66,3 @@ export default function EditParkingLotPanel() {
     </form>
   );
 };
-
-// Google Maps API diseara pt input locatie
