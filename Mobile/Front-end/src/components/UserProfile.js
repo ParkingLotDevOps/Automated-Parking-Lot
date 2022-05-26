@@ -29,26 +29,27 @@ const theme = {
 export default function UserProfile() {
     const navigation = useNavigation();
 	const [fullName, inputFullName] = React.useState('');
-    const [email, inputEmail] = React.useState('');
-    const [phone, inputPhone] = React.useState('');
-	const [password, inputPassword] = React.useState('');
+    const [username, inputUsername] = React.useState('');
+    
     let [fullNameDisabled, setFullNameDisabled] = useState(true);
-    let [emailDisabled, setEmailDisabled] = useState(true);
-    let [phoneDisabled, setPhoneDisabled] = useState(true);
-    let [passwordDisabled, setPasswordDisabled] = useState(true);
+    let [usernameDisabled, setUsernameDisabled] = useState(true);
 
     const [token, setToken] = useContext(AuthContext);
     console.log("AVEM TOOOOKEN", token);
-    // const http = new XMLHttpRequest();
-    // http.open(
-    //     "GET",
-    //     "https://automated-parking-lot.herokuapp.com/api/user/profile",
-    //     true
-    // );
-    // http.setRequestHeader("Authorization", `Bearer ${token}`);
-    // http.onload = () => {
-    //     console.log(http.responseText);
-    // }
+    const http = new XMLHttpRequest();
+    http.open(
+        "GET",
+        "https://automated-parking-lot.herokuapp.com/api/user/profile",
+        true
+    );
+    http.setRequestHeader("Authorization", `Bearer ${token}`);
+    http.send();
+    http.onload = () => {
+        const userData = JSON.parse(http.responseText);
+        console.log(userData);
+        inputFullName(userData.name);
+        inputUsername(userData.username);
+    }
 	return (
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>
@@ -79,61 +80,24 @@ export default function UserProfile() {
                         </View>
                     </View>
                     <View style = {styles.singleInput}>
-                        <Text style = {{left: 15}}>Email address</Text>
+                        <Text style = {{left: 15}}>Username</Text>
                         <View style = {styles.inputField}>
                             <TextInput
                                 style={styles.input}
                                 placeholder=''
-                                value={email}
-                                onChangeText={inputEmail}
-                                disabled = {emailDisabled}>
+                                value={username}
+                                onChangeText={inputUsername}
+                                disabled = {usernameDisabled}>
                             </TextInput>
                             <Icon.Button
                                 name="edit"
                                 backgroundColor="#004643"
                                 style={{flex: 1}}
-                                onPress = {() => setEmailDisabled(false)}
+                                onPress = {() => setUsernameDisabled(false)}
                             ></Icon.Button>
                         </View>                        
                     </View>
-                    <View style = {styles.singleInput}>
-                        <Text style = {{left: 15}}>Phone Number</Text>
-
-                        <View style = {styles.inputField}>
-                            <TextInput
-                                    style={styles.input}
-                                    placeholder=''
-                                    value={phone}
-                                    onChangeText={inputPhone}
-                                    disabled = {phoneDisabled}
-                            />
-                            <Icon.Button
-                                name="edit"
-                                backgroundColor="#004643"
-                                style={{flex: 1}}
-                                onPress = {() => setPhoneDisabled(false)}
-                            ></Icon.Button>
-                        </View>  
-                    </View>
-                    <View style = {styles.singleInput}>
-                        <Text style= {{left: 15}}>Password</Text>
-                        <View style = {styles.inputField}>
-                            <TextInput
-                                    style={styles.input}
-                                    placeholder=''
-                                    value={password}
-                                    secureTextEntry={true}
-                                    onChangeText={inputPassword}
-                                    disabled = {passwordDisabled}
-                            />
-                            <Icon.Button
-                                name="edit"
-                                backgroundColor="#004643"
-                                style={{flex: 1}}
-                                onPress = {() => setPasswordDisabled(false)}
-                            ></Icon.Button>
-                        </View>  
-                    </View>
+                    
                 </View>
                    
                 <View style = {styles.buttonContainer}>
