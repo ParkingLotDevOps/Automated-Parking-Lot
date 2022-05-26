@@ -27,6 +27,8 @@ public class Reservation {
 
     private LocalDateTime reservedAt;
 
+    private LocalDateTime closedAt;
+
     public Long getId() {
         return id;
     }

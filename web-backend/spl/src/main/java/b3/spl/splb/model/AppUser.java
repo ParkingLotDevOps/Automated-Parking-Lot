@@ -45,5 +45,9 @@ public class AppUser {
     List<ParkingLot> parkingLots;
     private boolean bannedUser;
     private boolean bannedProvider;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="reservations",
+            joinColumns = @JoinColumn(name = "reservation_id"))
+    private List<Reservation> history;
 
 }
