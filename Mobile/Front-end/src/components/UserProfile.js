@@ -35,6 +35,16 @@ export default function UserProfile() {
     let [emailDisabled, setEmailDisabled] = useState(true);
     let [phoneDisabled, setPhoneDisabled] = useState(true);
     let [passwordDisabled, setPasswordDisabled] = useState(true);
+    const http = new XMLHttpRequest();
+    http.open(
+        "GET",
+        "https://automated-parking-lot.herokuapp.com/api/user/profile",
+        true
+    );
+    http.setRequestHeader("Authorization", `Bearer ${token}`);
+    http.onload = () => {
+        console.log(http.responseText);
+    }
 	return (
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>

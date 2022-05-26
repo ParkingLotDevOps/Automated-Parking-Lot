@@ -63,8 +63,7 @@ export default function Login({ navigation }) {
 					
 					onPress = { () => {
 							const http = new XMLHttpRequest()
-							let params = `username=${username}&password=${password}`;
-							// merge map si 1234
+							let params = `email=${username}&password=${password}`;
 							http.open("POST", "https://automated-parking-lot.herokuapp.com/api/login", true)
 							http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 							http.send(params)

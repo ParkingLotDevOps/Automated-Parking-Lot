@@ -50,13 +50,20 @@ export default function SignUpPassword({ navigation }) {
       console.log(route.params);
       http.open("POST", "https://automated-parking-lot.herokuapp.com/api/user/save", true)
       http.setRequestHeader("Content-Type", "application/json");
-      const message = {
-        "username": route.params.name,
-        "password": firstPassword,
-        "name": route.params.name,
-        "email": route.params.email
-      }
-      http.send(message)
+      // const message = {
+      //   "username": route.params.name,
+      //   "password": firstPassword,
+      //   "name": route.params.name,
+      //   "email": route.params.email
+      // }
+      http.send(JSON.stringify({
+        username: route.params.name,
+        password: firstPassword,
+        name: route.params.name,
+        email: route.params.email
+      }));
+
+      // http.send(message)
       http.onload = () => {
         console.log(http.responseText);
         if (http.status == 201) {
