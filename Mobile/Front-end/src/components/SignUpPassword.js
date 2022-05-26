@@ -79,7 +79,7 @@ export default function SignUpPassword({ navigation }) {
     <PaperProvider theme={theme}>
       <View style={styles.container}>
         <Image style={styles.image} source={require('../../assets/smartparking1.png')} />
-				<Headline style={styles.logo}>SMART PARKING LOT</Headline>
+				{/* <Headline style={styles.logo}>SMART PARKING LOT</Headline> */}
         {badAttempt && (
           <Text style={{ color: "white" }}>Passwords do not match or have less than 6 chars!</Text>
         )}
@@ -98,7 +98,7 @@ export default function SignUpPassword({ navigation }) {
           onChangeText={(text) => setSecondPassword(text)}
         ></TextInput>
         {isAccount && (
-          <Text style={{ color: "red" }}>User allready exists!</Text>
+          <Text style={{ color: "red" }}>User already exists!</Text>
         )}
         <MainButton text="Create Account" onPress={() => checkPassword()} />
         <StatusBar style="auto" />
@@ -134,4 +134,7 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     fontWeight: "700",
   },
+  image : {
+    marginBottom : 80
+  }
 });

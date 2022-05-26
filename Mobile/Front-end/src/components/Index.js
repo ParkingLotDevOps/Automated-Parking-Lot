@@ -28,7 +28,7 @@ export default function Index({ navigation }) {
 		<PaperProvider theme={theme} onPress={() => navigation.navigate(Index)}>
 			<View style={styles.container}>
 				<Image style={styles.image} source={require('../../assets/smartparking1.png')} />
-                <Headline style={styles.logo}>SMART PARKING LOT</Headline>
+                {/* <Headline style={styles.logo}>SMART PARKING LOT</Headline> */}
                 <Text style={styles.text}>A mobile application that helps you find and reserve the perfect parking spot!</Text>
                 <MainButton text="Find out more" onPress={() => navigation.navigate(Car)}></MainButton>
             </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 40,
 		paddingRight: 40,
 		textAlign: 'center',
-		color: "#ABD1C6"
+		color: "#ABD1C6",
 	},
 	input: {
 		width: '90%',
@@ -67,5 +67,8 @@ const styles = StyleSheet.create({
 		textAlign: 'right',
 		marginBottom: 50,
 		fontWeight: '700',
+	},
+	image: {
+		marginBottom: 60
 	}
 });

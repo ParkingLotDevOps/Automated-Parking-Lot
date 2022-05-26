@@ -36,7 +36,7 @@ export default function Login({ navigation }) {
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>
 				<Image style={styles.image} source={require('../../assets/smartparking1.png')} />
-				<Headline style={styles.logo}>SMART PARKING LOT</Headline>
+				{/* <Headline style={styles.logo}>SMART PARKING LOT</Headline> */}
 					<TextInput
 						style={styles.input}
 						placeholder='Username'
@@ -113,4 +113,7 @@ const styles = StyleSheet.create({
 		marginBottom: 50,
 		fontWeight: '700',
 	},
+	image: {
+		marginBottom: 60
+	}
 });

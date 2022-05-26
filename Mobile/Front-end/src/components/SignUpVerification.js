@@ -33,7 +33,7 @@ export default function SignUpVerification({ navigation }) {
     <PaperProvider theme={theme}>
       <View style={styles.container}>
         <Image style={styles.image} source={require('../../assets/smartparking1.png')} />
-				<Headline style={styles.logo}>SMART PARKING LOT</Headline>
+				{/* <Headline style={styles.logo}>SMART PARKING LOT</Headline> */}
         <TextInput
           style={styles.input}
           placeholder="verification code"
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     color: "#E16162",
-    paddingBottom: 80,
+    // paddingBottom: 80,
   },
   input: {
     width: "90%",
@@ -88,4 +88,7 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     fontWeight: "700",
   },
+  image : {
+    marginBottom : 80
+  }
 });
