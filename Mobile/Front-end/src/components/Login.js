@@ -43,7 +43,7 @@ export default function Login({ navigation }) {
 				{/* <Headline style={styles.logo}>SMART PARKING LOT</Headline> */}
 					<TextInput
 						style={styles.input}
-						placeholder='Username'
+						placeholder='Email'
 						value={username}
 						onChangeText={inputUsername}
 					></TextInput>
@@ -72,13 +72,15 @@ export default function Login({ navigation }) {
 							http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 							http.send(params)
 							http.onload = () => {
-								// console.log(http.responseText);
+								console.log(http.responseText);
 								if(http.status == 200){
 									data = JSON.parse(http.responseText);
 									setToken(data.access_token);
-									navigation.navigate(Location2);
+									navigation.navigate(Location2, {
+										access_token: data.access_token,
+									refresh_token: data.refresh_token});
 								}
-								// console.log(data.access_token);
+								console.log(data.access_token);
 							}
 						}
 					}
