@@ -10,6 +10,8 @@ import {
 } from 'react-native-paper';
 import MainButton from './MainButton';
 import Location2 from './map/Location2';
+import { AuthContext } from './auth';
+import { useContext } from 'react';
 
 const theme = {
 	...DefaultTheme,
@@ -28,11 +30,13 @@ const theme = {
 export default function AddCar() {
     const navigation = useNavigation();
 	const [number, inputNumber] = React.useState('');
-    const [category, inputCategory] = React.useState('');
+    const [token, setToken] = useContext(AuthContext);
+               console.log("AVEM TOOOOKEN", token);
 	return (
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>
-            <Headline style={styles.logo}>LOGO</Headline>
+            <Headline style={styles.logo}>LOGO</Headline> 
+
             <Text>Add a car</Text>
                 <View style = {styles.inputsContainer}>
                     <View style = {styles.singleInput}>
@@ -54,6 +58,7 @@ export default function AddCar() {
 							// let params = `licensePlate=${number}`;
 							http.open("POST", "https://automated-parking-lot.herokuapp.com/api/user/car", true)
 							http.setRequestHeader("Content-Type", "application/json");
+                            http.setRequestHeader("Authorization", `Bearer ${token}`);
 							http.send(JSON.stringify({licensePlate:number}));
 							http.onload = () => {
 								console.log(http.responseText);
