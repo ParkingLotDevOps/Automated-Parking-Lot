@@ -58,8 +58,8 @@ export default function Sidebar(){
               <Link to={`/${
                 index == 0 ? 'dashboard' : 
                 index == 1 ? 'list' :
-                index == 2 ? <ArticleIcon className={styles.icon}/> :
-                index == 3 ? <NotificationsIcon className={styles.icon}/> : <SettingsIcon className={styles.icon}/>
+                index == 2 ? 'schedule' :
+                index == 3 ? 'notifications' : 'settings'
               }`}>
                 <ListItemText primary={text} />
               </Link>
