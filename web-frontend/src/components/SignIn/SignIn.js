@@ -26,6 +26,7 @@ export default function SignIn() {
       })
     });
     if (res.ok) {
+      localStorage.setItem('token', (await res.json()).access_token);
       alert('Successfully logged in!');
       navigate('/list');
     }

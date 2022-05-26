@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './TheHeader.module.css';
 import { BaseButton } from 'components';
+import { useNavigate } from 'react-router-dom';
 
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -13,6 +14,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers';
 
 export default function TheHeader(props) {
+  const navigate = useNavigate();
   const [value1, setValue1] = React.useState(null);
   const [value2, setValue2] = React.useState(null);
   return (
@@ -27,7 +29,7 @@ export default function TheHeader(props) {
             </IconButton>
           </div>
         )}
-        {props.hasButton && <BaseButton icon="plus">Add New</BaseButton>}
+        {props.hasButton && <BaseButton icon="plus" onClick={() => navigate('/addParkingLot')}>Add New</BaseButton>}
         {props.hasFirstDate && (
           <div className={styles.data}>
             <LocalizationProvider dateAdapter={AdapterDateFns} >

@@ -17,27 +17,32 @@ export default function AddParkingLot() {
   const [price, setPrice] = useState('');
   const [spots, setSpots] = useState('');
 
-  const addParkingLot = () => {
-    // const [latitude, longitude] = location.split(' ');
-    // fetch(
-    //   'https://automated-parking-lot.herokuapp.com/api/provider/parkinglot/save',
-    //   {
-    //     method: 'POST',
-    //     body: new URLSearchParams({
-    //       name: name,
-    //       latitude: parseFloat(latitude),
-    //       longitude: parseFloat(longitude),
-    //       price: parseFloat(price),
-    //       spots: [{ type: +spots, available: true }]
-    //     }),
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: 'Bearer ' + localStorage.getItem('token')
-    //     }
-    //   }
-    // )
-    //   .then((res) => res.json())
-    //   .then((res) => console.log(res));
+  const addParkingLot = async () => {
+    const [latitude, longitude] = location.split(' ');
+    const res = await fetch('https://automated-parking-lot.herokuapp.com/api/provider/parkinglot/save', {
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        latitude: parseFloat(latitude),
+        longitude: parseFloat(longitude),
+        price: parseFloat(price),
+        spots: new Array(spots).fill({
+          type: 0,
+          available: true
+        })
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('token')
+      }
+    });
+    if (res.ok) {
+      alert('Done!');
+    }
+    else {
+      console.log(sessionStorage.getItem('token'));
+      alert(await res.text());
+    }
   };
 
   return (
