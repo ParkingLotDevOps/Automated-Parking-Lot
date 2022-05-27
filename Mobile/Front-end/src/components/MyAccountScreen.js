@@ -34,7 +34,7 @@ const MyAccountScreen = () => {
           <Icon.Button
             name="money"
             backgroundColor="#004643"
-            onPress={() => console.log("setting presstrewed")}
+            onPress={() => navigation.navigate("PaymentMethods")}
           >
             <Text style={{ color: "#abd1c6" }}>Payment methods</Text>
           </Icon.Button>
@@ -44,7 +44,7 @@ const MyAccountScreen = () => {
           <Icon.Button
             name="history"
             backgroundColor="#004643"
-            onPress={() => console.log("setting preshtgrfdsed")}
+            onPress={() => console.log("Parking history")}
           >
             <Text style={{ color: "#abd1c6" }}>Parking history</Text>
           </Icon.Button>
@@ -62,7 +62,7 @@ const MyAccountScreen = () => {
           <Icon.Button
             name="info"
             backgroundColor="#004643"
-            onPress={() => console.log("setting preshtgrfdsed")}
+            onPress={() => console.log("How it Works")}
           >
             <Text style={{ color: "#abd1c6" }}>How it works</Text>
           </Icon.Button>

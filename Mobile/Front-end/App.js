@@ -23,6 +23,7 @@ import UserProfile from "./src/components/UserProfile";
 import AddCar from "./src/components/AddCar";
 import MyAccountScreen from "./src/components/MyAccountScreen";
 import Settings from "./src/screens/Settings";
+import PaymentMethods from "./src/screens/PaymentMethods";
 import { AuthContext } from "./src/components/auth";
 import { useState } from "react";
 
@@ -64,6 +65,7 @@ export default function App() {
           <Stack.Screen name="QR" component={QR} />
           <Stack.Screen name="ActiveBooking" component={ActiveBooking} />
           <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="PaymentMethods" component={PaymentMethods} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>
