@@ -24,6 +24,8 @@ import AddCar from "./src/components/AddCar";
 import MyAccountScreen from "./src/components/MyAccountScreen";
 import Settings from "./src/screens/Settings";
 import PaymentMethods from "./src/screens/PaymentMethods";
+import AddCard from "./src/screens/AddCard";
+
 import { AuthContext } from "./src/components/auth";
 import { useState } from "react";
 
@@ -66,6 +68,7 @@ export default function App() {
           <Stack.Screen name="ActiveBooking" component={ActiveBooking} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="PaymentMethods" component={PaymentMethods} />
+          <Stack.Screen name="AddCard" component={AddCard} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>

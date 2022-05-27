@@ -1,10 +1,13 @@
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 import SideMenuBar from '../components/SideMenuBar';
 import MainButton from '../components/MainButton';
 import MyCreditCard from '../components/MyCreditCard';
 
 const PaymentMethods = () => {
+  const navigation = useNavigation();
 	return (
 		<View style={styles.container}>
 			<View
@@ -66,7 +69,7 @@ const PaymentMethods = () => {
 				</ScrollView>
 			</View>
 
-			<MainButton text='Add new card' />
+			<MainButton text='Add new card' onPress={() => navigation.navigate("AddCard")} />
 		</View>
 	);
 };

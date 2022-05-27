@@ -12,7 +12,7 @@ import MainButton from './MainButton';
 import FbButton from './FbButton';
 import GoogleButton from './GoogleButton';
 import SignUp from './SignUp';
-import Location2  from './map/Location2';
+import Location2 from './map/Location2';
 import { AuthContext } from './auth';
 import { useContext } from 'react';
 
@@ -30,7 +30,7 @@ const theme = {
 		placeholder: '#ABD1C6',
 	},
 };
-let data = {}
+let data = {};
 export default function Login({ navigation }) {
 	const [username, inputUsername] = React.useState('');
 	const [password, inputPassword] = React.useState('');
@@ -39,21 +39,26 @@ export default function Login({ navigation }) {
 	return (
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>
-				<Image style={styles.image} source={require('../../assets/smartparking1.png')} />
+				<Image
+					style={styles.image}
+					source={require('../../assets/smartparking1.png')}
+				/>
 				{/* <Headline style={styles.logo}>SMART PARKING LOT</Headline> */}
-					<TextInput
-						style={styles.input}
-						placeholder='Email'
-						value={username}
-						onChangeText={inputUsername}
-					></TextInput>
-					<TextInput
-						style={styles.input}
-						placeholder='Password'
-						value={password}
-						secureTextEntry={true}
-						onChangeText={inputPassword}
-					></TextInput>
+				<TextInput
+					style={styles.input}
+					placeholder='Email'
+					value={username}
+					onChangeText={inputUsername}
+					autoCapitalize='none'
+					keyboardType='email-address'
+				></TextInput>
+				<TextInput
+					style={styles.input}
+					placeholder='Password'
+					value={password}
+					secureTextEntry={true}
+					onChangeText={inputPassword}
+				></TextInput>
 				<View
 					style={{
 						width: '90%',
@@ -64,33 +69,44 @@ export default function Login({ navigation }) {
 				</View>
 				<MainButton
 					text='Login'
-					
-					onPress = { () => {
-							const http = new XMLHttpRequest()
-							let params = `email=${username}&password=${password}`;
-							http.open("POST", "https://automated-parking-lot.herokuapp.com/api/login", true)
-							http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-							http.send(params)
-							http.onload = () => {
-								console.log(http.responseText);
-								if(http.status == 200){
-									data = JSON.parse(http.responseText);
-									setToken(data.access_token);
-									navigation.navigate(Location2, {
-										access_token: data.access_token,
-									refresh_token: data.refresh_token});
-								}
-								console.log(data.access_token);
+					onPress={() => {
+						const http = new XMLHttpRequest();
+						let params = `email=${username}&password=${password}`;
+						http.open(
+							'POST',
+							'https://automated-parking-lot.herokuapp.com/api/login',
+							true
+						);
+						http.setRequestHeader(
+							'Content-Type',
+							'application/x-www-form-urlencoded'
+						);
+						http.send(params);
+						http.onload = () => {
+							console.log(http.responseText);
+							if (http.status == 200) {
+								data = JSON.parse(http.responseText);
+								setToken(data.access_token);
+								navigation.navigate(Location2, {
+									access_token: data.access_token,
+									refresh_token: data.refresh_token,
+								});
 							}
-						}
-					}
-
+							console.log(data.access_token);
+						};
+					}}
 				/>
-				<FbButton/>
-				<GoogleButton/>
+				<FbButton />
+				<GoogleButton />
 				<View>
 					<Text>
-						or <Text style={styles.linkedText} onPress={() => navigation.navigate(SignUp)}>SignUp</Text>
+						or{' '}
+						<Text
+							style={styles.linkedText}
+							onPress={() => navigation.navigate(SignUp)}
+						>
+							SignUp
+						</Text>
 					</Text>
 				</View>
 				<StatusBar style='auto' />
@@ -124,6 +140,6 @@ const styles = StyleSheet.create({
 		fontWeight: '700',
 	},
 	image: {
-		marginBottom: 60
-	}
+		marginBottom: 60,
+	},
 });
