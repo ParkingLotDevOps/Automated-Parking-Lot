@@ -53,6 +53,10 @@ const parkingSpots = [
 ];
 
 const SelectParkingScreen = () => {
+
+  const [title, setTitle] = useState("Alexand Ioan Cuza University of Iasi");
+  const [details, setDetails] = useState("100");
+
   const navigation = useNavigation();
   const [isReserved, setIsReserved] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -61,10 +65,12 @@ const SelectParkingScreen = () => {
   };
   return (
     <View style={styles.container}>
+      <View style={{width: "85%"}}>
       <SideMenuBar />
+      </View>
       <ParkDetails
-        title="Alexandru Ioan Cuza University of Iasi"
-        details="100"
+        title={title}
+        details={details}
         priceUnit="LEI"
         timeUnit="/ Hr"
       />

@@ -12,26 +12,36 @@ import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from "@expo/vector-icons"; 
 
 const BookSpace = () => {
-	const [visible, setVisible] = useState(false);
-
 	const navigation = useNavigation();
 
+	const [visible, setVisible] = useState(false);
+  const [title, setTitle] = useState("Alexand Ioan Cuza University of Iasi");
+  const [details, setDetails] = useState("100");
+  const [selectedSpace, setSelectedSpace] = useState("4c");
+
+
 	const wait = () => {
-		setVisible(true);
+    setVisible(true);
+    
+    setTimeout(() => {
 		navigation.navigate('QR');
+    }, 4000);
 	}
 
 	const showModal = () => setVisible(true);
 	const hideModal = () => setVisible(false);
 	return (
     <View style={styles.container}>
+      <View style={{width: "85%"}}>
       <SideMenuBar />
+      </View>
       <ParkDetails
-        title="Faculty of Computer Science Park A"
-        details="100 LEI"
+        title={title}
+        details={details}
+        priceUnit="LEI"
         timeUnit="/ Hr"
       />
-      <Text style={styles.descriptiveText}> Space 4c </Text>
+      <Text style={styles.descriptiveText}> Space {selectedSpace}</Text>
       <BookSpaceOptions />
       <MainButton text="Book Space" onPress={wait} />
       <Modal
