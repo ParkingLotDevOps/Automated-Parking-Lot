@@ -8,6 +8,7 @@ const ActiveBooking = () => {
   const [time, setTime] = useState("11:00 AM");
   const navigation = useNavigation();
   return (
+    
     <View style={styles.container}>
       <View style={styles.wrapperContainer}>
         <View style={styles.mainContainer}>

@@ -8,11 +8,10 @@ import { Feather, Fontisto, Foundation } from '@expo/vector-icons';
 import SliderText from '../SliderText';
 import MySwitch from '../MySwitch';
 
-const BookSpaceOptions = () => {
+const BookSpaceOptions = ({sliderValue, setSliderValue}) => {
 	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 	const [disabledSwitch, setDisabledSwitch] = useState(false);
 	const [requestSpecialGuard, setRequestSpecialGuard] = useState(false);
-	const [sliderValue, setSliderValue] = useState(0);
 
 	const currentDate = new Date();
 
@@ -45,10 +44,10 @@ const BookSpaceOptions = () => {
 				minimumValue={0}
 				maximumValue={24}
 				stepValue={0.01}
-				onValueChange={(id) => setSliderValue(id)}
+				onValueChange={(id) => setSliderValue(parseInt(id))}
 				sliderValue={sliderValue}
 			/>
-			<View style={styles.checkIn}>
+			{/* <View style={styles.checkIn}>
 				<Text>Check-in Time </Text>
 				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 					<Feather
@@ -68,7 +67,7 @@ const BookSpaceOptions = () => {
 						onCancel={hideDatePicker}
 					/>
 				</View>
-			</View>
+			</View> */}
 			<View style={styles.breakLine}></View>
 			<View style={styles.header}>
 				<Text style={styles.headerText}>Specifications</Text>

@@ -55,7 +55,7 @@ const parkingSpots = [
 const SelectParkingScreen = () => {
 
   const [title, setTitle] = useState("Alexand Ioan Cuza University of Iasi");
-  const [details, setDetails] = useState("100");
+  const [details, setDetails] = useState("5");
 
   const navigation = useNavigation();
   const [isReserved, setIsReserved] = useState(false);
@@ -89,7 +89,7 @@ const SelectParkingScreen = () => {
       <MainButton
         text="continue"
         onPress={() => {
-          navigation.navigate(BookSpace);
+          navigation.navigate("BookSpace", {title: title, selectedSpace: selected, price: details});
         }}
       />
     </View>

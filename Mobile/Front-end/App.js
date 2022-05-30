@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./src/components/Login";
@@ -27,7 +27,6 @@ import PaymentMethods from "./src/screens/PaymentMethods";
 import AddCard from "./src/screens/AddCard";
 
 import { AuthContext } from "./src/components/auth";
-import { useState } from "react";
 
 const Stack = createStackNavigator();
 

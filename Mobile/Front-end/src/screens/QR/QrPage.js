@@ -5,18 +5,20 @@ import QRCode from 'react-native-qrcode-svg';
 import ParkDetails from '../../components/ParkDetails';
 import MainButton from '../../components/MainButton';
 import BookingDetailsQR from '../../components/BookingDetailsQR/BookingDetailsQR';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import Location2 from '../../components/map/Location2';
 import ActiveBooking from '../ActiveBooking';
 
 const QrPage = () => {
 	const navigation = useNavigation();
+	const route = useRoute();
 	const [visible, setVisible] = useState(false);
-	const [title, setTitle] = useState('Alexand Ioan Cuza University of Iasi');
-	const [details, setDetails] = useState('100');
+	const [title, setTitle] = useState(route.params.title);
+	const [details, setDetails] = useState(route.params.price);
 	const [time, setTime] = useState('11:00 AM');
-	const [timeOut, setTimeOut] = useState('05:00 PM');
+	const [timeOut, setTimeOut] = useState(route.params.duration);
 	const [specs, setSpecs] = useState('No specs');
+	
 	return (
 		<View style={styles.container}>
 					<View style={{ width: '85%' }}>
@@ -37,10 +39,10 @@ const QrPage = () => {
 								<QRCode value='http://awesome.link.qr' />
 							</View>
 
-							<Text> Unique ID: 1234 </Text>
+							<Text style={{textAlign:"center"}}> Unique ID: 1234 </Text>
 						</View>
 						<BookingDetailsQR
-							time={time}
+							selectedSpace={route.params.selectedSpace}
 							timeOut={timeOut}
 							specs={specs}
 						/>
