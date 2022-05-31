@@ -9,9 +9,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
-const drawerWidth = 350;
-
-export default function AddParkingLot() {
+export default function AddParkingLot({ setAddLot }) {
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
@@ -46,14 +44,14 @@ export default function AddParkingLot() {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <Box sx={{ display: 'flex' }}>
         <Drawer
           sx={{
-            width: drawerWidth,
+            width: 350,
             flexShrink: 0,
             '& .MuiDrawer-paper': {
-              width: drawerWidth,
+              width: 350,
               background: '#004643',
               fontFamily: ' "Open Sans", sans-serif',
               color: '#537f7d',
@@ -67,9 +65,9 @@ export default function AddParkingLot() {
           <main className={styles.main}>
             <h1 className={styles.name}>Add Parking Lot</h1>
 
-            <div className={styles.CloseIcon}>
+            <button className={styles.CloseIcon} onClick={() => setAddLot(false)}>
               <CloseIcon className={styles.icon} />
-            </div>
+            </button>
 
             <div className={styles.upload}>
               <FaCamera />
@@ -140,6 +138,6 @@ export default function AddParkingLot() {
           </main>
         </Drawer>
       </Box>
-    </>
+    </div>
   );
 }

@@ -48,14 +48,14 @@ export default function Sidebar() {
             ['Notifications', 'notifications', <NotificationsIcon className={styles.icon} />],
             ['Settings', 'settings', <SettingsIcon className={styles.icon} />]
           ].map(([text, slug, icon]) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {icon}
-              </ListItemIcon>
-              <Link to={`/${slug}`}>
-                <ListItemText primary={text} />
-              </Link>
-            </ListItem>
+            <Link to={`/${slug}`}>
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {icon}
+                </ListItemIcon>
+                  <ListItemText primary={text} />
+              </ListItem>
+            </Link>
           ))}
         </List>
 
