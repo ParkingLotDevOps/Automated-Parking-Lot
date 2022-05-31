@@ -45,7 +45,8 @@ export default class Succes extends React.Component {
             style={styles.buttons}
             text="Go Back To Home Screen"
             onPress={() => {
-              this.props.navigation.navigate("Home");
+              setGlobalState("isActive", false);
+              this.props.navigation.navigate("Location2");
             }}
           ></MainButton>
           <StatusBar style="auto" />

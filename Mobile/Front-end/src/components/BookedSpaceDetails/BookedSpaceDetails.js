@@ -1,8 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { useGlobalState, setGlobalState } from "../myGlobalState";
+import { useNavigation } from "@react-navigation/native";
+import MainButton from "../MainButton";
 
 const BookedSpaceDetails = (props) => {
+
+  const navigation = useNavigation();
   const [isDone, setIsDone] = useState(false);
 
   const duration = useGlobalState("duration")[0];
@@ -15,6 +19,7 @@ const BookedSpaceDetails = (props) => {
   }, 3000);
 
   return (
+    <View style={{width: "100%", alignItems: "center"}}>
     <View style={styles.container}>
       {isDone && (
         <View>
@@ -51,6 +56,19 @@ const BookedSpaceDetails = (props) => {
           </View>
         </View>
       )}
+      
+    </View>
+    {isDone ? (
+            <MainButton
+              text="Pay Up"
+              onPress={() => navigation.navigate("MakePayment")}
+            />
+          ) : (
+            <MainButton
+              text="View Booking Details"
+              onPress={() => navigation.navigate("QR")}
+            />
+          )}
     </View>
   );
 };
@@ -62,7 +80,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 6,
     padding: 10,
-    marginBottom: 20,
+    marginBottom: 8,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

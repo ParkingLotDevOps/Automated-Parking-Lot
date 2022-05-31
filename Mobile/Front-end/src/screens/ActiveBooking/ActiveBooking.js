@@ -1,82 +1,159 @@
-import { View, Text, StyleSheet, Dimensions } from "react-native";
-import React, { useState } from "react";
-import ParkDetails from "../../components/ParkDetails/ParkDetails";
-import BookedSpaceDetails from "../../components/BookedSpaceDetails";
-import MainButton from "../../components/MainButton/mainButton";
+import MapView, { Marker } from "react-native-maps";
+import { View, StyleSheet, Dimensions, Image, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import * as Location from "expo-location";
+import img from "../../../assets/fii.png";
+import img2 from "../../../assets/iconPark.png";
 import { useNavigation } from "@react-navigation/native";
-import { useGlobalState, setGlobalState } from "../../components/myGlobalState";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import { useGlobalState } from "../../components/myGlobalState";
+import BookedSpaceDetails from "../../components/BookedSpaceDetails";
+import ParkDetails from "../../components/ParkDetails"
 
-const ActiveBooking = () => {
-  const [time, setTime] = useState(useGlobalState("checkInTime")[0]);
-  const [selectedSpace, setSelectedSpace] = useState(
-    useGlobalState("selectedSpace")[0]
-  );
+const height = Dimensions.get("window").height * 0.95;
+const edgePadding = { bottom: 40, right: 0, left: 0, top: 25 };
+const ImageUri = Image.resolveAssetSource(img).uri;
+const ImageUri2 = Image.resolveAssetSource(img2).uri;
+
+var lat = 47.17387201124383;
+var long = 27.574846627023366;
+
+export const ActiveBooking = () => {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [isActive, setIsActive] = useState(useGlobalState("isActive")[0]);
+
+
+  var XMLHttpRequest = require("xhr2");
+
   const navigation = useNavigation();
+ 
+
+
+  const [region, setRegion] = useState({
+    latitude: lat,
+    longitude: long,
+    latitudeDelta: 0.006,
+    longitudeDelta: 0.006,
+  });
+
+  const [shouldShow, setShouldShow] = useState(false);
+
+  const [state, setState] = useState({ markers: [] });
+  let mapMarkers = () => {
+    return state.markers.map((marker) => (
+      <Marker
+        key={marker.id}
+        coordinate={{ latitude: marker.lat, longitude: marker.lng }}
+        title={marker.name}
+        description={marker.description}
+        image={{ uri: ImageUri2, scale: 1 }}
+        onPress={() => setShouldShow(!shouldShow)}
+        onCalloutPress={() => setShouldShow(!shouldShow)}
+      >
+        <MapView.Callout
+          tooltip={false}
+          style={{
+            backgroundColor: "#fffffe",
+            borderRadius: 10,
+            zIndex: 10,
+          }}
+        >
+          <View>
+            <Text style={{ color: "#E16162", padding: 6 }}>
+              {marker.title}
+              {"\n"}
+              {marker.description}
+            </Text>
+          </View>
+        </MapView.Callout>
+      </Marker>
+    ));
+  };
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync({
+        timeInterval: 10000,
+        accuracy: Location.Accuracy.Balanced,
+      });
+
+      setLocation(location);
+      lat = location.coords.latitude;
+      long = location.coords.longitude;
+      setRegion({
+        latitude: lat,
+        longitude: long,
+        latitudeDelta: 0.006,
+        longitudeDelta: 0.006,
+      });
+    })();
+  }, []);
+
+  
+
+  let text;
+
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+    lat = Number(JSON.stringify(location.coords.latitude));
+    long = Number(JSON.stringify(location.coords.longitude));
+  }
 
   return (
-    <View style={styles.container}>
+    <>
       <MapView
         style={styles.map}
+        provider="google"
         loadingEnabled
         showsUserLocation
         showsMyLocationButton
         showsPointsOfInterest
         showsCompass
         toolbarEnabled
-      />
-      <View style={[styles.miniContainer, { top: 100 }]}>
-        <Text>{selectedSpace}</Text>
-        <ParkDetails
-          title={useGlobalState("title")[0]}
-          details={selectedSpace}
-        ></ParkDetails>
-      </View>
-      <View style={[styles.miniContainer, { bottom: 150 }]}>
-        <BookedSpaceDetails />
-      </View>
-
-      <View style={[styles.miniContainer, { bottom: 100 }]}>
-        <MainButton
-          text="View Booking Details"
-          onPress={() => navigation.navigate()}
-        />
-      </View>
-    </View>
-  );
-  {
-    /* <View
-        style={[
-          styles.container,
-          { position: "absolute", top: 0, left: 0, right: 0, zIndex: 1 },
-        ]}
+        mapPadding={edgePadding}
+        region={region}
+        onRegionChangeComplete={(region) => setRegion(region)}
       >
-        <View style={styles.wrapperContainer}>
-          <View style={styles.mainContainer}>
-            <View style={styles.drept}>
-              <ParkDetails
-                title="Faculty of Computer Science Park A"
-                details="Space 4c"
-              ></ParkDetails>
-            </View>
+        <Marker
+          coordinate={{
+            latitude: 47.17387201124383,
+            longitude: 27.574846627023366,
+            latitudeDelta: 0.006,
+            longitudeDelta: 0.006,
+          }}
+          title="FII"
+          description="Place of suffering"
+          image={{ uri: ImageUri, scale: 1 }}
+        />
+        {mapMarkers()}
+      </MapView>
 
-            <BookedSpaceDetails time={time} duration="6 hours" />
-
-            <MainButton
-              text="View Booking Details"
-              onPress={() => navigation.navigate()}
-            ></MainButton>
-            <View></View>
-          </View>
+ 
+        <View style={[styles.miniContainer, { top: 70 }]}>
+          <ParkDetails
+            title={useGlobalState("title")[0]}
+            details={"Space " + useGlobalState("selectedSpace")[0]}
+          ></ParkDetails>
         </View>
-      </View> */
-  }
+
+        <View style={[styles.miniContainer, { bottom: 60 }]}>
+          <BookedSpaceDetails />
+        </View>
+   
+
+    </>
+  );
 };
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+  map: {
+    height,
   },
   miniContainer: {
     width: "100%",
@@ -84,23 +161,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  map: {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
-  },
-  wrapperContainer: {
-    width: "100%",
-    marginTop: 70,
-  },
-  mainContainer: {
-    marginTop: 20,
-    alignItems: "center",
-  },
-  drept: {
-    width: "100%",
-    alignItems: "center",
-    marginTop: 50,
-    marginBottom: 200,
+  callout: {
+    backgroundColor: "#E16162",
+    borderRadius: 10,
   },
 });
-export default ActiveBooking;

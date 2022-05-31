@@ -16,7 +16,7 @@ import { Map } from "./src/components/map/Map";
 import MapScreen from "./src/components/map/MapScreen";
 import SelectParkingScreen from "./src/screens/SelectParkingScreen/SelectParkingScreen";
 import BookSpace from "./src/screens/BookSpace/BookSpace";
-import ActiveBooking from "./src/screens/ActiveBooking/ActiveBooking";
+import Start from "./src/screens/ActiveBooking/Start";
 import QR from "./src/screens/QR";
 import "react-native-gesture-handler";
 import UserProfile from "./src/components/UserProfile";
@@ -70,7 +70,7 @@ export default function App() {
           />
           <Stack.Screen name="BookSpace" component={BookSpace} />
           <Stack.Screen name="QR" component={QR} />
-          <Stack.Screen name="ActiveBooking" component={ActiveBooking} />
+          <Stack.Screen name="Start" component={Start} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="PaymentMethods" component={PaymentMethods} />
           <Stack.Screen name="AddCard" component={AddCard} />

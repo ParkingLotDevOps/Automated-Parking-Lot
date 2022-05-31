@@ -53,7 +53,7 @@ const QrPage = () => {
             text="Go Back To Home Screen"
             onPress={() => {
               setGlobalState("isActive", true);
-              navigation.navigate("Location2");
+              navigation.navigate("Start");
             }}
           ></MainButton>
         </View>
