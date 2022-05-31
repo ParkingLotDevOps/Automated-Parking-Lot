@@ -3,7 +3,6 @@ import styles from './TheHeader.module.css';
 import { BaseButton } from 'components';
 import { useNavigate } from 'react-router-dom';
 
-import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
@@ -29,7 +28,7 @@ export default function TheHeader(props) {
             </IconButton>
           </div>
         )}
-        {props.hasButton && <BaseButton icon="plus" onClick={() => navigate('/addParkingLot')}>Add New</BaseButton>}
+        {props.hasButton && <BaseButton icon="plus" onClick={() => navigate('/add')}>Add New</BaseButton>}
         {props.hasFirstDate && (
           <div className={styles.data}>
             <LocalizationProvider dateAdapter={AdapterDateFns} >

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { FaCamera } from 'react-icons/fa';
 import styles from './AddParkingLot.module.css';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
-import { FaCamera } from 'react-icons/fa';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';

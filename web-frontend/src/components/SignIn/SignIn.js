@@ -28,7 +28,7 @@ export default function SignIn() {
     if (res.ok) {
       localStorage.setItem('token', (await res.json()).access_token);
       alert('Successfully logged in!');
-      navigate('/list');
+      navigate('/parking-lots');
     }
     else {
       alert('Wrong email or password!');
