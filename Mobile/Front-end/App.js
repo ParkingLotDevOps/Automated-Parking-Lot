@@ -32,8 +32,9 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [token, setToken] = useState(null);
+  const [refreshToken, setRefreshToken] = useState(null);
   return (
-    <AuthContext.Provider value={[token, setToken]}>
+    <AuthContext.Provider value={[token, setToken, refreshToken, setRefreshToken]}>
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Index"
