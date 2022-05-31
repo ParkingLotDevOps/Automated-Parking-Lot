@@ -47,7 +47,6 @@ const CarScreen = () => {
             {showMyCars(cars)}
         </View>
 
-
         <MainButton 
           text="Add new car"
           onPress={() => navigation.navigate(AddCar)}
