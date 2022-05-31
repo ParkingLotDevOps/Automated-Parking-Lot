@@ -68,13 +68,22 @@ public class AppUserController {
             return ResponseEntity.badRequest().body("Invalid password.");
         }
 
-
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toString());
         AppUser resp = appUserService.saveUser(user);
         if(resp == null){
             return ResponseEntity.badRequest().body("This email address is already being used.");
         }
         return ResponseEntity.created(uri).body(resp);
+    }
+
+    @PutMapping("/user")
+    public ResponseEntity updateUser(@RequestHeader HttpHeaders httpHeaders, @RequestBody AppUser user) {
+        AppUser updatedUser = appUserService.getUser(tokenDecoder.getEmailFromToken(httpHeaders));
+        try {
+            return ResponseEntity.ok().body(appUserService.updateUser(updatedUser, user));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(appUserService.saveUser(updatedUser));
+        }
     }
 
 

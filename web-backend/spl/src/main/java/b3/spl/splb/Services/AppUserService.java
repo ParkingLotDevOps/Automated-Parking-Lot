@@ -9,6 +9,7 @@ import java.util.List;
 public interface AppUserService {
     AppUser getUser(String email);
     AppUser saveUser(AppUser user);
+    AppUser updateUser(AppUser updatedUser, AppUser user);
     Role saveRole(Role role);
     boolean addRoleToAppUser(String email,  String rolName);
     boolean setBannedUser(String email, Boolean banned);
