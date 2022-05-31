@@ -20,11 +20,24 @@
 }
 
 .red {
-  background: gray;
-  color: lightgray;
+  background: #de5246;
+  color: white;
 }
 
 .blue {
-  background: dimgray;
+  background: #4267b2;
+  color: white;
+}
+
+.disabled {
   color: lightgray;
+  cursor: default;
+}
+
+.disabled.red {
+  background: gray;
+}
+
+.disabled.blue {
+  background: dimgray;
 }

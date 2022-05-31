@@ -8,7 +8,7 @@ export default function BaseButton({ onClick, title, type, color, icon, children
       onClick={onClick || (() => { })}
       type={type || 'button'}
       {...(title == null ? { } : { title })}
-      className={`${styles.btn} ${styles[color || 'red']}`}
+      className={`${styles.btn} ${styles[color || 'red']}${title == null ? '' : ' ' + styles.disabled}`}
       style={{ cursor: title == null ? 'pointer' : 'default' }}
     >
       {icon === 'google' && <FaGoogle />}

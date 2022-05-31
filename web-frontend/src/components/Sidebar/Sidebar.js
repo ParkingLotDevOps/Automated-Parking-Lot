@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './Sidebar.module.css';
 import { Link } from 'react-router-dom';
+
 import Logo from 'assets/logo.svg';
+import styles from './Sidebar.module.css';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -18,17 +19,15 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-const drawerWidth = 230;
-
 export default function Sidebar() {
   return (
     <Box sx={{ display: 'flex' }} >
       <Drawer
         sx={{
-          width: drawerWidth,
+          width: 230,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: drawerWidth,
+            width: 230,
             background: "#004643",
             fontFamily: ' "Open Sans", sans-serif',
             color: "#537f7d",
@@ -40,21 +39,20 @@ export default function Sidebar() {
       >
         <Toolbar />
         <img src={Logo} className={styles.logo} alt="logo" />
+
         <List>
-          {['Dashboard', 'Parkings', 'Schedule', 'Notification', 'Settings'].map((text, index) => (
+          {[
+            ['Dashboard', 'dashboard', <DashboardIcon className={styles.icon} />],
+            ['Parkings', 'parking-lots', <ConfirmationNumberIcon className={styles.icon} />],
+            ['Schedule', 'schedule', <ArticleIcon className={styles.icon} />],
+            ['Notifications', 'notifications', <NotificationsIcon className={styles.icon} />],
+            ['Settings', 'settings', <SettingsIcon className={styles.icon} />]
+          ].map(([text, slug, icon]) => (
             <ListItem button key={text}>
-              {<ListItemIcon>
-                {index == 0 ? <DashboardIcon className={styles.icon} /> :
-                  index == 1 ? <ConfirmationNumberIcon className={styles.icon} /> :
-                    index == 2 ? <ArticleIcon className={styles.icon} /> :
-                      index == 3 ? <NotificationsIcon className={styles.icon} /> : <SettingsIcon className={styles.icon} />
-                }
-              </ListItemIcon>}
-              <Link to={`/${index == 0 ? 'dashboard' :
-                  index == 1 ? 'list' :
-                    index == 2 ? 'schedule' :
-                      index == 3 ? 'notifications' : 'settings'
-                }`}>
+              <ListItemIcon>
+                {icon}
+              </ListItemIcon>
+              <Link to={`/${slug}`}>
                 <ListItemText primary={text} />
               </Link>
             </ListItem>
