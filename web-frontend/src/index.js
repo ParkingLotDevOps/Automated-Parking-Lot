@@ -8,15 +8,14 @@ import {
   App,
   SignIn,
   SignUp,
-  EditParkingLot,
-  Sidebar,
-  ParkingLotList,
-  NotificationsList,
-  AddParkingLot,
-  ScheduleParkings,
-  Settings,
   Dashboard,
-  Contact
+  ParkingLotList,
+  ScheduleParkings,
+  NotificationsList,
+  Settings,
+  Contact,
+  AddParkingLot,
+  EditParkingLot
 } from 'components';
 
 createRoot(document.getElementById('root')).render(
@@ -26,15 +25,16 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="sign-in" element={<SignIn />} />
         <Route path="sign-up" element={<SignUp />} />
-        <Route path="edit/:name" element={<EditParkingLot />} />
-        <Route path="sidebar" element={<Sidebar />} />
-        <Route path="list" element={<ParkingLotList />} />
-        <Route path="notifications" element={<NotificationsList />} />
-        <Route path="addParkingLot" element={<AddParkingLot />} />
-        <Route path="schedule" element={<ScheduleParkings />} />
-        <Route path="settings" element={<Settings />} />
+
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="parking-lots" element={<ParkingLotList />} />
+        <Route path="schedule" element={<ScheduleParkings />} />
+        <Route path="notifications" element={<NotificationsList />} />
+        <Route path="settings" element={<Settings />} />
         <Route path="contact" element={<Contact />} />
+
+        <Route path="add" element={<AddParkingLot />} />
+        <Route path="edit/:name" element={<EditParkingLot />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

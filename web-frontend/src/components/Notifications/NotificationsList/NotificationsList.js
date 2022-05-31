@@ -13,14 +13,12 @@ export default function NotificationsList() {
       content:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus est eget turpis tincidunt, efficitur tempus dui venenatis. Sed sit amet nulla sagittis, imperdiet orci at, aliquet leo. Etiam neque tellus, rutrum vel molestie eu, efficitur quis sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris eu dui sodales, finibus sapien eget, eleifend est.'
     },
-
     {
       id: '2',
       name: 'Notification 2',
       content:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus est eget turpis tincidunt, efficitur tempus dui venenatis. Sed sit amet nulla sagittis, imperdiet orci at, aliquet leo. Etiam neque tellus, rutrum vel molestie eu, efficitur quis sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris eu dui sodales, finibus sapien eget, eleifend est.'
     },
-
     {
       id: '3',
       name: 'Notification 3',

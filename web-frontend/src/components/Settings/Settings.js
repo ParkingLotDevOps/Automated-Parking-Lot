@@ -1,30 +1,12 @@
-// de sters
-
 import React from 'react';
 
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Sidebar } from 'components';
 import { FaCamera } from 'react-icons/fa';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styles from './Settings.module.css';
 
-export default function Settings(props) {
-
-  const navigate = useNavigate();
-
-//   const ITEM_HEIGHT = 48;
-
-//   const [anchorEl, setAnchorEl] = React.useState(null);
-//   const open = Boolean(anchorEl);
-//   const handleClick = (event) => {
-//     setAnchorEl(event.currentTarget);
-//   };
-//   const handleClose = () => {
-//     setAnchorEl(null);
-//   };
-  
+export default function Settings() {
   return (
     <>
       <Sidebar />
@@ -70,7 +52,7 @@ export default function Settings(props) {
                   }}
                   sx={{ input: { color: 'dodgerblue' } }}
                   variant="filled"
-                /> 
+                />
                 <Button variant="contained" sx={{ height: 55 }}>
                   Save Changes
                 </Button>

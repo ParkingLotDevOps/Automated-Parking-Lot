@@ -5,7 +5,7 @@ import { FaGoogle, FaFacebookF, FaPlus } from 'react-icons/fa';
 export default function BaseButton({ onClick, type, color, icon, children }) {
   return (
     <button
-      onClick={onClick || (() => {})}
+      onClick={onClick || (() => { })}
       type={type || 'button'}
       className={`${styles.btn} ${styles[color || 'red']}`}
     >

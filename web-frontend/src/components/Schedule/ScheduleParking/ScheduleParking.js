@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styles from './ScheduleParking.module.css';
 import Checkbox from '@mui/material/Checkbox';
 
@@ -25,20 +24,7 @@ export default function ScheduleParking(props) {
 
   const [date1, setDate1] = React.useState(null);
   const [date2, setDate2] = React.useState(null);
-  
-  const navigate = useNavigate();
 
-  const ITEM_HEIGHT = 48;
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  
   return (
     <li className={styles.listItem}>
       <div className={styles.name}>{props.item.name}</div>
@@ -53,7 +39,7 @@ export default function ScheduleParking(props) {
             renderInput={(params) => <TextField {...params} sx={{
               svg: { color: '#5b8483' },
               input: { color: '#5b8483' },
-              label: { color: '#5b8483' } 
+              label: { color: '#5b8483' }
             }} />}
           />
         </LocalizationProvider>
@@ -67,7 +53,7 @@ export default function ScheduleParking(props) {
             renderInput={(params) => <TextField {...params} sx={{
               svg: { color: '#5b8483' },
               input: { color: '#5b8483' },
-              label: { color: '#5b8483' } 
+              label: { color: '#5b8483' }
             }} />}
           />
         </LocalizationProvider>
@@ -177,7 +163,7 @@ export default function ScheduleParking(props) {
             renderInput={(params) => <TextField {...params} sx={{
               svg: { color: '#5b8483' },
               input: { color: '#5b8483' },
-              label: { color: '#5b8483' } 
+              label: { color: '#5b8483' }
             }} />}
           />
         </LocalizationProvider>
@@ -191,7 +177,7 @@ export default function ScheduleParking(props) {
             renderInput={(params) => <TextField {...params} sx={{
               svg: { color: '#5b8483' },
               input: { color: '#5b8483' },
-              label: { color: '#5b8483' } 
+              label: { color: '#5b8483' }
             }} />}
           />
         </LocalizationProvider>

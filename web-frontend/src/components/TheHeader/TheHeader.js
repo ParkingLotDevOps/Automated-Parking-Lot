@@ -42,8 +42,8 @@ export default function TheHeader(props) {
                 renderInput={(params) => <TextField {...params} sx={{
                   svg: { color: '#5b8483' },
                   input: { color: '#5b8483' },
-                  label: { color: '#5b8483' } 
-                }}  />}
+                  label: { color: '#5b8483' }
+                }} />}
               />
             </LocalizationProvider>
           </div>
@@ -60,8 +60,8 @@ export default function TheHeader(props) {
                 renderInput={(params) => <TextField {...params} sx={{
                   svg: { color: '#5b8483' },
                   input: { color: '#5b8483' },
-                  label: { color: '#5b8483' } 
-                }}  />}
+                  label: { color: '#5b8483' }
+                }} />}
               />
             </LocalizationProvider>
           </div>

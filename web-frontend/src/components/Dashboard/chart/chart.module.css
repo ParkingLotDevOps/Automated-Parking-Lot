@@ -1,9 +1,8 @@
-.chart{
-    width: 650px;    
-    height: 160px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
+.chart {
+  width: 650px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

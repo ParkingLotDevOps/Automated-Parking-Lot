@@ -78,7 +78,6 @@
 .personal-data .top {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   gap: 1rem;
 }
 
@@ -107,8 +106,6 @@
 .change {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-around; */
-  
 }
 
 .change-email {

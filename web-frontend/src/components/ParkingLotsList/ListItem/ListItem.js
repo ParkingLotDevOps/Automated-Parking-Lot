@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ListItem.module.css';
@@ -13,27 +12,22 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const formatDate = (d) => {
   const date = new Date(d);
-
   let year = date.getFullYear();
   let month = date.toLocaleDateString('default', { month: 'long' });
   let day = date.getDate();
-
   day = day < 10 ? ('0' + day).substring(0, 2) : day;
-
   return day + ' ' + month.substring(0, 3) + ', ' + year;
 };
 
 export default function LisItem(props) {
   const [isChecked, setIsChecked] = useState(false);
-
   const navigate = useNavigate();
-
   const options = ['Edit', 'Delete'];
 
   const ITEM_HEIGHT = 48;
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -114,8 +108,8 @@ export default function LisItem(props) {
               onClick={
                 option === 'Edit'
                   ? () => {
-                      navigate(`/edit/${props.item.name.replace(/ /g, '-')}`);
-                    }
+                    navigate(`/edit/${props.item.name.replace(/ /g, '-')}`);
+                  }
                   : handleClose
               }
             >

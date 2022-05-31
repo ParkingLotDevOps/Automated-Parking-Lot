@@ -1,87 +1,85 @@
 .main {
-    margin-left: 230px;
-    padding: 2rem;
+  margin-left: 230px;
+  padding: 2rem;
 }
-  
+
 .name {
-    font-size: 2.5rem;
-    margin: 2rem 1rem;
+  font-size: 2.5rem;
+  margin: 2rem 1rem;
 }
 
 .listItems {
-    width: 95%;
-    padding: 0;
-    padding-top: 10;
-    margin: 0 auto;
+  width: 95%;
+  padding: 0;
+  padding-top: 10;
+  margin: 0 auto;
 }
-  
+
 .listFields {
-    display: flex;
-    border-bottom: 2px solid #bab9ba;
-    padding-bottom: 0.2rem;
-    margin-bottom: 0.5rem;
+  display: flex;
+  border-bottom: 2px solid #bab9ba;
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
 }
-  
+
 .listFields div {
-    /* width: calc(85% ); */
-    width: 80%;
-    color: #bab9ba;
-}
-  
-.itemGrid{
-    color: #bab9ba;
-    padding-left: 2rem;
+  width: 80%;
+  color: #bab9ba;
 }
 
-.more{
-    position: relative;
-    float: right;
-    display: flex;
-    right: 20px;
+.itemGrid {
+  color: #bab9ba;
+  padding-left: 2rem;
 }
 
-.pageName{
+.more {
+  position: relative;
+  float: right;
+  display: flex;
+  right: 20px;
+}
+
+.pageName {
   padding-top: -30%;
 }
 
-.img{
+.img {
   width: 80px;
   height: 80px;
 }
 
-.reports{
+.reports {
   width: 480px;
   height: 180px;
   margin-left: 80px;
 }
 
-.analytics{
+.analytics {
   width: 230px;
   height: 180px;
   margin-left: 80px;
 }
 
-.list{
+.list {
   margin-top: 10px;
   margin-left: 10px;
   color: black;
-  list-style-type: none; 
-  
+  list-style-type: none;
+
 }
 
-.list li{
+.list li {
   color: aliceblue;
-  list-style-type: none; 
+  list-style-type: none;
 }
 
-.box{
+.box {
   display: flex;
   width: 200;
   height: 70;
 }
 
-.divider{
+.divider {
   margin: 8px !important;
   background: #447e77;
-  
 }

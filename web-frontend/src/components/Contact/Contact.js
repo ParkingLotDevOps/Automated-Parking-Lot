@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Contact.module.css';
 import { Sidebar } from 'components';
+
 export default function Contact() {
   return (
     <>
@@ -19,7 +20,7 @@ export default function Contact() {
           </div>
           <div className={styles.about}>
             <h1>About Us</h1>
-            <p> 
+            <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum lacus sollicitudin posuere cursus. Fusce dignissim id lectus sit amet faucibus. Pellentesque in arcu maximus, ornare ex non, efficitur enim. Sed rhoncus dolor est, iaculis hendrerit ligula sollicitudin et. Integer posuere dignissim mollis.
             </p>
           </div>

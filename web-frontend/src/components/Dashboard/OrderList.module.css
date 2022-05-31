@@ -1,89 +1,70 @@
 .listItem {
-    display: flex;
-    align-items: center;
-    background-color: #004643;
-    width: 100%;
-    height: 0.5%;
-    margin-bottom: -0.5rem;
-    margin-top: 0rem;
+  display: flex;
+  align-items: center;
+  background-color: #004643;
+  width: 100%;
+  height: 0.5%;
+  margin-bottom: -0.5rem;
+  margin-top: 0rem;
 }
-  
+
 .listItem > * {
-    width: calc(85% / 4);
-    color: rgb(221, 219, 219);
-    word-wrap: break-word;
-    padding: 1rem 0;
-    padding-right: 0.5rem;
+  width: calc(85% / 4);
+  color: rgb(221, 219, 219);
+  word-wrap: break-word;
+  padding: 1rem 0;
+  padding-right: 0.5rem;
 }
-  
+
 .checkbox {
-    width: 5%;
-    background-color: #e16162;
+  width: 5%;
+  background-color: #e16162;
 }
-  
+
 .menuBtn {
-    transform: rotate(90deg);
-    height: 5%;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
+  transform: rotate(90deg);
+  height: 5%;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
 }
-  
+
 .fav {
-    width: 5%;
+  width: 5%;
 }
-  
+
 .date {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
+
 .date span {
-    margin-right: 0.5rem;
-    padding-top: 0.2rem;
+  margin-right: 0.5rem;
+  padding-top: 0.2rem;
 }
-  
+
 .status {
-    border-radius: 16px;
-    text-align: center;
-    padding: 0.4rem 0;
-    width: calc(85% / 4);
-    text-transform: capitalize;
+  border-radius: 16px;
+  text-align: center;
+  padding: 0.4rem 0;
+  width: calc(85% / 4);
+  text-transform: capitalize;
 }
-  
+
 .status.opened {
-    background-color: #2f6352;
-    color: rgb(236, 233, 233);
+  background-color: #2f6352;
+  color: rgb(236, 233, 233);
 }
-  
+
 .status.closed {
-    background-color: rgba(102, 88, 67, 0.5);
-    color: #f9bc60;
+  background-color: rgba(102, 88, 67, 0.5);
+  color: #f9bc60;
 }
-  
+
 .status.canceled {
-    background-color: rgba(112, 72, 72, 0.5);
-    color: #e16162;
-} 
-
-/* li:nth-child(odd){
-    font-size: +100%;
-    background: #004643;
+  background-color: rgba(112, 72, 72, 0.5);
+  color: #e16162;
 }
-
-li:nth-child(even){
-    font-size: +100%;
-    background: #043938;
-} */
-
-/* .time{
-    background-color: #E16162;
-    
-} */
-
-/* .person{
-    width: 5px !important;
-    height: 5px !important;
-} */

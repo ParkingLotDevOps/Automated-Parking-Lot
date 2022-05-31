@@ -5,7 +5,6 @@ import { EditParkingLotPanel, EditParkingLotGrid, Sidebar } from 'components';
 
 export default function EditParkingLot() {
   const { name } = useParams();
-
   return (
     <>
       <Sidebar />
