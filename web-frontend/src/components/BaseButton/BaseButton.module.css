@@ -20,11 +20,11 @@
 }
 
 .red {
-  background: #de5246;
-  color: white;
+  background: gray;
+  color: lightgray;
 }
 
 .blue {
-  background: #4267b2;
-  color: white;
+  background: dimgray;
+  color: lightgray;
 }

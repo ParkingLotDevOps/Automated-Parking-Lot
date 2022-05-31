@@ -45,8 +45,8 @@ export default function SignIn() {
       <div className={styles.center}>or</div>
 
       <div className={styles.btns}>
-        <BaseButton onClick={() => alert('google')} color="red" icon="google">Login with Google</BaseButton>
-        <BaseButton onClick={() => alert('facebook')} color="blue" icon="facebook">Login with Facebook</BaseButton>
+        <BaseButton title="This feature is not available." color="red" icon="google">Login with Google</BaseButton>
+        <BaseButton title="This feature is not available." color="blue" icon="facebook">Login with Facebook</BaseButton>
       </div>
 
       <div className={styles.center}>
