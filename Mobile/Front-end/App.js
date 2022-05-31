@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./src/components/Login";
@@ -16,7 +16,7 @@ import { Map } from "./src/components/map/Map";
 import MapScreen from "./src/components/map/MapScreen";
 import SelectParkingScreen from "./src/screens/SelectParkingScreen/SelectParkingScreen";
 import BookSpace from "./src/screens/BookSpace/BookSpace";
-import ActiveBooking from "./src/screens/ActiveBooking/ActiveBooking";
+import Start from "./src/screens/ActiveBooking/Start";
 import QR from "./src/screens/QR";
 import "react-native-gesture-handler";
 import UserProfile from "./src/components/UserProfile";
@@ -25,6 +25,9 @@ import MyAccountScreen from "./src/components/MyAccountScreen";
 import Settings from "./src/screens/Settings";
 import PaymentMethods from "./src/screens/PaymentMethods";
 import AddCard from "./src/screens/AddCard";
+import MakePayment from "./src/screens/MakePayment/MakePayment";
+import OTP from "./src/screens/OTP";
+import Succes from "./src/screens/Succes";
 
 import { AuthContext } from "./src/components/auth";
 
@@ -32,8 +35,11 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [token, setToken] = useState(null);
+  const [refreshToken, setRefreshToken] = useState(null);
   return (
-    <AuthContext.Provider value={[token, setToken]}>
+    <AuthContext.Provider
+      value={[token, setToken, refreshToken, setRefreshToken]}
+    >
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Index"
@@ -64,10 +70,13 @@ export default function App() {
           />
           <Stack.Screen name="BookSpace" component={BookSpace} />
           <Stack.Screen name="QR" component={QR} />
-          <Stack.Screen name="ActiveBooking" component={ActiveBooking} />
+          <Stack.Screen name="Start" component={Start} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="PaymentMethods" component={PaymentMethods} />
           <Stack.Screen name="AddCard" component={AddCard} />
+          <Stack.Screen name="MakePayment" component={MakePayment} />
+          <Stack.Screen name="OTP" component={OTP} />
+          <Stack.Screen name="Succes" component={Succes} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { SafeAreaView } from 'react-navigation';
-import { Map } from './Map';
+import { ActiveBooking } from './ActiveBooking';
 
-const MapScreen = ({ navigation }) => {
+const ActiveBookingScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView forceInset={{ top: 'always' }}>
-			<Map />
+			<ActiveBooking />
 		</SafeAreaView>
 	);
 };
 
-export default MapScreen;
+export default ActiveBookingScreen;

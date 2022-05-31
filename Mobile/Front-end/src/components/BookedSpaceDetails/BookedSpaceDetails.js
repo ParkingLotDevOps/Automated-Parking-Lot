@@ -1,13 +1,35 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
+import { useGlobalState, setGlobalState } from "../myGlobalState";
+import { useNavigation } from "@react-navigation/native";
+import MainButton from "../MainButton";
 
 const BookedSpaceDetails = (props) => {
+
+  const navigation = useNavigation();
+  const [isDone, setIsDone] = useState(false);
+
+  const duration = useGlobalState("duration")[0];
+  let price = useGlobalState("price")[0];
+  price = parseInt(duration) * parseInt(price);
+
+  setTimeout(() => {
+    setGlobalState("needToPay", true);
+    setIsDone(true);
+  }, 3000);
+
   return (
+    <View style={{width: "100%", alignItems: "center"}}>
     <View style={styles.container}>
+      {isDone && (
+        <View>
+          <Text> Awesome! You are done parking</Text>
+        </View>
+      )}
       <View style={styles.row}>
         <Text>Booked Space:</Text>
 
-        <Text style={{ width: "50%" }}>Faculty of Computer Science Park A</Text>
+        <Text style={{ width: "50%" }}>{useGlobalState("title")[0]}</Text>
       </View>
 
       <View style={styles.breakLine}></View>
@@ -15,21 +37,38 @@ const BookedSpaceDetails = (props) => {
       <View style={styles.row}>
         <Text style={styles.title}>Check-In Time:</Text>
         <View style={{ width: "35%" }}>
-          <Text style={styles.detail}>{props.time}</Text>
+          <Text style={styles.detail}>{useGlobalState("checkInTime")[0]}</Text>
         </View>
       </View>
+
       <View style={styles.row}>
-        <Text style={styles.title}>Estimated Duration:</Text>
+        <Text style={styles.title}>Check-Out Time:</Text>
         <View style={{ width: "35%" }}>
-          <Text style={styles.detail}>{props.duration}</Text>
+          <Text style={styles.detail}>{useGlobalState("checkOutTime")[0]}</Text>
         </View>
       </View>
-      <View style={styles.row}>
-        <Text style={styles.title}>Unique ID:</Text>
-        <View styles={{width: "35%"}}>
-        <Text style={styles.detail}>{props.id}</Text>
+      {isDone && <View style={styles.breakLine}></View>}
+      {isDone && (
+        <View style={styles.row}>
+          <Text style={styles.title}>Total</Text>
+          <View style={{ width: "35%" }}>
+            <Text style={styles.detail}>{price + " LEI"}</Text>
+          </View>
         </View>
-      </View>
+      )}
+      
+    </View>
+    {isDone ? (
+            <MainButton
+              text="Pay Up"
+              onPress={() => navigation.navigate("MakePayment")}
+            />
+          ) : (
+            <MainButton
+              text="View Booking Details"
+              onPress={() => navigation.navigate("QR")}
+            />
+          )}
     </View>
   );
 };
@@ -41,7 +80,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 6,
     padding: 10,
-    marginBottom: 20,
+    marginBottom: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.0,
+
+    elevation: 24,
   },
   row: {
     width: "100%",

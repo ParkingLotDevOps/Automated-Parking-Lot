@@ -26,7 +26,10 @@ const theme = {
 	},
 };
 
+let count = 0;
+
 export default function UserProfile() {
+    const [initialUsername, setInitialUsername] = useState('');
     const navigation = useNavigation();
 	const [fullName, inputFullName] = React.useState('');
     const [username, inputUsername] = React.useState('');
@@ -35,21 +38,26 @@ export default function UserProfile() {
     let [usernameDisabled, setUsernameDisabled] = useState(true);
 
     const [token, setToken] = useContext(AuthContext);
-    console.log("AVEM TOOOOKEN", token);
-    const http = new XMLHttpRequest();
-    http.open(
-        "GET",
-        "https://automated-parking-lot.herokuapp.com/api/user/profile",
-        true
-    );
-    http.setRequestHeader("Authorization", `Bearer ${token}`);
-    http.send();
-    http.onload = () => {
-        const userData = JSON.parse(http.responseText);
-        console.log(userData);
-        inputFullName(userData.name);
-        inputUsername(userData.username);
+    const [refresToken, setRefreshToken] = useContext(AuthContext);
+    if(count == 0){
+        const http = new XMLHttpRequest();
+        http.open(
+            "GET",
+            "https://automated-parking-lot.herokuapp.com/api/user/profile",
+            true
+        );
+        http.setRequestHeader("Authorization", `Bearer ${token}`);
+        http.send();
+        http.onload = () => {
+            const userData = JSON.parse(http.responseText);
+            console.log(userData);
+            inputFullName(userData.name);
+            inputUsername(userData.email);
+            setInitialUsername(userData.email);
+        }
+        count++;
     }
+
 	return (
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>
@@ -68,7 +76,7 @@ export default function UserProfile() {
                                     style={styles.input}
                                     placeholder=''
                                     value={fullName}
-                                    onChangeText={inputFullName}
+                                    onChangeText={newFullName => inputFullName(newFullName)}
                                     disabled = {fullNameDisabled}
                             />
                             <Icon.Button
@@ -86,7 +94,7 @@ export default function UserProfile() {
                                 style={styles.input}
                                 placeholder=''
                                 value={username}
-                                onChangeText={inputUsername}
+                                onChangeText={newUsername => inputUsername(newUsername)}
                                 disabled = {usernameDisabled}>
                             </TextInput>
                             <Icon.Button
@@ -103,7 +111,38 @@ export default function UserProfile() {
                 <View style = {styles.buttonContainer}>
                     <MainButton
                         text='Save'
-                        onPress = {() => navigation.navigate("Location2")}
+                        onPress = {() => {
+                            console.log(fullName);
+                            console.log(username);
+
+
+                            fetch("https://automated-parking-lot.herokuapp.com/api/user", {
+                                method: "PUT",
+                                body : JSON.stringify({
+                                         email: username,
+                                         name: fullName
+                                    }),
+                                headers: {
+                                    Accept: 'application/json',
+                                    'Content-Type': 'application/json',
+                                    'Authorization' : `Bearer ${token}`
+                                }
+                            }
+                            ).then(res => {
+                                if(res.status == 200){
+                                    if(username != initialUsername){
+                                        navigation.navigate("Login");
+                                        count = 0;
+                                    }
+
+                                    else {
+                                        navigation.navigate("Location2");
+                                        count = 0;
+                                    }
+                                }
+                            })
+                        }
+                        }
                     />
                 </View>
 

@@ -36,6 +36,7 @@ export default function Login({ navigation }) {
 	const [password, inputPassword] = React.useState('');
 
 	const [token, setToken] = useContext(AuthContext);
+	const [refreshToken, setRefreshToken] = useContext(AuthContext);
 	return (
 		<PaperProvider theme={theme}>
 			<View style={styles.container}>
@@ -87,12 +88,14 @@ export default function Login({ navigation }) {
 							if (http.status == 200) {
 								data = JSON.parse(http.responseText);
 								setToken(data.access_token);
+								setRefreshToken(data.refresh_token)
 								navigation.navigate(Location2, {
 									access_token: data.access_token,
 									refresh_token: data.refresh_token,
 								});
 							}
 							console.log(data.access_token);
+							console.log(data.refresh_token);
 						};
 					}}
 				/>

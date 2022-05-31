@@ -3,12 +3,12 @@ import { Text, View } from 'react-native';
 import { NavigationContainer, useRoute } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from 'react-native-elements';
-import MapScreen from './MapScreen';
-import MyAccountScreen from '../MyAccountScreen';
-import CarScreen from '../CarScreen';
+import ActiveBookingScreen from './ActiveBookingScreen';
+import MyAccountScreen from '../../components/MyAccountScreen';
+import CarScreen from '../../components/CarScreen';
 
 function Home() {
-	return <MapScreen />;
+	return <ActiveBookingScreen />;
 }
 
 function Wallet() {
@@ -96,7 +96,6 @@ function MyTabs() {
 	);
 }
 
-export default function Location2({ navigation }) {
-	route = useRoute();
+export default function Start({ navigation }) {
 	return <MyTabs />;
 }
