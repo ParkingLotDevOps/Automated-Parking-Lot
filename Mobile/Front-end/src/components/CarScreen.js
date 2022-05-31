@@ -12,9 +12,9 @@ import { useState, useEffect } from "react";
 
 let showMyCars = (cars) => {
     return cars.map((car) => (
-        <View style={{flexDirection:"row", left:30}}>
+        <View key={car.id} style={{flexDirection:"row", left:30, margin:20}}>
            <Icon name='car' type='font-awesome' color= '#abd1c6' />
-            <Text style={{color:"#abd1c6"}}>
+            <Text  style={{color:"#abd1c6"}}>
                 {car.licensePlate}
             </Text>
       </View>
@@ -34,8 +34,16 @@ const CarScreen = () => {
     http.setRequestHeader("Authorization", `Bearer ${token}`);
     http.send();
     http.onload = () => {
-    //   console.log(http.responseText);
-      setCars(JSON.parse(http.responseText));
+      // console.log(http.responseText);
+    // console.log([JSON.parse(http.responseText)]);
+      // setCars(JSON.parse(http.responseText).[0]);
+      const carsArray = JSON.parse(http.responseText);
+      let myCars = [];
+      for(let i = 0; i < carsArray.length; i++){
+        myCars.push({"id" : carsArray[i].id,
+                      "licensePlate": carsArray[i].licensePlate});
+      }
+      setCars(myCars);
     }
     
   return (
@@ -43,6 +51,7 @@ const CarScreen = () => {
     <View style={styles.container} forceInset={{ top: "always" }}>
 
       <View >
+          <Text style={{color:"#E16162", alignContent:"center", marginLeft:50,fontSize:18}}>Your cars:</Text>
         <View style={styles.cars}>
             {showMyCars(cars)}
         </View>
