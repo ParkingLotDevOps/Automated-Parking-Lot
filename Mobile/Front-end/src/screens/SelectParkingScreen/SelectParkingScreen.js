@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
 
+import { setGlobalState, useGlobalState } from "../../components/myGlobalState";
 import ParkDetails from "../../components/ParkDetails";
 import SlotSelector from "../../components/SlotSelector";
 import MainButton from "../../components/MainButton/mainButton";
 import MySwitch from "../../components/MySwitch";
 import SideMenuBar from "../../components/SideMenuBar";
 import { useNavigation } from "@react-navigation/native";
-import BookSpace from "../BookSpace/BookSpace";
 
 const parkingSpots = [
   [
@@ -53,9 +53,8 @@ const parkingSpots = [
 ];
 
 const SelectParkingScreen = () => {
-
-  const [title, setTitle] = useState("Alexand Ioan Cuza University of Iasi");
-  const [details, setDetails] = useState("5");
+  const [title, setTitle] = useState(useGlobalState("title")[0]);
+  const [details, setDetails] = useState(useGlobalState("price")[0]);
 
   const navigation = useNavigation();
   const [isReserved, setIsReserved] = useState(false);
@@ -65,8 +64,8 @@ const SelectParkingScreen = () => {
   };
   return (
     <View style={styles.container}>
-      <View style={{width: "85%"}}>
-      <SideMenuBar />
+      <View style={{ width: "85%" }}>
+        <SideMenuBar />
       </View>
       <ParkDetails
         title={title}
@@ -89,7 +88,8 @@ const SelectParkingScreen = () => {
       <MainButton
         text="continue"
         onPress={() => {
-          navigation.navigate("BookSpace", {title: title, selectedSpace: selected, price: details});
+          setGlobalState("selectedSpace", selected);
+          navigation.navigate("BookSpace");
         }}
       />
     </View>

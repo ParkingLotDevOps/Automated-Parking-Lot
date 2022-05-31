@@ -8,7 +8,10 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 import { Text } from "react-native";
 import MainButton from "../MainButton";
 import SelectParkingScreen from "../../screens/SelectParkingScreen";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { useGlobalState } from "../myGlobalState";
+import BookedSpaceDetails from "../BookedSpaceDetails";
+import ParkDetails from "../ParkDetails";
 
 const height = Dimensions.get("window").height * 0.95;
 const edgePadding = { bottom: 40, right: 0, left: 0, top: 25 };
@@ -21,10 +24,18 @@ var long = 27.574846627023366;
 export const Map = () => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [isActive, setIsActive] = useState(useGlobalState("isActive")[0]);
+
+  const [needToPay, setNeedToPay] = useState(useGlobalState("needToPay")[0]);
+  const isFocused = useIsFocused();
 
   var XMLHttpRequest = require("xhr2");
-  
+
   const navigation = useNavigation();
+
+  const didBlurSubscription = navigation.addListener("willBlur", (payload) => {
+    console.log("didBlur", payload);
+  });
 
   const [region, setRegion] = useState({
     latitude: lat,
@@ -90,6 +101,8 @@ export const Map = () => {
     })();
   }, []);
 
+  let text;
+
   if (errorMsg) {
     text = errorMsg;
   } else if (location) {
@@ -126,68 +139,101 @@ export const Map = () => {
         />
         {mapMarkers()}
       </MapView>
-      <View
-        style={{
-          position: "absolute",
-          top: 90,
-          padding: 5,
-          maxHeight: "100%",
-          left: "5%",
-          width: "90%",
-          backgroundColor: "#004643",
-          borderRadius: 10,
-        }}
-      >
-        <GooglePlacesAutocomplete
-          fetchDetails={true}
-          placeholder="Enter location"
-          onPress={(data, details = null) => {
-            let lat1 = details.geometry.location.lat;
-            let lng1 = details.geometry.location.lng;
-            setRegion({
-              latitude: lat1,
-              longitude: lng1,
-              latitudeDelta: 0.006,
-              longitudeDelta: 0.006,
-            });
-
-            const http = new XMLHttpRequest();
-            let params = `latitude=${lat1}&longitude=${lng1}`;
-            console.log(params);
-            http.open(
-              "POST",
-              "https://automated-parking-lot.herokuapp.com/api/user/parkinglots",
-              true
-            );
-            http.setRequestHeader("Content-Type", "application/json");
-            http.send(JSON.stringify({ latitude: lat1, longitude: lng1 }));
-            http.onload = () => {
-              console.log(http.responseText);
-              let newMarkers = [];
-              let myLots = JSON.parse(http.responseText);
-              console.log(myLots);
-              for (lot in myLots) {
-                newMarkers.push({
-                  id: myLots[lot].id,
-                  lat: myLots[lot].latitude,
-                  lng: myLots[lot].longitude,
-                  description: `Price: ${myLots[lot].price} LEI/h`,
-                  title: `Name: ${myLots[lot].name}`,
-                });
-              }
-              setState((previousState) => {
-                return { ...previousState, markers: newMarkers };
+      {!isActive && (
+        <View
+          style={{
+            position: "absolute",
+            top: 90,
+            padding: 5,
+            maxHeight: "100%",
+            left: "5%",
+            width: "90%",
+            backgroundColor: "#004643",
+            borderRadius: 10,
+          }}
+        >
+          <GooglePlacesAutocomplete
+            fetchDetails={true}
+            placeholder="Enter location"
+            onPress={(data, details = null) => {
+              let lat1 = details.geometry.location.lat;
+              let lng1 = details.geometry.location.lng;
+              setRegion({
+                latitude: lat1,
+                longitude: lng1,
+                latitudeDelta: 0.006,
+                longitudeDelta: 0.006,
               });
-            };
-          }}
-          query={{
-            key: "AIzaSyD0jNGrdjcFvh7XGBxIvpQdUT9XN8UWPWA",
-            language: "ro",
-            components: "country:ro",
-          }}
-        />
-      </View>
 
+              const http = new XMLHttpRequest();
+              let params = `latitude=${lat1}&longitude=${lng1}`;
+              console.log(params);
+              http.open(
+                "POST",
+                "https://automated-parking-lot.herokuapp.com/api/user/parkinglots",
+                true
+              );
+              http.setRequestHeader("Content-Type", "application/json");
+              http.send(JSON.stringify({ latitude: lat1, longitude: lng1 }));
+              http.onload = () => {
+                console.log(http.responseText);
+                let newMarkers = [];
+                let myLots = JSON.parse(http.responseText);
+                console.log(myLots);
+                for (lot in myLots) {
+                  newMarkers.push({
+                    id: myLots[lot].id,
+                    lat: myLots[lot].latitude,
+                    lng: myLots[lot].longitude,
+                    description: `Price: ${myLots[lot].price} LEI/h`,
+                    title: `Name: ${myLots[lot].name}`,
+                  });
+                }
+                setState((previousState) => {
+                  return { ...previousState, markers: newMarkers };
+                });
+              };
+            }}
+            query={{
+              key: "AIzaSyD0jNGrdjcFvh7XGBxIvpQdUT9XN8UWPWA",
+              language: "ro",
+              components: "country:ro",
+            }}
+          />
+        </View>
+      )}
+
+      {isActive && (
+        <View style={[styles.miniContainer, { top: 50 }]}>
+          <Text>{useGlobalState("selectedSpace")[0]}</Text>
+          <ParkDetails
+            title={useGlobalState("title")[0]}
+            details={useGlobalState("selectedSpace")[0]}
+          ></ParkDetails>
+        </View>
+      )}
+
+      {isActive && (
+        <View style={[styles.miniContainer, { bottom: 110 }]}>
+          <BookedSpaceDetails />
+        </View>
+      )}
+
+      {isActive && (
+        <View style={[styles.miniContainer, { bottom: 60 }]}>
+          {needToPay ? (
+            <MainButton
+              text="Pay Up"
+              onPress={() => navigation.navigate("MakePayment")}
+            />
+          ) : (
+            <MainButton
+              text="View Booking Details"
+              onPress={() => navigation.navigate("QR")}
+            />
+          )}
+        </View>
+      )}
       {/*Here we will return the view when state is true 
           and will return false if state is false*/}
       {shouldShow ? (
@@ -214,6 +260,12 @@ export const Map = () => {
 const styles = StyleSheet.create({
   map: {
     height,
+  },
+  miniContainer: {
+    width: "100%",
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
   },
   callout: {
     backgroundColor: "#E16162",

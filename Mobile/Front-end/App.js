@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./src/components/Login";
@@ -25,6 +25,9 @@ import MyAccountScreen from "./src/components/MyAccountScreen";
 import Settings from "./src/screens/Settings";
 import PaymentMethods from "./src/screens/PaymentMethods";
 import AddCard from "./src/screens/AddCard";
+import MakePayment from "./src/screens/MakePayment/MakePayment";
+import OTP from "./src/screens/OTP";
+import Succes from "./src/screens/Succes";
 
 import { AuthContext } from "./src/components/auth";
 
@@ -34,7 +37,9 @@ export default function App() {
   const [token, setToken] = useState(null);
   const [refreshToken, setRefreshToken] = useState(null);
   return (
-    <AuthContext.Provider value={[token, setToken, refreshToken, setRefreshToken]}>
+    <AuthContext.Provider
+      value={[token, setToken, refreshToken, setRefreshToken]}
+    >
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Index"
@@ -69,6 +74,9 @@ export default function App() {
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="PaymentMethods" component={PaymentMethods} />
           <Stack.Screen name="AddCard" component={AddCard} />
+          <Stack.Screen name="MakePayment" component={MakePayment} />
+          <Stack.Screen name="OTP" component={OTP} />
+          <Stack.Screen name="Succes" component={Succes} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>
