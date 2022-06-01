@@ -30,7 +30,6 @@ export default function ListItems() {
       status: ['opened', 'closed', 'canceled'][Math.floor(Math.random() * 3)]
     })));
   };
-
   React.useEffect(() => {
     updateItems();
   }, []);

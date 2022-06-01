@@ -6,6 +6,7 @@ import styles from './ScheduleParkings.module.css';
 import TheHeader from 'components/TheHeader/TheHeader';
 import ScheduleParking from 'components/Schedule/ScheduleParking/ScheduleParking';
 import { Sidebar } from 'components';
+import { getUserData } from 'hooks';
 
 export default function ScheduleParkings() {
   const navigate = useNavigate();
@@ -18,33 +19,20 @@ export default function ScheduleParkings() {
     return <></>;
   }
 
-  const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
-  const items = [
-    {
-      id: '1',
-      name: 'Parking Lot 1',
-      location: 'Location 1',
+  const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const [items, setItems] = React.useState([]);
+  const updateItems = async () => {
+    const ans = await getUserData();
+    setItems(ans.parkingLots.map(lot => ({
+      name: lot.name,
+      location: `(${lot.latitude}, ${lot.longitude})`,
       date: new Date(),
-      status: 'opened',
-      isSelected: false
-    },
-    {
-      id: '2',
-      name: 'Parking Lot 2',
-      location: 'Location 2',
-      date: new Date(),
-      status: 'closed',
-      isSelected: true
-    },
-    {
-      id: '3',
-      name: 'Parking Lot 3',
-      location: 'Location 3',
-      date: new Date(),
-      status: 'canceled',
-      isSelected: false
-    }
-  ];
+      status: ['opened', 'closed', 'canceled'][Math.floor(Math.random() * 3)]
+    })));
+  };
+  React.useEffect(() => {
+    updateItems();
+  }, []);
 
   return (
     <>
