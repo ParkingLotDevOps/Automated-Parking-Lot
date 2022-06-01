@@ -67,7 +67,7 @@ export default function SignUpPassword({ navigation }) {
       http.onload = () => {
         console.log(http.responseText);
         if (http.status == 201) {
-          navigation.navigate("SignUpAddCar");
+          navigation.navigate("Login");
           // navigation.navigate(Location2);          
         } else {
           setIsAccount(true);

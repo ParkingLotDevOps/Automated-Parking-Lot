@@ -54,7 +54,7 @@ export default function SignUpAddCar({ navigation }) {
 						/>
             <View>
                 <Text>
-                    or <Text style={styles.linkedText} onPress={() => navigation.navigate(Location2)}>Skip</Text>
+                    or <Text style={styles.linkedText} onPress={() => navigation.navigate(Login)}>Skip</Text>
 					{/* <Text style={styles.linkedText} >Skip</Text> */}
                 </Text>
 			</View>
