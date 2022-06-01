@@ -1,6 +1,7 @@
 import { View, StyleSheet } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import Location2 from '../map/Location2';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -12,7 +13,7 @@ const SideMenuBar = () => {
 				name='menu-sharp'
 				size={45}
 				color='#FFFFFE'
-				onPress={() => navigation.navigate('MyAccountScreen')}
+				onPress={() => navigation.navigate(Location2)}
 			/>
 		</View>
 	);

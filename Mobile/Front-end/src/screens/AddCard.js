@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
 import React from 'react';
-
+import { useNavigation } from '@react-navigation/native';
 import SideMenuBar from '../components/SideMenuBar';
 import MainButton from '../components/MainButton';
-
 const AddCard = () => {
+			const navigation = useNavigation();
 	return (
+
 		<View style={styles.container}>
 			<View
 				style={{
@@ -62,7 +63,7 @@ const AddCard = () => {
 					placeholderTextColor={'#ABD1C6'}
 					placeholder='CVV Code'
 				></TextInput>
-				<MainButton text='Add' />
+				<MainButton text='Add' onPress={() => navigation.navigate(Location2)}/>
 			</View>
 		</View>
 	);

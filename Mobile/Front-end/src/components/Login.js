@@ -99,8 +99,8 @@ export default function Login({ navigation }) {
 						};
 					}}
 				/>
-				<FbButton />
-				<GoogleButton />
+				{/* <FbButton />
+				<GoogleButton /> */}
 				<View>
 					<Text>
 						or{' '}

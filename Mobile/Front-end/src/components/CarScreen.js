@@ -12,9 +12,9 @@ import { useState, useEffect } from "react";
 
 let showMyCars = (cars) => {
     return cars.map((car) => (
-        <View key={car.id} style={{flexDirection:"row", left:30, margin:20}}>
+        <View key={car.id} style={{flexDirection:"row", left:20, margin:20}}>
            <Icon name='car' type='font-awesome' color= '#abd1c6' />
-            <Text  style={{color:"#abd1c6"}}>
+            <Text  style={{color:"#abd1c6", marginLeft:20}}>
                 {car.licensePlate}
             </Text>
       </View>

@@ -39,7 +39,7 @@ const MyAccountScreen = () => {
             <Text style={{ color: "#abd1c6" }}>Payment methods</Text>
           </Icon.Button>
         </View>
-
+{/* 
         <View style={styles.appButtonContainer}>
           <Icon.Button
             name="history"
@@ -48,7 +48,7 @@ const MyAccountScreen = () => {
           >
             <Text style={{ color: "#abd1c6" }}>Parking history</Text>
           </Icon.Button>
-        </View>
+        </View> */}
         <View style={styles.appButtonContainer}>
           <Icon.Button
             name="edit"
