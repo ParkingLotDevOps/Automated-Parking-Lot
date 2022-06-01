@@ -20,7 +20,7 @@ export default function NotificationItem({ item }) {
           <h3 className="title">{item.name}</h3>
           <ThemeProvider theme={buttonTheme}>
             <Button variant="outlined">
-              Block
+              Ban User
             </Button>
           </ThemeProvider>
         </div>
