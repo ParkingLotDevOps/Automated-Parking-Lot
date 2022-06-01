@@ -39,6 +39,7 @@ public  class ParkingLotController {
         if(parkingLot == null || parkingLot.getName() == null || parkingLot.getLatitude() == null || parkingLot.getLongitude() == null){
             return ResponseEntity.badRequest().body("Invalid input.");
         }
+
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/provider/parkinglot/save").toString());
         ParkingLot savedParkingLot = parkingLotService.saveParkingLot(parkingLot, email);
         if(savedParkingLot == null) {
@@ -68,10 +69,10 @@ public  class ParkingLotController {
             Long spot_id = objectNode.get("spot_id").asLong();
             try {
                 if(parkingLotService.addParkingSpot(lot_id, spot_id) == true){
-                   return ResponseEntity.ok().body("Success!");
+                    return ResponseEntity.ok().body("Success!");
                 }
                 else {
-                   return ResponseEntity.badRequest().body("Lot or spot not found");
+                    return ResponseEntity.badRequest().body("Lot or spot not found");
                 }
             }catch (Exception e){
                 return ResponseEntity.badRequest().body(e.getMessage());

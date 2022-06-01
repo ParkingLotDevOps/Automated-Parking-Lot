@@ -29,8 +29,9 @@ public class ParkingLotImpl implements ParkingLotService {
     public ParkingLot saveParkingLot(ParkingLot parkingLot, String email) {
         log.info("Saving new parking lot {} to the database", parkingLot.getName());
         parkingLot.setApproved(false);
+        parkingLot.setUser(appUserRepo.findByEmail(email));
         ParkingLot parkingLot1= parkingLotRepo.save(parkingLot);
-        appUserRepo.findByEmail(email).getParkingLots().add(parkingLot);
+       // appUserRepo.findByEmail(email).getParkingLots().add(parkingLot);
         return parkingLot1;
     }
 

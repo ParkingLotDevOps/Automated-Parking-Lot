@@ -27,6 +27,7 @@ public class ParkingLot {
     private float price;
     private boolean approved;
     @ManyToOne
+    @JsonIgnore
     private AppUser user;
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     private Collection<ParkingSpot> spots = new ArrayList<>();
