@@ -22,14 +22,16 @@ export default function Settings() {
     <>
       <Sidebar />
       <main className={styles.main}>
-        <h1 className={styles.name}>name</h1>
+        <h1 className={styles.name}>Username</h1>
         <form className={styles.form}>
           <h2>Settings</h2>
           <div className={styles['personal-data']}>
-            <div className={styles.upload}>
-              <FaCamera />
-              <div className={styles.inner}>
-                <input type="file" accept="image/png, image/jpeg" />
+            <div className={styles.left}>
+              <div className={styles.upload}>
+                <FaCamera />
+                <div className={styles.inner}>
+                  <input type="file" accept="image/png, image/jpeg" />
+                </div>
               </div>
             </div>
             <div className={styles.right}>
@@ -50,7 +52,7 @@ export default function Settings() {
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  sx={{ input: { color: 'dodgerblue' } }}
+                  sx={{ input: { color: '#E8E4E6' } }}
                   variant="filled"
                 />
               </div>
@@ -61,7 +63,7 @@ export default function Settings() {
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  sx={{ input: { color: 'dodgerblue' } }}
+                  sx={{ input: { color: '#E8E4E6' } }}
                   variant="filled"
                 />
                 <Button variant="contained" sx={{ height: 55 }}>
@@ -121,7 +123,7 @@ export default function Settings() {
             </div>
           </div>
           <div className={styles.delete}>
-            <Button variant="contained" sx={{ height: 55 }}>
+            <Button variant="outlined" sx={{ height: 55, color: '#E16162'}}>
               Delete Account
             </Button>
           </div>

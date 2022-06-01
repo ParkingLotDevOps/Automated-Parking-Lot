@@ -53,7 +53,6 @@ export default function ScheduleParkings() {
         <TheHeader title="Schedule" hasSearchBox />
         <ul className={styles.listItems}>
           <li className={styles.listFields} key="0">
-<<<<<<< HEAD
             <div>Name</div>
             <div className={styles['from-to']}>
               <div>From</div>
@@ -62,11 +61,6 @@ export default function ScheduleParkings() {
             <div className={styles['week-days']}>
             {weekDays.map((day) => (
               <div key={uuid()}>{day}</div>
-=======
-            <div style={{ width: '5%' }}></div>
-            {fields.map((field) => (
-              <div key={uuid()}>{field}</div>
->>>>>>> 9e4feb0f314aad6939ffeb7d22756716e46061c1
             ))}
             </div>
             <div className={styles['from-to']}>

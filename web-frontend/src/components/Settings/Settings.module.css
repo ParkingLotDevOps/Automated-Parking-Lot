@@ -24,7 +24,7 @@
 
 .personal-data {
   display: flex;
-  flex-direction: row;
+  justify-content: space-evenly;
   gap: 1rem;
 }
 
@@ -67,6 +67,12 @@
   cursor: pointer;
 }
 
+.personal-data .left {
+  display: flex;
+  justify-content: center;
+  width: 45%;
+}
+
 .personal-data .right {
   display: flex;
   flex-direction: column;
@@ -77,8 +83,7 @@
 
 .personal-data .top {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  justify-content: space-between;
 }
 
 .personal-data .bottom {
@@ -106,18 +111,25 @@
 .change {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 4rem;
+  gap: 1rem;
 }
 
 .change-email {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   width: 45%;
+  gap: 1rem;
 }
 
 .change-password {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   width: 45%;
+  gap: 1rem;
+}
+
+.delete {
+  margin-top: 2rem;
 }
