@@ -5,18 +5,37 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import MainButton from "./MainButton/mainButton";
 import ProfilePicture from "react-native-profile-picture";
 import { useNavigation } from "@react-navigation/native";
-
+import { AuthContext } from './auth';
+import { useContext } from 'react';
+``
 const MyAccountScreen = () => {
+  const [token, setToken] = useContext(AuthContext);
+  const [fullName, inputFullName] = React.useState('');
+  const http = new XMLHttpRequest();
+  http.open(
+      "GET",
+      "https://automated-parking-lot.herokuapp.com/api/user/profile",
+      true
+  );
+  http.setRequestHeader("Authorization", `Bearer ${token}`);
+  http.send();
+  http.onload = () => {
+      const userData = JSON.parse(http.responseText);
+      console.log(userData);
+      inputFullName(userData.name);
+  }
+
   const navigation = useNavigation();
   return (
     <View style={styles.container} forceInset={{ top: "always" }}>
       <ProfilePicture
-        isPicture={true}
-        requirePicture={require("../../assets/masinuta.png")}
-        shape="circle"
+        isPicture={false}
+        user={JSON.stringify(fullName).replace('"', '')}
+        shape='rounded'
       />
+
       <Text style={{ marginVertical: 20, fontSize: 16, color: "#abd1c6" }}>
-        UserName
+        {fullName}
       </Text>
 
       <View style={styles.options}>

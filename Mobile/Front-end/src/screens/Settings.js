@@ -13,11 +13,6 @@ const Settings = () => {
       <View style={styles.header}>
         <SideMenuBar />
         <Text style={styles.headerTitle}>Settings</Text>
-        <ProfilePicture
-          isPicture={true}
-          requirePicture={require("../../assets/profile-picture.jpg")}
-          shape="circle"
-        />
       </View>
       <View
         style={{
