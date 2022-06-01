@@ -8,6 +8,24 @@ import Toolbar from '@mui/material/Toolbar';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
+import { createTheme} from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+
+const textFieldTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#E8E4E6'
+    }
+  }
+});
+
+const buttonTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#E16162'
+    }
+  }
+});
 
 export default function AddParkingLot({ setAddLot }) {
   const [name, setName] = useState('');
@@ -76,65 +94,79 @@ export default function AddParkingLot({ setAddLot }) {
               </div>
             </div>
 
-            <TextField
-              label="Name"
-              type="text"
-              InputLabelProps={{
-                shrink: true
-              }}
-              variant="filled"
-              size="small"
-              className={styles.TextField}
-              onInput={(e) => setName(e.target.value)}
-              value={name}
-            />
+            <ThemeProvider theme={textFieldTheme}>
+              <TextField
+                label="Name"
+                type="text"
+                InputLabelProps={{
+                  shrink: true
+                }}
+                variant="filled"
+                size="small"
+                className={styles.TextField}
+                onInput={(e) => setName(e.target.value)}
+                value={name}
+                sx={{ input: { color: '#E8E4E6' } }}
+              />
+            </ThemeProvider>
 
-            <TextField
-              label="Location"
-              type="text"
-              InputLabelProps={{
-                shrink: true
-              }}
-              variant="filled"
-              size="small"
-              className={styles.TextField}
-              onInput={(e) => setLocation(e.target.value)}
-              value={location}
-            />
+            <ThemeProvider theme={textFieldTheme}>
+              <TextField
+                label="Location"
+                type="text"
+                InputLabelProps={{
+                  shrink: true
+                }}
+                variant="filled"
+                size="small"
+                className={styles.TextField}
+                onInput={(e) => setLocation(e.target.value)}
+                value={location}
+                sx={{ input: { color: '#E8E4E6' } }}
+              />
+            </ThemeProvider>
 
-            <TextField
-              label="Pricing"
-              type="text"
-              InputLabelProps={{
-                shrink: true
-              }}
-              variant="filled"
-              size="small"
-              className={styles.TextField}
-              onInput={(e) => setPrice(e.target.value)}
-              value={price}
-            />
+            <ThemeProvider theme={textFieldTheme}>
+              <TextField
+                label="Pricing"
+                type="text"
+                InputLabelProps={{
+                  shrink: true
+                }}
+                variant="filled"
+                size="small"
+                className={styles.TextField}
+                onInput={(e) => setPrice(e.target.value)}
+                value={price}
+                sx={{ input: { color: '#E8E4E6' } }}
+              />
+            </ThemeProvider>
 
-            <TextField
-              label="Number of Spots"
-              type="text"
-              InputLabelProps={{
-                shrink: true
-              }}
-              variant="filled"
-              size="small"
-              className={styles.TextField}
-              onInput={(e) => setSpots(e.target.value)}
-              value={spots}
-            />
+            <ThemeProvider theme={textFieldTheme}>
+              <TextField
+                label="Number of Spots"
+                type="text"
+                InputLabelProps={{
+                  shrink: true
+                }}
+                variant="filled"
+                size="small"
+                className={styles.TextField}
+                onInput={(e) => setSpots(e.target.value)}
+                value={spots}
+                sx={{ input: { color: '#E8E4E6' } }}
+              />
+            </ThemeProvider>
 
-            <Button
-              variant="contained"
-              className={styles.btn}
-              onClick={addParkingLot}
-            >
-              Add Parking
-            </Button>
+            <ThemeProvider theme={buttonTheme}>
+              <Button
+                variant="contained"
+                className={styles.btn}
+                onClick={addParkingLot}
+              >
+                Add Parking
+              </Button>
+            </ThemeProvider>
           </main>
         </Drawer>
       </Box>

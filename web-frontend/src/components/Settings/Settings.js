@@ -5,7 +5,25 @@ import { Sidebar } from 'components';
 import { FaCamera } from 'react-icons/fa';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { createTheme} from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import styles from './Settings.module.css';
+
+const textFieldTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#E8E4E6'
+    }
+  }
+});
+
+const buttonTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#E16162'
+    }
+  }
+});
 
 export default function Settings() {
   const navigate = useNavigate();
@@ -37,95 +55,117 @@ export default function Settings() {
             <div className={styles.right}>
               <h2>Personal Data</h2>
               <div className={styles.top}>
-                <TextField
-                  label="First Name"
-                  type="text"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  sx={{ input: { color: '#E8E4E6' } }}
-                  variant="filled"
-                />
-                <TextField
-                  label="Last Name"
-                  type="text"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  sx={{ input: { color: '#E8E4E6' } }}
-                  variant="filled"
-                />
+                <ThemeProvider theme={textFieldTheme}>
+                  <TextField
+                    label="First Name"
+                    type="text"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    sx={{ input: { color: '#E8E4E6' } }}
+                    variant="filled"
+                  />
+                </ThemeProvider>
+                <ThemeProvider theme={textFieldTheme}>
+                  <TextField
+                    label="Last Name"
+                    type="text"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    sx={{ input: { color: '#E8E4E6' } }}
+                    variant="filled"
+                  />
+                </ThemeProvider>
               </div>
               <div className={styles.bottom}>
-                <TextField
-                  label="Phone Number"
-                  type="text"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  sx={{ input: { color: '#E8E4E6' } }}
-                  variant="filled"
-                />
-                <Button variant="contained" sx={{ height: 55 }}>
-                  Save Changes
-                </Button>
+                <ThemeProvider theme={textFieldTheme}>
+                  <TextField
+                    label="Phone Number"
+                    type="text"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    sx={{ input: { color: '#E8E4E6' } }}
+                    variant="filled"
+                  />
+                </ThemeProvider>
+                <ThemeProvider theme={buttonTheme}>
+                  <Button variant="contained" sx={{ height: 55 }}>
+                    Save Changes
+                  </Button>
+                </ThemeProvider>
               </div>
             </div>
           </div>
           <div className={styles.change}>
             <div className={styles['change-email']}>
               <h2>Change E-mail</h2>
-              <TextField
-                label="New E-mail"
-                type="text"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                sx={{ input: { color: '#E8E4E6' } }}
-                variant="filled"
-              />
-              <Button variant="contained" sx={{ height: 55 }}>
-                Save Changes
-              </Button>
+              <ThemeProvider theme={textFieldTheme}>
+                <TextField
+                  label="New E-mail"
+                  type="text"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  sx={{ input: { color: '#E8E4E6' } }}
+                  variant="filled"
+                />
+              </ThemeProvider>
+              <ThemeProvider theme={buttonTheme}>
+                <Button variant="contained" sx={{ height: 55 }}>
+                  Save Changes
+                </Button>
+              </ThemeProvider>
             </div>
             <div className={styles['change-password']}>
               <h2>Change Password</h2>
-              <TextField
-                label="Old Password"
-                type="password"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                sx={{ input: { color: '#E8E4E6' } }}
-                variant="filled"
-              />
-              <TextField
-                label="New Password"
-                type="password"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                sx={{ input: { color: '#E8E4E6' } }}
-                variant="filled"
-              />
-              <TextField
-                label="Confirm New Password"
-                type="password"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                sx={{ input: { color: '#E8E4E6' } }}
-                variant="filled"
-              />
-              <Button variant="contained" sx={{ height: 55 }}>
-                Save Changes
-              </Button>
+              <ThemeProvider theme={textFieldTheme}>
+                <TextField
+                  label="Old Password"
+                  type="password"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  sx={{ input: { color: '#E8E4E6' } }}
+                  variant="filled"
+                />
+              </ThemeProvider>
+              <ThemeProvider theme={textFieldTheme}>
+                <TextField
+                  label="New Password"
+                  type="password"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  sx={{ input: { color: '#E8E4E6' } }}
+                  variant="filled"
+                />
+              </ThemeProvider>
+              <ThemeProvider theme={textFieldTheme}>
+                <TextField
+                  label="Confirm New Password"
+                  type="password"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  sx={{ input: { color: '#E8E4E6' } }}
+                  variant="filled"
+                />
+              </ThemeProvider>
+              <ThemeProvider theme={buttonTheme}>
+                <Button variant="contained" sx={{ height: 55 }}>
+                  Save Changes
+                </Button>
+              </ThemeProvider>
             </div>
           </div>
           <div className={styles.delete}>
-            <Button variant="outlined" sx={{ height: 55, color: '#E16162'}}>
+            <ThemeProvider theme={buttonTheme}>
+              <Button variant="outlined" sx={{ height: 55 }}>
               Delete Account
-            </Button>
+              </Button>
+            </ThemeProvider>
           </div>
         </form>
       </main>
