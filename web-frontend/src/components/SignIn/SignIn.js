@@ -35,7 +35,9 @@ export default function SignIn() {
       })
     });
     if (res.ok) {
-      localStorage.setItem('token', (await res.json()).access_token);
+      const ans = await res.json();
+      localStorage.setItem('token', ans.access_token);
+      localStorage.setItem('refresh-token', ans.refresh_token);
       navigate('/parking-lots');
     }
     else {

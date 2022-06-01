@@ -30,7 +30,7 @@ export default function TheHeader(props) {
           </div>
         )}
         {props.hasButton && <BaseButton icon="plus" onClick={() => setAddLot(true)}>Add New</BaseButton>}
-        {addLot && <AddParkingLot setAddLot={setAddLot} />}
+        {addLot && <AddParkingLot setAddLot={setAddLot} updateLots={props.updateLots} />}
         {props.hasFirstDate && (
           <div className={styles.data}>
             <LocalizationProvider dateAdapter={AdapterDateFns} >
