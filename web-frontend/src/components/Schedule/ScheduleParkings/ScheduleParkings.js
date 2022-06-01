@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './ScheduleParkings.module.css';
+import { v4 as uuid } from 'uuid';
 
+import styles from './ScheduleParkings.module.css';
 import TheHeader from 'components/TheHeader/TheHeader';
 import ScheduleParking from 'components/Schedule/ScheduleParking/ScheduleParking';
 import { Sidebar } from 'components';
@@ -14,7 +15,7 @@ export default function ScheduleParkings() {
     }
   });
   if (localStorage.getItem('token') == null) {
-    return;
+    return <></>;
   }
 
   const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
@@ -55,12 +56,12 @@ export default function ScheduleParkings() {
           <li className={styles.listFields} key="0">
             <div style={{ width: '5%' }}></div>
             {fields.map((field) => (
-              <div key={field.id}>{field}</div>
+              <div key={uuid()}>{field}</div>
             ))}
             <div style={{ width: '10%' }}></div>
           </li>
           {items.map((item) => (
-            <ScheduleParking key={item.id} item={item} />
+            <ScheduleParking key={uuid()} item={item} />
           ))}
         </ul>
       </main>

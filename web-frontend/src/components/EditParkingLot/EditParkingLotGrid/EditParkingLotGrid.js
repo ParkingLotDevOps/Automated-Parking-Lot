@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuid } from 'uuid';
 import styles from './EditParkingLotGrid.module.css';
 import { FaWheelchair, FaChargingStation } from 'react-icons/fa';
 
@@ -8,7 +9,7 @@ export default function EditParkingLotGrid({ spotsCount }) {
     <div className={styles.parking}>
       {spots.map((spot, index) => (
         <button
-          key={index}
+          key={uuid()}
           className={styles[`type-${spot}`]}
           onClick={() => {
             const newSpots = [...spots];

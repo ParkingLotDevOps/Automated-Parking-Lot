@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 import styles from './ListItems.module.css';
 
 import TheHeader from 'components/TheHeader/TheHeader';
@@ -14,7 +15,7 @@ export default function ListItems() {
     }
   });
   if (localStorage.getItem('token') == null) {
-    return;
+    return <></>;
   }
 
   React.useEffect(() => {
@@ -78,12 +79,12 @@ export default function ListItems() {
           <li className={styles.listFields} key="0">
             <div style={{ width: '5%' }}></div>
             {fields.map((field) => (
-              <div key={field.id}>{field}</div>
+              <div key={uuid()}>{field}</div>
             ))}
             <div style={{ width: '10%' }}></div>
           </li>
           {items.map((item) => (
-            <ListItem key={item.id} item={item} />
+            <ListItem key={uuid()} item={item} />
           ))}
         </ul>
       </main>

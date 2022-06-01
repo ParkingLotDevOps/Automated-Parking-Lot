@@ -11,7 +11,7 @@ export default function EditParkingLot() {
     }
   });
   if (localStorage.getItem('token') == null) {
-    return;
+    return <></>;
   }
 
   const { name } = useParams();

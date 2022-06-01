@@ -15,7 +15,7 @@ export default function Settings() {
     }
   });
   if (localStorage.getItem('token') == null) {
-    return;
+    return <></>;
   }
 
   return (
