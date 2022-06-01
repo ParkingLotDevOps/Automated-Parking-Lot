@@ -113,7 +113,7 @@ export default function LisItem(props) {
             Edit
           </MenuItem>
           <MenuItem onClick={() => {
-            // TODO delete parking lot
+            props.onDelete();
             handleClose();
           }}>
             Delete

@@ -24,6 +24,7 @@ export default function ListItems() {
   const updateItems = async () => {
     const ans = await getUserData();
     setItems(ans.parkingLots.map(lot => ({
+      id: lot.id,
       name: lot.name,
       location: `(${lot.latitude}, ${lot.longitude})`,
       date: new Date(),
@@ -47,8 +48,20 @@ export default function ListItems() {
             ))}
             <div style={{ width: '10%' }}></div>
           </li>
-          {items.map((item) => (
-            <ListItem key={uuid()} item={item} />
+          {items.map((item, index) => (
+            <ListItem key={uuid()} item={item} onDelete={async () => {
+              console.log(item.id);
+              await fetch(`https://automated-parking-lot.herokuapp.com/api/parkinglot/${item.id}`, {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+              });
+              const newItems = [...items];
+              newItems.splice(index, 1);
+              setItems(newItems);
+            }} />
           ))}
         </ul>
       </main>
