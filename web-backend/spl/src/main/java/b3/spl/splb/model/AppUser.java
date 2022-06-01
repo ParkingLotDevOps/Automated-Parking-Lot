@@ -45,5 +45,7 @@ public class AppUser {
     List<ParkingLot> parkingLots;
     private boolean bannedUser;
     private boolean bannedProvider;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Reservation> history;
 
 }

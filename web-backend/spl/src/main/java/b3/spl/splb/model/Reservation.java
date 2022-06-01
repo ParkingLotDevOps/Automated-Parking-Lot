@@ -21,11 +21,13 @@ public class Reservation {
     @OneToOne
     private ParkingSpot parkingSpot;
 
-    @OneToOne
+    @ManyToOne
     @JsonIgnore
     private AppUser user;
 
     private LocalDateTime reservedAt;
+
+    private LocalDateTime closedAt;
 
     public Long getId() {
         return id;

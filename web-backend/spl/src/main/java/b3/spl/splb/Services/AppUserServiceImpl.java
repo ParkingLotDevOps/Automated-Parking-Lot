@@ -9,6 +9,7 @@ import b3.spl.splb.repository.ParkingLotRepo;
 import b3.spl.splb.repository.RoleRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,10 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -60,6 +58,21 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return appUserRepo.save(user);
+    }
+
+    @Override
+    public AppUser updateUser(AppUser updatedUser, AppUser user) {
+        if(Objects.isNull(user.getName())) {
+            throw new IllegalArgumentException("Name is required");
+        } else if (Objects.isNull(user.getEmail())) {
+            throw new IllegalArgumentException("Email is required");
+        }
+        if(!user.getEmail().matches("[a-zA-Z0-9_\\.-]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9_-]{2,4})+")){
+            throw new IllegalArgumentException("Invalid email");
+        }
+        updatedUser.setName(user.getName());
+        updatedUser.setEmail(user.getEmail());
+        return appUserRepo.save(updatedUser);
     }
 
     @Override

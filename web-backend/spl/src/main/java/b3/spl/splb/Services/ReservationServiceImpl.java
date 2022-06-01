@@ -31,17 +31,23 @@ public class ReservationServiceImpl implements ReservationService{
         if(Objects.isNull(parkingSpot)) throw new IllegalArgumentException("ParkingSpot not found");
         if(!parkingSpot.isAvailable()) throw new IllegalArgumentException("ParkingSpot is not available");
         parkingSpot.setAvailable(false);
-        return reservationRepo.save(new Reservation(null, parkingSpot, user, LocalDateTime.now()));
+        return reservationRepo.save(new Reservation(null, parkingSpot, user, LocalDateTime.now() ,null));
     }
 
     @Override
     public void removeReservation(Long id) {
         Reservation reservation = reservationRepo.findById(id).orElse(null);
         if(Objects.isNull(reservation)) throw new IllegalArgumentException("Reservation not found");
+<<<<<<< HEAD
 
         ParkingSpot parkingSpot = parkingSpotRepo.findById(reservation.getParkingSpot().getId()).orElse(null);
         parkingSpot.setAvailable(true);
         parkingSpotRepo.saveAndFlush(parkingSpot);
         reservationRepo.deleteById(id);
+=======
+        reservation.setClosedAt(LocalDateTime.now());
+        reservation.getParkingSpot().setAvailable(true);
+        reservationRepo.save(reservation);
+>>>>>>> a6bd1e06b254f81cd0b4738d8841f42d5b49c20a
     }
 }
