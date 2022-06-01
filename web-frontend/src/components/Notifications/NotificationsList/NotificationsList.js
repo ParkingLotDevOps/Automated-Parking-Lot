@@ -22,17 +22,17 @@ export default function NotificationsList() {
     {
       id: '1',
       name: 'Notification 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus est eget turpis tincidunt, efficitur tempus dui venenatis. Sed sit amet nulla sagittis, imperdiet orci at, aliquet leo. Etiam neque tellus, rutrum vel molestie eu, efficitur quis sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris eu dui sodales, finibus sapien eget, eleifend est.'
+      content: 'Your parking lots are almost fully occupied. Remember you can always add new ones from the Parkings Menu and see your schedules in the Schedule Menu.'
     },
     {
       id: '2',
       name: 'Notification 2',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus est eget turpis tincidunt, efficitur tempus dui venenatis. Sed sit amet nulla sagittis, imperdiet orci at, aliquet leo. Etiam neque tellus, rutrum vel molestie eu, efficitur quis sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris eu dui sodales, finibus sapien eget, eleifend est.'
+      content: 'A new parking lot has been reserved for today between 14:00 and 16:00. 🥳'
     },
     {
       id: '3',
       name: 'Notification 3',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus est eget turpis tincidunt, efficitur tempus dui venenatis. Sed sit amet nulla sagittis, imperdiet orci at, aliquet leo. Etiam neque tellus, rutrum vel molestie eu, efficitur quis sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris eu dui sodales, finibus sapien eget, eleifend est.'
+      content: 'A new parking lot has been reserved for tomorrow between 08:00 and 12:00. 🤩'
     }
   ];
 
