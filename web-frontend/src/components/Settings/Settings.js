@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { Sidebar } from 'components';
 import { FaCamera } from 'react-icons/fa';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { createTheme} from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import styles from './Settings.module.css';
+import { getUserData } from 'hooks';
 
 const textFieldTheme = createTheme({
   palette: {
@@ -30,11 +32,50 @@ const buttonTheme = createTheme({
 
 export default function Settings() {
   const navigate = useNavigate();
+
+  const [userName, setUserName] = useState('');
+  const [userSurname, setUserSurname] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+
+  const updateUserData = async () => {
+    const res = await fetch(
+      'https://automated-parking-lot.herokuapp.com/api/user',
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+          body: JSON.stringify({
+            email: userEmail,
+            name: userName + ' ' + userSurname
+          })
+        }
+      }
+    );
+    const ans = res.json();
+    if (ans.ok) {
+      aler('Changes saved');
+    } else {
+      console.log(res);
+    }
+  };
+
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
       navigate('/sign-in');
+    } else {
+      async function fetchData() {
+        return await getUserData();
+      }
+      fetchData().then((res) => {
+        let [name, surname] = res.name.split(' ');
+        setUserEmail(res.email);
+        setUserName(!name ? '' : name);
+        setUserSurname(!surname ? '' : surname);
+      });
     }
-  });
+  }, []);
+
   if (localStorage.getItem('token') == null) {
     return <></>;
   }
@@ -60,28 +101,34 @@ export default function Settings() {
               <div className={styles.top}>
                 <ThemeProvider theme={textFieldTheme}>
                   <TextField
+                    value={userName}
+                    onInput={(e) => setUserName(e.target.value)}
                     label="First Name"
                     type="text"
                     InputLabelProps={{
-                      shrink: true,
+                      shrink: true
                     }}
                     sx={{
+                      width: '49%',
                       input: { color: '#E8E4E6' },
-                      "& label": {color: "secondary.main"}
+                      '& label': { color: 'secondary.main' }
                     }}
                     variant="filled"
                   />
                 </ThemeProvider>
                 <ThemeProvider theme={textFieldTheme}>
                   <TextField
+                    value={userSurname}
+                    onInput={(e) => setUserSurname(e.target.value)}
                     label="Last Name"
                     type="text"
                     InputLabelProps={{
-                      shrink: true,
+                      shrink: true
                     }}
                     sx={{
+                      width: '49%',
                       input: { color: '#E8E4E6' },
-                      "& label": {color: "secondary.main"}
+                      '& label': { color: 'secondary.main' }
                     }}
                     variant="filled"
                   />
@@ -93,17 +140,21 @@ export default function Settings() {
                     label="Phone Number"
                     type="text"
                     InputLabelProps={{
-                      shrink: true,
+                      shrink: true
                     }}
                     sx={{
                       input: { color: '#E8E4E6' },
-                      "& label": {color: "secondary.main"}
+                      '& label': { color: 'secondary.main' }
                     }}
                     variant="filled"
                   />
                 </ThemeProvider>
                 <ThemeProvider theme={buttonTheme}>
-                  <Button variant="contained" sx={{ height: 55 }}>
+                  <Button
+                    variant="contained"
+                    sx={{ height: 55 }}
+                    onClick={updateUserData}
+                  >
                     Save Changes
                   </Button>
                 </ThemeProvider>
@@ -115,20 +166,26 @@ export default function Settings() {
               <h2>Change E-mail</h2>
               <ThemeProvider theme={textFieldTheme}>
                 <TextField
-                  label="New E-mail"
+                  value={userEmail}
+                  onInput={(e) => setUserEmail(e.target.value)}
+                  label="E-mail"
                   type="text"
                   InputLabelProps={{
-                    shrink: true,
+                    shrink: true
                   }}
                   sx={{
                     input: { color: '#E8E4E6' },
-                    "& label": {color: "secondary.main"}
+                    '& label': { color: 'secondary.main' }
                   }}
                   variant="filled"
                 />
               </ThemeProvider>
               <ThemeProvider theme={buttonTheme}>
-                <Button variant="contained" sx={{ height: 55 }}>
+                <Button
+                  variant="contained"
+                  sx={{ height: 55 }}
+                  onClick={updateUserData}
+                >
                   Save Changes
                 </Button>
               </ThemeProvider>
@@ -140,11 +197,11 @@ export default function Settings() {
                   label="Old Password"
                   type="password"
                   InputLabelProps={{
-                    shrink: true,
+                    shrink: true
                   }}
                   sx={{
                     input: { color: '#E8E4E6' },
-                    "& label": {color: "secondary.main"}
+                    '& label': { color: 'secondary.main' }
                   }}
                   variant="filled"
                 />
@@ -154,11 +211,11 @@ export default function Settings() {
                   label="New Password"
                   type="password"
                   InputLabelProps={{
-                    shrink: true,
+                    shrink: true
                   }}
                   sx={{
                     input: { color: '#E8E4E6' },
-                    "& label": {color: "secondary.main"}
+                    '& label': { color: 'secondary.main' }
                   }}
                   variant="filled"
                 />
@@ -168,17 +225,21 @@ export default function Settings() {
                   label="Confirm New Password"
                   type="password"
                   InputLabelProps={{
-                    shrink: true,
+                    shrink: true
                   }}
                   sx={{
                     input: { color: '#E8E4E6' },
-                    "& label": {color: "secondary.main"}
+                    '& label': { color: 'secondary.main' }
                   }}
                   variant="filled"
                 />
               </ThemeProvider>
               <ThemeProvider theme={buttonTheme}>
-                <Button variant="contained" sx={{ height: 55 }}>
+                <Button
+                  variant="contained"
+                  sx={{ height: 55 }}
+                  onClick={updateUserData}
+                >
                   Save Changes
                 </Button>
               </ThemeProvider>
@@ -186,18 +247,26 @@ export default function Settings() {
           </div>
           <div className={styles.delete}>
             <ThemeProvider theme={buttonTheme}>
-              <Button variant="outlined" sx={{ height: 55 }} onClick={() => {
-                const fun = count => {
-                  let really = '';
-                  for (let i = 0; i < count; i++) {
-                    really += ' really';
-                  }
-                  if (confirm(`Are you${really} sure you want to delete your account? ;(`)) {
-                    fun(count + 1);
-                  }
-                };
-                fun(0);
-              }}>
+              <Button
+                variant="outlined"
+                sx={{ height: 55 }}
+                onClick={() => {
+                  const fun = (count) => {
+                    let really = '';
+                    for (let i = 0; i < count; i++) {
+                      really += ' really';
+                    }
+                    if (
+                      confirm(
+                        `Are you${really} sure you want to delete your account? ;(`
+                      )
+                    ) {
+                      fun(count + 1);
+                    }
+                  };
+                  fun(0);
+                }}
+              >
                 Delete Account
               </Button>
             </ThemeProvider>
