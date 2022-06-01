@@ -15,7 +15,6 @@ export default function ScheduleParkings() {
   });
 
   const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
-  const fields = ['Name', 'From', 'To', ...weekDays, 'Date From', 'Date To'];
   const items = [
     {
       id: '1',
@@ -50,11 +49,20 @@ export default function ScheduleParkings() {
         <TheHeader title="Schedule" hasSearchBox />
         <ul className={styles.listItems}>
           <li className={styles.listFields} key="0">
-            <div style={{ width: '5%' }}></div>
-            {fields.map((field) => (
-              <div key={field.id}>{field}</div>
+            <div>Name</div>
+            <div className={styles['from-to']}>
+              <div>From</div>
+              <div>To</div>
+            </div>
+            <div className={styles['week-days']}>
+            {weekDays.map((day) => (
+              <div key={day.id}>{day}</div>
             ))}
-            <div style={{ width: '10%' }}></div>
+            </div>
+            <div className={styles['from-to']}>
+              <div>Date From</div>
+              <div>Date To</div>
+            </div>
           </li>
           {items.map((item) => (
             <ScheduleParking key={item.id} item={item} />
