@@ -17,7 +17,7 @@ export default function NotificationItem({ item }) {
     <>
       <li className={styles.listItem}>
         <div className={styles.header}>
-          <div className="title">{item.name}</div>
+          <h3 className="title">{item.name}</h3>
           <ThemeProvider theme={buttonTheme}>
             <Button variant="outlined">
               Block
