@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -37,11 +39,7 @@ public class AppUser {
             joinColumns = @JoinColumn(name = "appuser_id"),
             inverseJoinColumns = @JoinColumn(name = "car_id"))
     List<Car> cars;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "parkinglots",
-            joinColumns = @JoinColumn(name = "appuser_id"),
-            inverseJoinColumns = @JoinColumn(name = "parkinglot_id"))
+    @OneToMany(mappedBy = "user")
     List<ParkingLot> parkingLots;
     private boolean bannedUser;
     private boolean bannedProvider;
