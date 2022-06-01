@@ -32,7 +32,10 @@ export default function Contact() {
           <div className={styles.about}>
             <h1>About Us</h1>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum lacus sollicitudin posuere cursus. Fusce dignissim id lectus sit amet faucibus. Pellentesque in arcu maximus, ornare ex non, efficitur enim. Sed rhoncus dolor est, iaculis hendrerit ligula sollicitudin et. Integer posuere dignissim mollis.
+            We are a great group of passionate students from the Greatest 
+            Computer Science Faculty. We made this application to help everyone 
+            find the perfect parking lot in a crowded city because everybody should 
+            PARK SMART 😎😍
             </p>
           </div>
         </div>
@@ -40,24 +43,34 @@ export default function Contact() {
           <h1>FAQ</h1>
           <div>
             <details>
-              <summary>Random question about something?</summary>
-              <p>Always.</p>
+              <summary>How can I add a new parking?</summary>
+              <p>We design our app to be intuitive and simple so all you 
+                have to do is to go to the Parkings Menu from the sidebar and hit 
+                the big, red button Add New 🚗. To do this you need to be logged 
+                in to our platform.</p>
             </details>
             <details>
-              <summary>Another random question about something equally random that no one cares about?</summary>
-              <p>FAQ.</p>
+              <summary>Can I manage my parking lots after I created them?</summary>
+              <p>Of course, you can. You can schedule your parking lots to be free 
+                whenever you want. For example, only at the weekends between 10 a.m. 
+                and 10 p.m. to benefit the most clients in the week😉</p>
             </details>
             <details>
-              <summary>Oh yeah?</summary>
-              <p>Yeah.</p>
+              <summary>I created a wrong parking lot. What should I do?</summary>
+              <p>You can always update your parking lots from the Parkins Menu. All 
+                you have to do is to select 'Edit' from the last Three Dots Button ▪▪▪ and 
+                this will take you to the Edit Menu. If you do not want your parking to 
+                be public anymore, you can delete it from the same menu.</p>
             </details>
             <details>
-              <summary>Will someone answer to this question?</summary>
-              <p>Yes, someone will. Here is the answer, I hope you’ll have a great day.</p>
+              <summary>How can I change the schedule of a parking lot?</summary>
+              <p>You can change your parking lot's schedule from the Schedule Menu. 
+                You can select the period you want your parking to be available, on 
+                which days of the week and even at what hours.</p>
             </details>
             <details>
-              <summary>Is this the last question?</summary>
-              <p>Hopefully.</p>
+              <summary>How is the person who is watching this?</summary>
+              <p>Really smart and cute, obviously 😉 You are using probably the greatest app on the internet.</p>
             </details>
           </div>
         </div>
