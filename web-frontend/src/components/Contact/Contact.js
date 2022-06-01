@@ -57,7 +57,7 @@ export default function Contact() {
             </details>
             <details>
               <summary>I created a wrong parking lot. What should I do?</summary>
-              <p>You can always update your parking lots from the Parkins Menu. All 
+              <p>You can always update your parking lots from the Parkings Menu. All 
                 you have to do is to select 'Edit' from the last Three Dots Button ▪▪▪ and 
                 this will take you to the Edit Menu. If you do not want your parking to 
                 be public anymore, you can delete it from the same menu.</p>
