@@ -1,8 +1,10 @@
 package b3.spl.splb.Services;
 
 import b3.spl.splb.model.ParkingLot;
+import b3.spl.splb.model.ParkingSpot;
 import b3.spl.splb.repository.AppUserRepo;
 import b3.spl.splb.repository.ParkingLotRepo;
+import b3.spl.splb.repository.ParkingSpotRepo;
 import b3.spl.splb.repository.RoleRepo;
 import b3.spl.splb.util.Point;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class ParkingLotImpl implements ParkingLotService {
     private final AppUserRepo appUserRepo;
     private final RoleRepo roleRepo;
     private final ParkingLotRepo parkingLotRepo;
+    private final ParkingSpotRepo parkingSpotRepo;
 
     @Override
     public ParkingLot saveParkingLot(ParkingLot parkingLot, String email) {
@@ -49,5 +52,20 @@ public class ParkingLotImpl implements ParkingLotService {
     public Optional<ParkingLot> setApproved(Long id, Boolean approved) {
         parkingLotRepo.findByIdAndSetApproved(id, approved);
         return parkingLotRepo.findById(id);
+    }
+    @Override
+    public void deleteParkingLot(Long id){
+        parkingLotRepo.deleteById(id);
+    }
+
+    @Override
+    public boolean addParkingSpot(Long lot_id, Long spot_id) {
+        Optional<ParkingLot> parkingLot = parkingLotRepo.findById(lot_id);
+        Optional<ParkingSpot> parkingSpot = parkingSpotRepo.findById(spot_id);
+        if(parkingLot.isPresent() && parkingSpot.isPresent()){
+            parkingLot.get().getSpots().add(parkingSpot.get());
+            return true;
+        }
+        return false;
     }
 }

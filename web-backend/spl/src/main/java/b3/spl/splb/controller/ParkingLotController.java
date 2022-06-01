@@ -9,6 +9,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +60,38 @@ public  class ParkingLotController {
         }
         return ResponseEntity.ok().body(parkingLotService.getClosestParkingLots(userLocation));
     }
+
+    @PostMapping("/parkinglot/add/parkingspot")
+    public ResponseEntity<?> addParkingSpotToParkingLot(@RequestBody ObjectNode objectNode){
+        if(objectNode.has("lot_id") && objectNode.has("spot_id")) {
+            Long lot_id = objectNode.get("lot_id").asLong();
+            Long spot_id = objectNode.get("spot_id").asLong();
+            try {
+                if(parkingLotService.addParkingSpot(lot_id, spot_id) == true){
+                   return ResponseEntity.ok().body("Success!");
+                }
+                else {
+                   return ResponseEntity.badRequest().body("Lot or spot not found");
+                }
+            }catch (Exception e){
+                return ResponseEntity.badRequest().body(e.getMessage());
+            }
+
+
+        }
+        return ResponseEntity.badRequest().body("Spot id and lot id must be provided.");
+    }
+
+    @DeleteMapping("/parkinglot/{id}")
+    public ResponseEntity<String> deleteParkingSpot(@PathVariable Long id) {
+        try {
+            parkingLotService.deleteParkingLot(id);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.badRequest().body("No parking lot with id " + id + " exists!");
+        }
+        return ResponseEntity.ok().body("Successful delete");
+    }
+
 
     @GetMapping("admin/parkinglot/approve")
     public ResponseEntity<?> setApproved(@RequestBody ObjectNode objectNode){

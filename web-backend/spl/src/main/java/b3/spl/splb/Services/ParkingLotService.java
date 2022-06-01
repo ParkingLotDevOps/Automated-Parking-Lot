@@ -11,4 +11,6 @@ public interface ParkingLotService {
     List<ParkingLot> getParkingLots();
     List<ParkingLot> getClosestParkingLots(Point userLocation);
     Optional<ParkingLot> setApproved(Long id, Boolean approved);
+    void deleteParkingLot(Long id);
+    boolean addParkingSpot(Long lot_id, Long spot_id);
 }

@@ -116,7 +116,7 @@ public class AppUserController {
             }else return ResponseEntity.badRequest().body("Provider not found.");
 
         }
-        return ResponseEntity.badRequest().body("email and banProvider must be provided.");
+        return ResponseEntity.badRequest().body("email zand banProvider must be provided.");
 
     }
 

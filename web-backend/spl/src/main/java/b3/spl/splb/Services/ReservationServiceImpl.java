@@ -38,6 +38,7 @@ public class ReservationServiceImpl implements ReservationService{
     public void removeReservation(Long id) {
         Reservation reservation = reservationRepo.findById(id).orElse(null);
         if(Objects.isNull(reservation)) throw new IllegalArgumentException("Reservation not found");
+
         ParkingSpot parkingSpot = parkingSpotRepo.findById(reservation.getParkingSpot().getId()).orElse(null);
         parkingSpot.setAvailable(true);
         parkingSpotRepo.saveAndFlush(parkingSpot);
