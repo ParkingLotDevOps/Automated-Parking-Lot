@@ -12,15 +12,20 @@ const buttonTheme = createTheme({
   }
 });
 
-export default function NotificationItem({ item }) {
+export default function NotificationItem({ item, onClick }) {
   return (
     <>
       <li className={styles.listItem}>
         <div className={styles.header}>
           <h3 className="title">{item.name}</h3>
           <ThemeProvider theme={buttonTheme}>
+<<<<<<< HEAD
             <Button variant="outlined">
               Ban User
+=======
+            <Button variant="outlined" onClick={onClick}>
+              Delete
+>>>>>>> fdb8b102393ac52f313c8f94e775c76e212fb817
             </Button>
           </ThemeProvider>
         </div>

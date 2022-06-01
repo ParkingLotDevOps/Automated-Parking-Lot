@@ -6,7 +6,7 @@ import styles from './ListItems.module.css';
 import TheHeader from 'components/TheHeader/TheHeader';
 import ListItem from 'components/ParkingLotsList/ListItem/ListItem';
 import { Sidebar } from 'components';
-import { refreshToken } from 'hooks';
+import { getUserData } from 'hooks';
 
 export default function ListItems() {
   const navigate = useNavigate();
@@ -21,28 +21,14 @@ export default function ListItems() {
 
   const fields = ['Name', 'Location', 'Date', 'Status'];
   const [items, setItems] = React.useState([]);
-
   const updateItems = async () => {
-    const res = await fetch('https://automated-parking-lot.herokuapp.com/api/provider/parkinglots', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      }
-    });
-    const ans = await res.json();
-    if (!res.ok) {
-      refreshToken(ans);
-      updateItems();
-    }
-    else {
-      setItems(ans.map(lot => ({
-        name: lot.name,
-        location: `(${lot.latitude}, ${lot.longitude})`,
-        date: new Date(),
-        status: ['opened', 'closed', 'canceled'][Math.floor(Math.random() * 3)]
-      })));
-    }
+    const ans = await getUserData();
+    setItems(ans.parkingLots.map(lot => ({
+      name: lot.name,
+      location: `(${lot.latitude}, ${lot.longitude})`,
+      date: new Date(),
+      status: ['opened', 'closed', 'canceled'][Math.floor(Math.random() * 3)]
+    })));
   };
 
   React.useEffect(() => {
