@@ -10,6 +10,9 @@ const textFieldTheme = createTheme({
   palette: {
     primary: {
       main: '#E8E4E6'
+    },
+    secondary: {
+      main: '#ABD1C6'
     }
   }
 });
@@ -43,7 +46,10 @@ export default function EditParkingLotPanel() {
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  sx={{ input: { color: '#E8E4E6' } }}
+                  sx={{
+                    input: { color: '#E8E4E6' },
+                    "& label": {color: "secondary.main"}
+                  }}
                   variant="filled"
                 />
               </ThemeProvider>
@@ -54,7 +60,10 @@ export default function EditParkingLotPanel() {
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  sx={{ input: { color: '#E8E4E6' } }}
+                  sx={{
+                    input: { color: '#E8E4E6' },
+                    "& label": {color: "secondary.main"}
+                  }}
                   variant="filled"
                 />
               </ThemeProvider>
@@ -66,7 +75,10 @@ export default function EditParkingLotPanel() {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                sx={{ input: { color: '#E8E4E6' } }}
+                sx={{
+                  input: { color: '#E8E4E6' },
+                  "& label": {color: "secondary.main"}
+                }}
                 variant="filled"
               />
             </ThemeProvider>
@@ -79,7 +91,10 @@ export default function EditParkingLotPanel() {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                sx={{ input: { color: '#E8E4E6' } }}
+                sx={{
+                  input: { color: '#E8E4E6' },
+                  "& label": {color: "secondary.main"}
+                }}
                 variant="filled"
               />
             </ThemeProvider>

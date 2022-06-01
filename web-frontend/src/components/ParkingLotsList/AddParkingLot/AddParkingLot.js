@@ -15,6 +15,9 @@ const textFieldTheme = createTheme({
   palette: {
     primary: {
       main: '#E8E4E6'
+    },
+    secondary: {
+      main: '#ABD1C6'
     }
   }
 });
@@ -106,7 +109,10 @@ export default function AddParkingLot({ setAddLot, updateLots }) {
                 className={styles.TextField}
                 onInput={(e) => setName(e.target.value)}
                 value={name}
-                sx={{ input: { color: '#E8E4E6' } }}
+                sx={{
+                  input: { color: '#E8E4E6' },
+                  "& label": {color: "secondary.main"}
+                }}
               />
             </ThemeProvider>
 
@@ -122,7 +128,10 @@ export default function AddParkingLot({ setAddLot, updateLots }) {
                 className={styles.TextField}
                 onInput={(e) => setLocation(e.target.value)}
                 value={location}
-                sx={{ input: { color: '#E8E4E6' } }}
+                sx={{
+                  input: { color: '#E8E4E6' },
+                  "& label": {color: "secondary.main"}
+                }}
               />
             </ThemeProvider>
 
@@ -138,7 +147,10 @@ export default function AddParkingLot({ setAddLot, updateLots }) {
                 className={styles.TextField}
                 onInput={(e) => setPrice(e.target.value)}
                 value={price}
-                sx={{ input: { color: '#E8E4E6' } }}
+                sx={{
+                  input: { color: '#E8E4E6' },
+                  "& label": {color: "secondary.main"}
+                }}
               />
             </ThemeProvider>
 
@@ -154,7 +166,10 @@ export default function AddParkingLot({ setAddLot, updateLots }) {
                 className={styles.TextField}
                 onInput={(e) => setSpots(e.target.value)}
                 value={spots}
-                sx={{ input: { color: '#E8E4E6' } }}
+                sx={{
+                  input: { color: '#E8E4E6' },
+                  "& label": {color: "secondary.main"}
+                }}
               />
             </ThemeProvider>
 
