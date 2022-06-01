@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaCamera } from 'react-icons/fa';
 import styles from './AddParkingLot.module.css';
+import { refreshToken } from 'hooks';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -57,10 +58,17 @@ export default function AddParkingLot({ setAddLot, updateLots }) {
     });
     if (res.ok) {
       updateLots();
+      setAddLot(false);
     }
     else {
-      console.log(sessionStorage.getItem('token'));
-      alert(await res.text());
+      const ans = await res.text();
+      if (ans.includes('The Token has expired')) {
+        refreshToken({ error: JSON.parse(ans) });
+        await addParkingLot();
+      }
+      else {
+        alert(ans);
+      }
     }
   };
 
