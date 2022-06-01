@@ -87,7 +87,13 @@ const Chart = () => {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Area type="monotone" dataKey="custemers" stroke="black" fillOpacity={1} fill="url(#colorCustemers)" />
+          <Area
+            type="monotone"
+            dataKey="custemers"
+            stroke="black"
+            fillOpacity={1}
+            fill="url(#colorCustemers)"
+          />
         </AreaChart>
       </ResponsiveContainer>
     </div>
