@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
 import styles from './ListItem.module.css';
 import { FaCalendarAlt as Calendar, FaStar as Star } from 'react-icons/fa';
@@ -104,7 +105,7 @@ export default function LisItem(props) {
         >
           {options.map((option) => (
             <MenuItem
-              key={option}
+              key={uuid()}
               selected={option === 'Pyxis'}
               onClick={
                 option === 'Edit'

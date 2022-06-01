@@ -10,9 +10,12 @@ export default function SignUp() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem('token') != null) {
-      return navigate('/dashboard');
+      navigate('/dashboard');
     }
   });
+  if (localStorage.getItem('token') != null) {
+    return;
+  }
 
   const [remember, setRemember] = React.useState(true);
   const [name, inputName] = useInput('Name');

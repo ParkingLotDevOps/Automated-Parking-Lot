@@ -7,9 +7,12 @@ export default function Contact() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
-      return navigate('/sign-in');
+      navigate('/sign-in');
     }
   });
+  if (localStorage.getItem('token') == null) {
+    return <></>;
+  }
 
   return (
     <>

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './ScheduleParkings.module.css';
+import { v4 as uuid } from 'uuid';
 
+import styles from './ScheduleParkings.module.css';
 import TheHeader from 'components/TheHeader/TheHeader';
 import ScheduleParking from 'components/Schedule/ScheduleParking/ScheduleParking';
 import { Sidebar } from 'components';
@@ -10,9 +11,12 @@ export default function ScheduleParkings() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
-      return navigate('/sign-in');
+      navigate('/sign-in');
     }
   });
+  if (localStorage.getItem('token') == null) {
+    return <></>;
+  }
 
   const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
   const items = [
@@ -49,6 +53,7 @@ export default function ScheduleParkings() {
         <TheHeader title="Schedule" hasSearchBox />
         <ul className={styles.listItems}>
           <li className={styles.listFields} key="0">
+<<<<<<< HEAD
             <div>Name</div>
             <div className={styles['from-to']}>
               <div>From</div>
@@ -56,7 +61,12 @@ export default function ScheduleParkings() {
             </div>
             <div className={styles['week-days']}>
             {weekDays.map((day) => (
-              <div key={day.id}>{day}</div>
+              <div key={uuid()}>{day}</div>
+=======
+            <div style={{ width: '5%' }}></div>
+            {fields.map((field) => (
+              <div key={uuid()}>{field}</div>
+>>>>>>> 9e4feb0f314aad6939ffeb7d22756716e46061c1
             ))}
             </div>
             <div className={styles['from-to']}>
@@ -65,7 +75,7 @@ export default function ScheduleParkings() {
             </div>
           </li>
           {items.map((item) => (
-            <ScheduleParking key={item.id} item={item} />
+            <ScheduleParking key={uuid()} item={item} />
           ))}
         </ul>
       </main>

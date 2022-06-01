@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
 import Logo from 'assets/logo.svg';
 import styles from './Sidebar.module.css';
@@ -54,8 +55,8 @@ export default function Sidebar() {
             ['Notifications', 'notifications', <NotificationsIcon className={styles.icon} />],
             ['Settings', 'settings', <SettingsIcon className={styles.icon} />]
           ].map(([text, slug, icon]) => (
-            <Link to={`/${slug}`}>
-              <ListItem button key={text}>
+            <Link to={`/${slug}`} key={uuid()}>
+              <ListItem button>
                 <ListItemIcon>
                   {icon}
                 </ListItemIcon>

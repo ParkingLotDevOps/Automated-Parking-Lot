@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
+
 import styles from './Dashboard.module.css';
 import { Sidebar } from 'components';
 import TheHeader from 'components/TheHeader/TheHeader';
@@ -22,9 +24,12 @@ export default function EditParkingLot() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
-      return navigate('/sign-in');
+      navigate('/sign-in');
     }
   });
+  if (localStorage.getItem('token') == null) {
+    return <></>;
+  }
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -94,12 +99,12 @@ export default function EditParkingLot() {
                   <li className={styles.listFields} key="0">
                     <div style={{ width: '2%' }}></div>
                     {fields.map((field) => (
-                      <div key={field.id}>{field}</div>
+                      <div key={uuid()}>{field}</div>
                     ))}
                     <div style={{ width: '10%' }}></div>
                   </li>
                   {items.map((item) => (
-                    <OrderList key={item.id} item={item} />
+                    <OrderList key={uuid()} item={item} />
                   ))}
                 </ul>
               </Item>
@@ -110,7 +115,7 @@ export default function EditParkingLot() {
                   <p>Top Parking Lots <MoreHorizIcon className={styles.more} /></p>
                   <div className={styles.box}>
                     <img src={img1} className={styles.img} alt="photo" />
-                    <li className={styles.list}>
+                    <ul className={styles.list}>
                       <li>Palas</li>
                       <li><Rating name="size-small" defaultValue={2} size="small"
                         sx={{
@@ -126,12 +131,12 @@ export default function EditParkingLot() {
                         }}
                       /></li>
                       <li>$500</li>
-                    </li>
+                    </ul>
                   </div>
                   <Divider variant="inset" className={styles.divider} />
                   <div className={styles.box}>
                     <img src={img2} className={styles.img} alt="photo" />
-                    <li className={styles.list}>
+                    <ul className={styles.list}>
                       <li>Kaufland</li>
                       <li><Rating name="size-small" defaultValue={2} size="small"
                         sx={{
@@ -147,7 +152,7 @@ export default function EditParkingLot() {
                         }}
                       /></li>
                       <li>$250</li>
-                    </li>
+                    </ul>
                   </div>
                 </div>
               </Item>

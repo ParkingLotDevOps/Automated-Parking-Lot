@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './NotificationsList.module.css';
+import { v4 as uuid } from 'uuid';
 
+import styles from './NotificationsList.module.css';
 import TheHeader from 'components/TheHeader/TheHeader';
 import NotificationItem from 'components/Notifications/NotificationItem/NotificationItem';
 import { Sidebar } from 'components';
@@ -10,9 +11,12 @@ export default function NotificationsList() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
-      return navigate('/sign-in');
+      navigate('/sign-in');
     }
   });
+  if (localStorage.getItem('token') == null) {
+    return <></>;
+  }
 
   const items = [
     {
@@ -39,7 +43,7 @@ export default function NotificationsList() {
         <TheHeader title="Notifications" />
         <ul className={styles.listItems}>
           {items.map((item) => (
-            <NotificationItem key={item.id} item={item} />
+            <NotificationItem key={uuid()} item={item} />
           ))}
         </ul>
       </main>
