@@ -19,7 +19,7 @@ export default function Settings() {
     <>
       <Sidebar />
       <main className={styles.main}>
-        <h1 className={styles.name}>{name.replace(/-/g, ' ')}</h1>
+        <h1 className={styles.name}>name</h1>
         <form className={styles.form}>
           <h2>Settings</h2>
           <div className={styles['personal-data']}>
