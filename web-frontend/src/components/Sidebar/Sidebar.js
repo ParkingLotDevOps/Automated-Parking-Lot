@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+import { getUserData } from 'hooks';
 
 import Logo from 'assets/logo.svg';
 import styles from './Sidebar.module.css';
@@ -21,6 +22,15 @@ import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Sidebar() {
+  const [username, setUsername] = React.useState('loading...');
+  const getUsername = async () => {
+    const ans = await getUserData();
+    setUsername(ans.username);
+  };
+  React.useEffect(() => {
+    getUsername();
+  }, []);
+
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem('token');
@@ -70,7 +80,7 @@ export default function Sidebar() {
           <Link to="/contact" className={styles.contact}>Contact us</Link>
           <div className={styles.box}>
             <AccountBoxRoundedIcon sx={{ width: 55, height: 55 }} />
-            <p>Username</p>
+            <p>{username}</p>
             <button className={styles.logout} onClick={logout}>
               <LogoutIcon sx={{ marginTop: 2, marginLeft: 4 }} />
             </button>

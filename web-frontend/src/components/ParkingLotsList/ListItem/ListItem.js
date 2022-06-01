@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
 
 import styles from './ListItem.module.css';
 import { FaCalendarAlt as Calendar, FaStar as Star } from 'react-icons/fa';
@@ -24,9 +23,7 @@ const formatDate = (d) => {
 export default function LisItem(props) {
   const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
-  const options = ['Edit', 'Delete'];
 
-  const ITEM_HEIGHT = 48;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -98,26 +95,22 @@ export default function LisItem(props) {
           onClose={handleClose}
           PaperProps={{
             style: {
-              maxHeight: ITEM_HEIGHT * 4.5,
+              maxHeight: 48 * 4.5,
               width: '20ch'
             }
           }}
         >
-          {options.map((option) => (
-            <MenuItem
-              key={uuid()}
-              selected={option === 'Pyxis'}
-              onClick={
-                option === 'Edit'
-                  ? () => {
-                    navigate(`/edit/${props.item.name.replace(/ /g, '-')}`);
-                  }
-                  : handleClose
-              }
-            >
-              {option}
-            </MenuItem>
-          ))}
+          <MenuItem onClick={() => {
+            navigate(`/edit/${props.item.name.replace(/ /g, '-')}`)
+          }}>
+            Edit
+          </MenuItem>
+          <MenuItem onClick={() => {
+            // TODO delete account
+            handleClose();
+          }}>
+            Delete
+          </MenuItem>
         </Menu>
       </div>
     </li>

@@ -34,3 +34,19 @@ export async function refreshToken(ans) {
     alert(ans.error);
   }
 };
+
+export async function getUserData() {
+  const res = await fetch('https://automated-parking-lot.herokuapp.com/api/user/profile', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('refresh-token')
+    }
+  });
+  const ans = await res.json();
+  if (!res.ok) {
+    refreshToken(ans);
+    return getUserData();
+  }
+  return ans;
+};
