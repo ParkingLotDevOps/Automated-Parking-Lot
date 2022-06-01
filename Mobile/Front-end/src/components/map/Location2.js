@@ -6,19 +6,14 @@ import { Icon } from 'react-native-elements';
 import MapScreen from './MapScreen';
 import MyAccountScreen from '../MyAccountScreen';
 import CarScreen from '../CarScreen';
+import PaymentMethods from "../../screens/PaymentMethods";
 
 function Home() {
 	return <MapScreen />;
 }
 
 function Wallet() {
-	return (
-		<View
-			style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-		>
-			<Text>Wallet!</Text>
-		</View>
-	);
+	return <PaymentMethods />
 }
 
 function Cars() {
