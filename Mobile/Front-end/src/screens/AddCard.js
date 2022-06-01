@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import SideMenuBar from '../components/SideMenuBar';
 import MainButton from '../components/MainButton';
+import Location2 from '../components/map/Location2';
 const AddCard = () => {
 			const navigation = useNavigation();
 	return (
