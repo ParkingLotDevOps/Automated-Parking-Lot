@@ -7,9 +7,12 @@ export default function EditParkingLot() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
-      return navigate('/sign-in');
+      navigate('/sign-in');
     }
   });
+  if (localStorage.getItem('token') == null) {
+    return;
+  }
 
   const { name } = useParams();
   return (

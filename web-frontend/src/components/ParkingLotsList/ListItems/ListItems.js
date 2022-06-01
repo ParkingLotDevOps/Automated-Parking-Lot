@@ -10,8 +10,35 @@ export default function ListItems() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
-      return navigate('/sign-in');
+      navigate('/sign-in');
     }
+  });
+  if (localStorage.getItem('token') == null) {
+    return;
+  }
+
+  React.useEffect(() => {
+    const fun = async () => {
+      const res = await fetch('https://automated-parking-lot.herokuapp.com/api/provider/parkinglots', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      });
+      const ans = await res.json();
+      if (!res.ok && ans.error.startsWith('The Token has expired')) {
+        localStorage.removeItem('token');
+        navigate('/sign-in');
+      }
+      else if (!res.ok) {
+        alert(ans.error);
+      }
+      else {
+        console.log(ans);
+      }
+    };
+    fun();
   });
 
   const fields = ['Name', 'Location', 'Date', 'Status'];

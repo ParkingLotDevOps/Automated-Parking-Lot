@@ -9,9 +9,12 @@ export default function SignIn() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem('token') != null) {
-      return navigate('/dashboard');
+      navigate('/dashboard');
     }
   });
+  if (localStorage.getItem('token') != null) {
+    return;
+  }
 
   React.useEffect(() => {
     [...document.getElementsByTagName('svg')].filter(el => (

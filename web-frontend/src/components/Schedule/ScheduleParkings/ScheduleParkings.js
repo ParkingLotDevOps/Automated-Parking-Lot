@@ -10,9 +10,12 @@ export default function ScheduleParkings() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
-      return navigate('/sign-in');
+      navigate('/sign-in');
     }
   });
+  if (localStorage.getItem('token') == null) {
+    return;
+  }
 
   const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
   const fields = ['Name', 'From', 'To', ...weekDays, 'Date From', 'Date To'];

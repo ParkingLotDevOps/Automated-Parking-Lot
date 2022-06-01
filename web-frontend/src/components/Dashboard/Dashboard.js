@@ -22,9 +22,12 @@ export default function EditParkingLot() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
-      return navigate('/sign-in');
+      navigate('/sign-in');
     }
   });
+  if (localStorage.getItem('token') == null) {
+    return;
+  }
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
