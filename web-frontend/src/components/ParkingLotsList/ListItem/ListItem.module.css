@@ -66,3 +66,11 @@
   background-color: rgba(112, 72, 72, 0.5);
   color: #e16162;
 }
+
+.my-button {
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 1rem;
+  width: 100%;
+}

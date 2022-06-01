@@ -34,6 +34,7 @@ export default function LisItem(props) {
     setAnchorEl(null);
   };
 
+  const [status, setStatus] = React.useState(props.item.status);
   return (
     <li className={styles.listItem}>
       <Checkbox
@@ -57,8 +58,14 @@ export default function LisItem(props) {
         </span>
         {formatDate(props.item.date)}
       </div>
-      <div className={`${styles.status} ${styles[props.item.status]}`}>
-        {props.item.status}
+      <div className={`${styles.status} ${styles[status]}`}>
+        <button className={styles['my-button']} onClick={() => {
+          if (status === 'opened') setStatus('closed');
+          if (status === 'closed') setStatus('canceled');
+          if (status === 'canceled') setStatus('opened');
+        }}>
+          {status}
+        </button>
       </div>
       <Checkbox
         className={styles.fav}
@@ -106,7 +113,7 @@ export default function LisItem(props) {
             Edit
           </MenuItem>
           <MenuItem onClick={() => {
-            // TODO delete account
+            // TODO delete parking lot
             handleClose();
           }}>
             Delete

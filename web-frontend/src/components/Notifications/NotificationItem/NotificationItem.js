@@ -20,7 +20,7 @@ export default function NotificationItem({ item, onClick }) {
           <h3 className="title">{item.name}</h3>
           <ThemeProvider theme={buttonTheme}>
             <div>
-              <Button variant="outlined">
+              <Button variant="outlined" onClick={() => alert('User banned!')}>
                 Ban User
               </Button>
               &nbsp;&nbsp;&nbsp;

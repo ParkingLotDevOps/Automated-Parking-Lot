@@ -186,8 +186,19 @@ export default function Settings() {
           </div>
           <div className={styles.delete}>
             <ThemeProvider theme={buttonTheme}>
-              <Button variant="outlined" sx={{ height: 55 }}>
-              Delete Account
+              <Button variant="outlined" sx={{ height: 55 }} onClick={() => {
+                const fun = count => {
+                  let really = '';
+                  for (let i = 0; i < count; i++) {
+                    really += ' really';
+                  }
+                  if (confirm(`Are you${really} sure you want to delete your account? ;(`)) {
+                    fun(count + 1);
+                  }
+                };
+                fun(0);
+              }}>
+                Delete Account
               </Button>
             </ThemeProvider>
           </div>
