@@ -9,7 +9,6 @@ import ParkingLotList from './ParkingLotsList/ListItems/ListItems';
 import NotificationsList from './Notifications/NotificationsList/NotificationsList';
 import ScheduleParkings from './Schedule/ScheduleParkings/ScheduleParkings';
 import Settings from './Settings/Settings';
-import App from './App/App';
 import Sidebar from './Sidebar/Sidebar';
 import AddParkingLot from './ParkingLotsList/AddParkingLot/AddParkingLot'
 import Dashboard from './Dashboard/Dashboard'
@@ -27,7 +26,6 @@ export {
   NotificationsList,
   ScheduleParkings,
   Settings,
-  App,
   Sidebar,
   AddParkingLot,
   Dashboard,

@@ -6,6 +6,13 @@ import { useInput } from 'hooks';
 import { SignContainer, BaseButton } from 'components';
 
 export default function SignIn() {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (localStorage.getItem('token') != null) {
+      return navigate('/dashboard');
+    }
+  });
+
   React.useEffect(() => {
     [...document.getElementsByTagName('svg')].filter(el => (
       el.getAttribute('width') === '1em' &&
@@ -13,7 +20,6 @@ export default function SignIn() {
     )).forEach(el => el.removeAttribute('width'));
   }, []);
 
-  const navigate = useNavigate();
   const [email, inputEmail] = useInput('Email address', 'email');
   const [password, inputPassword] = useInput('Password', 'password');
 

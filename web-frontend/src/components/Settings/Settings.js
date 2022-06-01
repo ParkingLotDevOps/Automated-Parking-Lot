@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Sidebar } from 'components';
 import { FaCamera } from 'react-icons/fa';
@@ -7,6 +8,13 @@ import Button from '@mui/material/Button';
 import styles from './Settings.module.css';
 
 export default function Settings() {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (localStorage.getItem('token') == null) {
+      return navigate('/sign-in');
+    }
+  });
+
   return (
     <>
       <Sidebar />

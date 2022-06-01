@@ -8,6 +8,12 @@ import { BaseButton, SignContainer } from 'components';
 
 export default function SignUp() {
   const navigate = useNavigate();
+  React.useEffect(() => {
+    if (localStorage.getItem('token') != null) {
+      return navigate('/dashboard');
+    }
+  });
+
   const [remember, setRemember] = React.useState(true);
   const [name, inputName] = useInput('Name');
   const [username, inputUsername] = useInput('Username');

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './ListItems.module.css';
 
 import TheHeader from 'components/TheHeader/TheHeader';
@@ -6,6 +7,13 @@ import ListItem from 'components/ParkingLotsList/ListItem/ListItem';
 import { Sidebar } from 'components';
 
 export default function ListItems() {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (localStorage.getItem('token') == null) {
+      return navigate('/sign-in');
+    }
+  });
+
   const fields = ['Name', 'Location', 'Date', 'Status'];
   const items = [
     {

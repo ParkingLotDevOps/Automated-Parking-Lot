@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import { Sidebar } from 'components';
 import TheHeader from 'components/TheHeader/TheHeader';
@@ -18,6 +19,13 @@ import Featured from 'components/Dashboard/analytics/analytics';
 import Chart from 'components/Dashboard/chart/chart';
 
 export default function EditParkingLot() {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (localStorage.getItem('token') == null) {
+      return navigate('/sign-in');
+    }
+  });
+
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,

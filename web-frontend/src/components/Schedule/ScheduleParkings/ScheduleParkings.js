@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './ScheduleParkings.module.css';
 
 import TheHeader from 'components/TheHeader/TheHeader';
@@ -6,6 +7,13 @@ import ScheduleParking from 'components/Schedule/ScheduleParking/ScheduleParking
 import { Sidebar } from 'components';
 
 export default function ScheduleParkings() {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (localStorage.getItem('token') == null) {
+      return navigate('/sign-in');
+    }
+  });
+
   const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
   const fields = ['Name', 'From', 'To', ...weekDays, 'Date From', 'Date To'];
   const items = [

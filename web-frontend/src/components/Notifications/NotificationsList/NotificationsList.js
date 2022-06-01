@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './NotificationsList.module.css';
 
 import TheHeader from 'components/TheHeader/TheHeader';
@@ -6,6 +7,13 @@ import NotificationItem from 'components/Notifications/NotificationItem/Notifica
 import { Sidebar } from 'components';
 
 export default function NotificationsList() {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (localStorage.getItem('token') == null) {
+      return navigate('/sign-in');
+    }
+  });
+
   const items = [
     {
       id: '1',

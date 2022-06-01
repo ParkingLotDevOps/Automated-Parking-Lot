@@ -1,8 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Contact.module.css';
 import { Sidebar } from 'components';
 
 export default function Contact() {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (localStorage.getItem('token') == null) {
+      return navigate('/sign-in');
+    }
+  });
+
   return (
     <>
       <Sidebar />
