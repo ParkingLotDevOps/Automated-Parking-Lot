@@ -3,6 +3,7 @@ import { FaCamera } from 'react-icons/fa';
 import styles from './AddParkingLot.module.css';
 import { makeRequest } from 'hooks';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -52,8 +53,24 @@ export default function AddParkingLot({ setAddLot, updateLots }) {
       })
     });
     if (res != null) {
-      updateLots();
-      setAddLot(false);
+      const lot_id = res.id;
+      for (let i = 1; i < spots; i++) {
+        const res = await makeRequest(navigate, 'parkingspots', 'POST', {
+          type: 0,
+          available: true,
+          line: 1,
+          name: uuid()
+        });
+        if (res != null) {
+          const spot_id = res.id;
+          await makeRequest(navigate, 'parkinglot/add/parkingspot', 'POST', {
+            lot_id,
+            spot_id
+          });
+        }
+        updateLots();
+        setAddLot(false);
+      }
     }
   };
 

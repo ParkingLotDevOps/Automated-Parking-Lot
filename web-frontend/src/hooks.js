@@ -51,6 +51,9 @@ export async function makeRequest(navigate, path, method, body) {
   const ansJSON = ansText.startsWith('{')
     ? JSON.parse(ansText)
     : { error: ansText };
+  if (ansJSON.error != null && ansJSON.error.toLowerCase().includes('success')) {
+    ansJSON.error = undefined;
+  }
   if (ansJSON.error != null) {
     alert(ansJSON.error);
     return null;
