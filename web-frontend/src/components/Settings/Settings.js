@@ -36,6 +36,9 @@ export default function Settings() {
   const [userName, setUserName] = useState('');
   const [userSurname, setUserSurname] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const updateUserData = async () => {
     const res = await fetch(
@@ -48,6 +51,34 @@ export default function Settings() {
           body: JSON.stringify({
             email: userEmail,
             name: userName + ' ' + userSurname
+          })
+        }
+      }
+    );
+    const ans = res.json();
+    if (ans.ok) {
+      aler('Changes saved');
+    } else {
+      console.log(res);
+    }
+  };
+
+  const changePassword = async () => {
+    if (confirmPassword !== newPassword) {
+      alert("Passwords don't match !");
+      return;
+    }
+
+    const res = await fetch(
+      'https://automated-parking-lot.herokuapp.com/api/user/restepassword',
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+          body: JSON.stringify({
+            old_password: oldPassword,
+            new_password: newPassword
           })
         }
       }
@@ -194,6 +225,8 @@ export default function Settings() {
               <h2>Change Password</h2>
               <ThemeProvider theme={textFieldTheme}>
                 <TextField
+                  value={oldPassword}
+                  onInput={(e) => setOldPassword(e.target.value)}
                   label="Old Password"
                   type="password"
                   InputLabelProps={{
@@ -208,6 +241,8 @@ export default function Settings() {
               </ThemeProvider>
               <ThemeProvider theme={textFieldTheme}>
                 <TextField
+                  value={newPassword}
+                  onInput={(e) => setNewPassword(e.target.value)}
                   label="New Password"
                   type="password"
                   InputLabelProps={{
@@ -222,6 +257,8 @@ export default function Settings() {
               </ThemeProvider>
               <ThemeProvider theme={textFieldTheme}>
                 <TextField
+                  value={confirmPassword}
+                  onInput={(e) => setConfirmPassword(e.target.value)}
                   label="Confirm New Password"
                   type="password"
                   InputLabelProps={{
@@ -238,7 +275,7 @@ export default function Settings() {
                 <Button
                   variant="contained"
                   sx={{ height: 55 }}
-                  onClick={updateUserData}
+                  onClick={changePassword}
                 >
                   Save Changes
                 </Button>
