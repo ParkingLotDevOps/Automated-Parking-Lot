@@ -36,6 +36,7 @@ const Stack = createStackNavigator();
 export default function App() {
   const [token, setToken] = useState(null);
   const [refreshToken, setRefreshToken] = useState(null);
+  console.disableYellowBox = true;
   return (
     <AuthContext.Provider
       value={[token, setToken, refreshToken, setRefreshToken]}
