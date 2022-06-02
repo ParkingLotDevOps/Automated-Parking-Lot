@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FaCamera } from 'react-icons/fa';
 import styles from './AddParkingLot.module.css';
-import { refreshToken } from 'hooks';
+import { makeRequest } from 'hooks';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -36,39 +37,23 @@ export default function AddParkingLot({ setAddLot, updateLots }) {
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
   const [spots, setSpots] = useState('');
+  const navigate = useNavigate();
 
   const addParkingLot = async () => {
     const [latitude, longitude] = location.split(' ');
-    const res = await fetch('https://automated-parking-lot.herokuapp.com/api/provider/parkinglot/save', {
-      method: 'POST',
-      body: JSON.stringify({
-        name,
-        latitude: parseFloat(latitude),
-        longitude: parseFloat(longitude),
-        price: parseFloat(price),
-        spots: new Array(spots).fill({
-          type: 0,
-          available: true
-        })
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      }
+    const res = await makeRequest(navigate, 'provider/parkinglot/save', 'POST', {
+      name,
+      latitude: parseFloat(latitude),
+      longitude: parseFloat(longitude),
+      price: parseFloat(price),
+      spots: new Array(spots).fill({
+        type: 0,
+        available: true
+      })
     });
-    if (res.ok) {
+    if (res != null) {
       updateLots();
       setAddLot(false);
-    }
-    else {
-      const ans = await res.text();
-      if (ans.includes('The Token has expired')) {
-        refreshToken({ error: JSON.parse(ans) });
-        await addParkingLot();
-      }
-      else {
-        alert(ans);
-      }
     }
   };
 

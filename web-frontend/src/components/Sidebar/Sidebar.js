@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import { getUserData } from 'hooks';
+import { makeRequest } from 'hooks';
 
 import Logo from 'assets/logo.svg';
 import styles from './Sidebar.module.css';
@@ -24,8 +24,10 @@ import LogoutIcon from '@mui/icons-material/Logout';
 export default function Sidebar() {
   const [username, setUsername] = React.useState('loading...');
   const getUsername = async () => {
-    const ans = await getUserData();
-    setUsername(ans.username);
+    const res = await makeRequest(navigate, 'user/profile', 'GET', null);
+    if (res != null) {
+      setUsername(res.username);
+    }
   };
   React.useEffect(() => {
     getUsername();

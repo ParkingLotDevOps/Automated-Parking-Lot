@@ -6,7 +6,7 @@ import styles from './ScheduleParkings.module.css';
 import TheHeader from 'components/TheHeader/TheHeader';
 import ScheduleParking from 'components/Schedule/ScheduleParking/ScheduleParking';
 import { Sidebar } from 'components';
-import { getUserData } from 'hooks';
+import { makeRequest } from 'hooks';
 
 export default function ScheduleParkings() {
   const navigate = useNavigate();
@@ -21,14 +21,17 @@ export default function ScheduleParkings() {
 
   const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const [items, setItems] = React.useState([]);
+
   const updateItems = async () => {
-    const ans = await getUserData();
-    setItems(ans.parkingLots.map(lot => ({
-      name: lot.name,
-      location: `(${lot.latitude}, ${lot.longitude})`,
-      date: new Date(),
-      status: ['opened', 'closed', 'canceled'][Math.floor(Math.random() * 3)]
-    })));
+    const res = await makeRequest(navigate, 'user/profile', 'GET', null);
+    if (res != null) {
+      setItems(res.parkingLots.map(lot => ({
+        name: lot.name,
+        location: `(${lot.latitude}, ${lot.longitude})`,
+        date: new Date(),
+        status: ['opened', 'closed', 'canceled'][Math.floor(Math.random() * 3)]
+      })));
+    }
   };
   React.useEffect(() => {
     updateItems();

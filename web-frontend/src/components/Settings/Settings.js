@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
 import { Sidebar } from 'components';
@@ -9,7 +8,7 @@ import Button from '@mui/material/Button';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import styles from './Settings.module.css';
-import { getUserData } from 'hooks';
+import { makeRequest } from 'hooks';
 
 const textFieldTheme = createTheme({
   palette: {
@@ -41,70 +40,40 @@ export default function Settings() {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const updateUserData = async () => {
-    const res = await fetch(
-      'https://automated-parking-lot.herokuapp.com/api/user',
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + localStorage.getItem('token'),
-          body: JSON.stringify({
-            email: userEmail,
-            name: userName + ' ' + userSurname
-          })
-        }
-      }
-    );
-    const ans = res.json();
-    if (ans.ok) {
-      aler('Changes saved');
-    } else {
-      console.log(res);
+    const res = await makeRequest(navigate, 'user', 'PUT', {
+      email: userEmail,
+      name: userName + ' ' + userSurname
+    });
+    if (res != null) {
+      alert('Changes saved');
     }
   };
 
   const changePassword = async () => {
     if (confirmPassword !== newPassword) {
-      alert("Passwords don't match !");
+      alert("Passwords don't match!");
       return;
     }
-
-    const res = await fetch(
-      'https://automated-parking-lot.herokuapp.com/api/user/restepassword',
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + localStorage.getItem('token'),
-          body: JSON.stringify({
-            old_password: oldPassword,
-            new_password: newPassword
-          })
-        }
-      }
-    );
-    const ans = res.json();
-    if (ans.ok) {
-      aler('Changes saved');
-    } else {
-      console.log(res);
+    const res = await makeRequest(navigate, 'user/restepassword', 'PUT', {
+      old_password: oldPassword,
+      new_password: newPassword
+    });
+    if (res != null) {
+      alert('Changes saved');
     }
   };
 
-  React.useEffect(() => {
-    if (localStorage.getItem('token') == null) {
-      navigate('/sign-in');
-    } else {
-      async function fetchData() {
-        return await getUserData();
-      }
-      fetchData().then((res) => {
-        let [name, surname] = res.name.split(' ');
-        setUserEmail(res.email);
-        setUserName(!name ? '' : name);
-        setUserSurname(!surname ? '' : surname);
-      });
+  const fun = async () => {
+    const res = await makeRequest(navigate, 'user/profile', 'GET', null);
+    if (res != null) {
+      const [name, surname] = res.name.split(' ');
+      setUserEmail(res.email);
+      setUserName(!name ? '' : name);
+      setUserSurname(!surname ? '' : surname);
     }
+  };
+  React.useEffect(() => {
+    fun();
   }, []);
 
   if (localStorage.getItem('token') == null) {

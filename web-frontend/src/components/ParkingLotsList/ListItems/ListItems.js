@@ -6,7 +6,7 @@ import styles from './ListItems.module.css';
 import TheHeader from 'components/TheHeader/TheHeader';
 import ListItem from 'components/ParkingLotsList/ListItem/ListItem';
 import { Sidebar } from 'components';
-import { getUserData } from 'hooks';
+import { makeRequest } from 'hooks';
 
 export default function ListItems() {
   const navigate = useNavigate();
@@ -21,15 +21,18 @@ export default function ListItems() {
 
   const fields = ['Name', 'Location', 'Date', 'Status'];
   const [items, setItems] = React.useState([]);
+
   const updateItems = async () => {
-    const ans = await getUserData();
-    setItems(ans.parkingLots.map(lot => ({
-      id: lot.id,
-      name: lot.name,
-      location: `(${lot.latitude}, ${lot.longitude})`,
-      date: new Date(),
-      status: ['opened', 'closed', 'canceled'][Math.floor(Math.random() * 3)]
-    })));
+    const res = await makeRequest(navigate, 'user/profile', 'GET', null);
+    if (res != null) {
+      setItems(res.parkingLots.map(lot => ({
+        id: lot.id,
+        name: lot.name,
+        location: `(${lot.latitude}, ${lot.longitude})`,
+        date: new Date(),
+        status: ['opened', 'closed', 'canceled'][Math.floor(Math.random() * 3)]
+      })));
+    }
   };
   React.useEffect(() => {
     updateItems();
@@ -50,14 +53,7 @@ export default function ListItems() {
           </li>
           {items.map((item, index) => (
             <ListItem key={uuid()} item={item} onDelete={async () => {
-              console.log(item.id);
-              await fetch(`https://automated-parking-lot.herokuapp.com/api/parkinglot/${item.id}`, {
-                method: 'DELETE',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: 'Bearer ' + localStorage.getItem('token')
-                }
-              });
+              await makeRequest(navigate, `parkinglot/${item.id}`, 'DELETE', null);
               const newItems = [...items];
               newItems.splice(index, 1);
               setItems(newItems);
