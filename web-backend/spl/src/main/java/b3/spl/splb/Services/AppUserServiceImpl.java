@@ -63,18 +63,20 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
-    public AppUser updateUser(AppUser updatedUser, AppUser user) {
-        if(Objects.isNull(user.getName())) {
-            throw new IllegalArgumentException("Name is required");
-        } else if (Objects.isNull(user.getEmail())) {
-            throw new IllegalArgumentException("Email is required");
+    public void updateUser(AppUser updatedUser, AppUser user) {
+        if(!Objects.isNull(user.getUsername())) {
+            updatedUser.setUsername(user.getUsername());
         }
-        if(!user.getEmail().matches("[a-zA-Z0-9_\\.-]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9_-]{2,4})+")){
-            throw new IllegalArgumentException("Invalid email");
+        if(!Objects.isNull(user.getName())) {
+            updatedUser.setName(user.getName());
         }
-        updatedUser.setName(user.getName());
-        updatedUser.setEmail(user.getEmail());
-        return appUserRepo.save(updatedUser);
+        if (!Objects.isNull(user.getEmail())) {
+            if(!user.getEmail().matches("[a-zA-Z0-9_\\.-]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9_-]{2,4})+")){
+                throw new IllegalArgumentException("Invalid email");
+            }
+            updatedUser.setEmail(user.getEmail());
+        }
+
     }
 
     @Override
@@ -160,5 +162,10 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
             return false;
         appUserRepo.getById(appUser.getId()).setPassword(passwordEncoder.encode(newPassword));
         return true;
+    }
+
+    @Override
+    public void deleteUser(AppUser user) {
+        appUserRepo.deleteById(user.getId());
     }
 }

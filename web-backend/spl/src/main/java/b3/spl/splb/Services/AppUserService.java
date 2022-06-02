@@ -9,7 +9,7 @@ import java.util.List;
 public interface AppUserService {
     AppUser getUser(String email);
     AppUser saveUser(AppUser user);
-    AppUser updateUser(AppUser updatedUser, AppUser user);
+    void updateUser(AppUser updatedUser, AppUser user);
     Role saveRole(Role role);
     boolean addRoleToAppUser(String email,  String rolName);
     boolean setBannedUser(String email, Boolean banned);
@@ -19,4 +19,5 @@ public interface AppUserService {
     List<Car> getUserCars(String email);
     boolean checkIfValidOldPassword(AppUser user, String oldPassword);
     boolean changeUserPassword(AppUser appUser, String newPassword);
+    void deleteUser(AppUser user);
 }

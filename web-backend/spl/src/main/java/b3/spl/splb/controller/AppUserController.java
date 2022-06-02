@@ -50,6 +50,16 @@ public class AppUserController {
     public ResponseEntity<AppUser> getUserProfile(@RequestHeader HttpHeaders headers){
         return ResponseEntity.ok().body(appUserService.getUser(tokenDecoder.getEmailFromToken(headers)));
     }
+    @DeleteMapping("/user")
+    public ResponseEntity<?> deleteUser(@RequestHeader HttpHeaders headers){
+        try {
+            AppUser user = appUserService.getUser(tokenDecoder.getEmailFromToken(headers));
+            appUserService.deleteUser(user);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Could not delete user!");
+        }
+        return  ResponseEntity.ok().body("User deleted successfully!");
+    }
 
     @PutMapping("user/restepassword")
     public ResponseEntity<?> updatePassword(@RequestHeader HttpHeaders headers, @RequestBody ObjectNode objectNode){
@@ -100,10 +110,11 @@ public class AppUserController {
     public ResponseEntity updateUser(@RequestHeader HttpHeaders httpHeaders, @RequestBody AppUser user) {
         AppUser updatedUser = appUserService.getUser(tokenDecoder.getEmailFromToken(httpHeaders));
         try {
-            return ResponseEntity.ok().body(appUserService.updateUser(updatedUser, user));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(appUserService.saveUser(updatedUser));
+            appUserService.updateUser(updatedUser, user);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
+        return ResponseEntity.ok().body("User updated!");
     }
 
 
