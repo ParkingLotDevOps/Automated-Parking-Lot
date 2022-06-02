@@ -10,10 +10,12 @@ import b3.spl.splb.repository.RoleRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -145,5 +147,18 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
 
+    @Override
+    public boolean checkIfValidOldPassword(AppUser user, String oldPassword) {
+        String oldPasswordEnc = appUserRepo.findByEmail(user.getEmail()).getPassword();
+        return passwordEncoder.matches(oldPassword, oldPasswordEnc);
+    }
 
+    @Override
+    public boolean changeUserPassword(AppUser appUser, String newPassword) {
+        if(newPassword.length()<8 || !newPassword.matches(".*[A-Z].*") ||
+                !newPassword.matches(".*[a-z].*") || !newPassword.matches(".*[0-9].*"))
+            return false;
+        appUserRepo.getById(appUser.getId()).setPassword(passwordEncoder.encode(newPassword));
+        return true;
+    }
 }

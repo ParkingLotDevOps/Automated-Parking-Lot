@@ -51,6 +51,26 @@ public class AppUserController {
         return ResponseEntity.ok().body(appUserService.getUser(tokenDecoder.getEmailFromToken(headers)));
     }
 
+    @PutMapping("user/restepassword")
+    public ResponseEntity<?> updatePassword(@RequestHeader HttpHeaders headers, @RequestBody ObjectNode objectNode){
+
+        try {
+            String oldPassword = objectNode.get("old_password").textValue();
+            String newPassword = objectNode.get("new_password").textValue();
+
+            AppUser user = appUserService.getUser(tokenDecoder.getEmailFromToken(headers));
+            if(!appUserService.checkIfValidOldPassword(user, oldPassword)){
+                throw new  Exception("The old password is incorrect!");
+            }
+            if(!appUserService.changeUserPassword(user, newPassword)){
+                throw new Exception("New password did not meet the complexity requirements!");
+            }
+        }catch (Exception e){
+            return  ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body("Password was changed successfully!");
+    }
+
     @PostMapping("/user/save")
     public ResponseEntity saveUser(@RequestBody AppUser user){
         System.out.println(user);

@@ -17,4 +17,6 @@ public interface AppUserService {
     boolean addCarToUser(Long carId, Long userId);
     List<AppUser> getUsers();
     List<Car> getUserCars(String email);
+    boolean checkIfValidOldPassword(AppUser user, String oldPassword);
+    boolean changeUserPassword(AppUser appUser, String newPassword);
 }
